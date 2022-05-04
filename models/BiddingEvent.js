@@ -23,6 +23,7 @@ const BiddingEvent = sequelize.define(
     },
     isSold: {
       type: DataTypes.BOOLEAN,
+      default: false,
     },
 
     soilPhCertificate: {

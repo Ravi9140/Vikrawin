@@ -22,6 +22,8 @@ app.use("/api/farmerauth", require("./routes/api/farmerauth"));
 app.use("/api/bidder", require("./routes/api/bidder"));
 app.use("/api/bidderauth", require("./routes/api/bidderauth"));
 
+app.use("/api/crop", require("./routes/api/crop"));
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () =>
@@ -53,10 +55,10 @@ Bidding.belongsTo(BiddingEvent, {
 Bidding.belongsToMany(Bidder, { through: "winner", timestamps: false });
 Bidder.belongsToMany(Bidding, { through: "winner", timestamps: false });
 
-sequelize
-  .sync({ alter: true })
-  .then(() => {
-    //working with the tables
-    console.log("Table and Model Updated Successfully");
-  })
-  .catch((err) => console.log(err));
+// sequelize
+//   .sync({ alter: true })
+//   .then(() => {
+//     //working with the tables
+//     console.log("Table and Model Updated Successfully");
+//   })
+//   .catch((err) => console.log(err));
