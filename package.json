@@ -1,0 +1,31 @@
+{
+  "name": "vikrawin",
+  "version": "1.0.0",
+  "description": "Online Bidding Platform for Farmer to sell crops.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+hSequelizettps://gitlab.com/jadhavganesh14091999/vikrawin.git"
+  },
+  "author": "vikrawin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/jadhavganesh14091999/vikrawin/issues"
+  },
+  "homepage": "https://gitlab.com/jadhavganesh14091999/vikrawin#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "config": "^3.3.7",
+    "express": "^4.18.0",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

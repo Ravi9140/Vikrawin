@@ -1,0 +1,15 @@
+# Creating User
+CREATE USER 'vikraWinAdmin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'vikraWin@123';
+
+# Creating Database
+CREATE DATABASE vikrawin;
+
+# Giving Permission to user on the database
+GRANT ALL ON vikrawin.* TO 'vikraWinAdmin'@'localhost';
+FLUSH PRIVILEGES;
+
+# Installing Packages
+npm i sequelize
+npm install --save mysql2
+npm i bcrypt
+npm i express-validator
