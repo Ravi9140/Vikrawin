@@ -12,7 +12,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import RegistartionForm from '../../Components/RegistrationForm';
 import ConfirmationDialog from '../../Components/ConfirmationDialog';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -98,61 +97,9 @@ const UpcomingEvents = () => {
                      </TableRow>
                    </Table>
                  </TableContainer>
-                 <CardActions disableSpacing>
-                 <RegistartionForm/>
-               
-                   {/* <IconButton style={{marginLeft:"3rem"}} aria-label="add to favorites" >
-                          <FavoriteIcon
-                          style={{ color: color}}  
-                           onClick={() => {
-                             handleClick();
-                             changeColor();
-                           }}
-                          /> 
-                          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                             <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                                    Added to the wishlist!
-                             </Alert>
-                          </Snackbar>
-                   </IconButton> */}
-
-{/* <IconButton style={{marginLeft:"3rem"}} aria-label="add to favorites" >
-                          <FavoriteIcon
-                          style={{ color: color}}  
-                           onClick={() => {
-                             <ConfirmationDialog/>
-                            //  handleClick();
-                            //  changeColor();
-                           }}
-                          /> 
-                          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                             <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                                    Added to the wishlist!
-                             </Alert>
-                          </Snackbar>
-                   </IconButton> */}                           
+                 <CardActions disableSpacing>                           
                    <ConfirmationDialog/>
-
-
-                  {/* <IconButton style={{marginLeft:"3rem"}} aria-label="add to favorites" >
-                         
-                          <FavoriteIcon
-                          key={elem.id}
-                          style={{ color: color}}  
-                           onClick={() => {
-                             handleClick();
-                             toggleActive(elem.id);
-                             changeColor(elem.id);
-                            
-                           }}
-                          /> 
-                       
-                          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                             <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                                    Added to the wishlist!
-                             </Alert>
-                          </Snackbar>
-                   </IconButton> */}
+                   {/* <Button onClick={}>{buttonText}</Button> */}
 
                  </CardActions>
                  

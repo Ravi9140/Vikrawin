@@ -7,11 +7,15 @@ const HomePage = () => {
     <>
     
     <br/><h1>This is a Landing Page.</h1>
-    <Button component={Link} to="/FarmerAuctions" color="primary">
-        Farmer Dashboard
+    <Button component={Link} to="/FarmerRegistration" color="primary">
+        Farmer Registration
     </Button>
-    <Button component={Link} to="/BidderHome" color="primary">
-        Bidder Dashboard
+    {/* <Button component={Link} to="/LoginSignupPage" color="primary">
+       Login
+    </Button> */}
+
+    <Button component={Link} to="/BidderRegistration" color="primary">
+        Bidder Registration
     </Button>
     </>
     

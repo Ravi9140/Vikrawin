@@ -12,11 +12,18 @@ import Wishlist from "./Pages/Bidder/Wishlist";
 import AboutUs from "./Pages/Bidder/AboutUs";
 import BidderHome from "./Pages/Bidder/Home";
 import BidderHistory from "./Pages/Bidder/History";
+import FarmerRegistration from './Pages/Farmer/FarmerRegistration'
+import BidderRegistration from './Pages/Bidder/BidderRegistration'
+
 
 function App() {
  return(
    <div>
      <Routes>
+     {/* RegistrationPage */}
+     <Route path="/FarmerRegistration" element={<FarmerRegistration/>} />
+     <Route path="/BidderRegistration" element={<BidderRegistration/>} />
+
      {/* FarmerPages */}
      <Route path="/" element={<HomePage/>} />
      <Route path="/FarmerAuctions" element={<Auctions/>} />
