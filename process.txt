@@ -13,3 +13,6 @@ npm i sequelize
 npm install --save mysql2
 npm i bcrypt
 npm i express-validator
+
+// Running Concurrently
+npm i -D concurrently

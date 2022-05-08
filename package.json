@@ -4,7 +4,10 @@
   "description": "Online Bidding Platform for Farmer to sell crops.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,7 @@
     "sequelize": "^6.19.0"
   },
   "devDependencies": {
+    "concurrently": "^7.1.0",
     "nodemon": "^2.0.15"
   }
 }
