@@ -80,13 +80,13 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
   };
   const paperStyle = {
     padding: "30px 20px",
-    height: "85vh",
+    height: "100vh",
     width: "60vw",
     margin: "20px auto",
   };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
-  const tfieldStyle = { width: "25vw", marginLeft: "15px", marginTop: "4px" };
+  const tfieldStyle = { width: "25vw", marginLeft: "15px", marginTop: "14px" };
   const marginTop = { marginTop: 3 };
   return (
     <>
