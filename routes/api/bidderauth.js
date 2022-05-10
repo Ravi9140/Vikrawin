@@ -23,7 +23,7 @@ router.get("/", bidderauth, async (req, res) => {
   }
 });
 
-// @route   GET api/bidderauth
+// @route   POST api/bidderauth
 // @desc    Authenticate Bidder & get token
 // @access  Public
 

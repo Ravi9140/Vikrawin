@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText,} from "@mui/material";
+import { Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 
-const pages=["Auctions","Create Auctions","History","My Crops","Profile","Update Account"];
-const path=["FarmerAuctions","FarmerCreateAuctions","FarmerHistory","FarmerMyCrops","FarmerProfile","FarmerUpdateAccount"];
+const pages = ["Auctions", "Create Auctions", "History", "My Crops", "Profile", "Update Account"];
+const path = ["FarmerAuctions", "FarmerCreateAuctions", "FarmerHistory", "FarmerMyCrops", "FarmerProfile", "FarmerUpdateAccount"];
 
 const FarmerDrawerComp = () => {
-const [openDrawer, setOpenDrawer] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
     <React.Fragment>
@@ -29,70 +29,52 @@ const [openDrawer, setOpenDrawer] = useState(false);
             </ListItemButton>
           ))*/}
 
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/FarmerAuctions'>
-                      Auctions
+          <ListItemButton onClick={() => setOpenDrawer(false)} >
+            <ListItemIcon>
+              <ListItemText>
+                <Link style={{ textDecoration: "none", color: "black" }} to='/FarmerMyCrops'>
+                  My Crops
                 </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
-          
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/FarmerCreateAuctions'>
-                      Create Auctions 
-                </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
+              </ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
 
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/FarmerHistory'>
-                      History
+          <ListItemButton onClick={() => setOpenDrawer(false)} >
+            <ListItemIcon>
+              <ListItemText>
+                <Link style={{ textDecoration: "none", color: "black" }} to='/FarmerCreateAuctions'>
+                  Create Auctions
                 </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
+              </ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
 
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/FarmerMyCrops'>
-                      My Crops
+          <ListItemButton onClick={() => setOpenDrawer(false)} >
+            <ListItemIcon>
+              <ListItemText>
+                <Link style={{ textDecoration: "none", color: "black" }} to='/FarmerHistory'>
+                  History
                 </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
+              </ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
 
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/FarmerProfile'>
-                      Profile
+
+
+          <ListItemButton onClick={() => setOpenDrawer(false)} >
+            <ListItemIcon>
+              <ListItemText>
+                <Link style={{ textDecoration: "none", color: "black" }} to='/FarmerProfile'>
+                  Profile
                 </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
+              </ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
 
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/FarmerUpdateAccount'>
-                      Update Account
-                </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
-
-          <ListItemButton style={{background:"black"}} component={Link} to="/">
-              <ListItemIcon>
-                  <ListItemText style={{color:"white"}}>Logout</ListItemText>
-              </ListItemIcon>
+          <ListItemButton style={{ background: "black" }} component={Link} to="/">
+            <ListItemIcon>
+              <ListItemText style={{ color: "white" }}>Logout</ListItemText>
+            </ListItemIcon>
           </ListItemButton>
         </List>
       </Drawer>

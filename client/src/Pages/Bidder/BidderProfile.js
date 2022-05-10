@@ -1,8 +1,8 @@
 import React from 'react'
-import FarmerResponsiveAppBar from '../../Components/FarmerNav';
 import { Button, Card, CardContent, Grid, MenuItem, Select, TextField } from '@mui/material'
+import BidderResponsiveAppBar from '../../Components/BidderNav';
 
-const Profile = () => {
+const BidderProfile = () => {
 
   const [name, setName] = React.useState('Ravindra Patel');
   const [email, setEmail] = React.useState('patelravi09272@gmail.com');
@@ -44,7 +44,7 @@ const Profile = () => {
   
   return (
     <>
-      <FarmerResponsiveAppBar />
+    <BidderResponsiveAppBar/>
       <div style={{ width: "98vw" }}>
         <h1><center>My Profile</center></h1>
       </div>
@@ -141,4 +141,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default BidderProfile;

@@ -33,12 +33,11 @@ const FarmerResponsiveAppBar = () => {
                 value={value}
                 onChange={(e, value) => setValue(value)}
               >
-                <Tab sx={{  fontWeight:"bold",fontSize:"17px" }} label="Auctions" to='/FarmerAuctions' component={Link}/>
+                <Tab sx={{ fontWeight:"bold",fontSize:"17px" }} label="My Crops" to='/FarmerMyCrops' component={Link}/>
                 <Tab sx={{ fontWeight:"bold", fontSize:"17px" }} label="Create Auctions"  to='/FarmerCreateAuctions' component={Link} />
                 <Tab sx={{ fontWeight:"bold",fontSize:"17px" }} label="History" to='/FarmerHistory' component={Link}/>
-                <Tab sx={{ fontWeight:"bold",fontSize:"17px" }} label="My Crops" to='/FarmerMyCrops' component={Link}/>
                 <Tab sx={{ fontWeight:"bold",fontSize:"17px" }} label="Profile" to='/FarmerProfile' component={Link} />
-                <Tab sx={{ fontWeight:"bold", fontSize:"17px" }} label="Update Account" to='/FarmerUpdateAccount' component={Link}/>
+                
               </Tabs>
              
               <Button sx={{ marginLeft: "auto" , background:"rgba(200,247,197)", color:"black"}} component={Link} to="/" >

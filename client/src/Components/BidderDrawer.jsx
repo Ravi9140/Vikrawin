@@ -44,7 +44,7 @@ const [openDrawer, setOpenDrawer] = useState(false);
               <ListItemIcon>
                 <ListItemText>
                 <Link style={{textDecoration:"none", color:"black" }} to='/BidderUpcomingEvents'>
-                      Upcoming Events
+                      Auctions
                 </Link>
                 </ListItemText>
               </ListItemIcon>
@@ -60,17 +60,7 @@ const [openDrawer, setOpenDrawer] = useState(false);
               </ListItemIcon>
             </ListItemButton>
 
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/BidderWishlist'>
-                      Wishlist
-                </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
-
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
+          <ListItemButton onClick={()=> setOpenDrawer(false)} >
               <ListItemIcon>
                 <ListItemText>
                 <Link style={{textDecoration:"none", color:"black" }} to='/BidderHistory'>
@@ -83,8 +73,8 @@ const [openDrawer, setOpenDrawer] = useState(false);
             <ListItemButton onClick={()=> setOpenDrawer(false)} >
               <ListItemIcon>
                 <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/BidderAboutUs'>
-                      About Us
+                <Link style={{textDecoration:"none", color:"black" }} to='/BidderProfile'>
+                      Profile
                 </Link>
                 </ListItemText>
               </ListItemIcon>
