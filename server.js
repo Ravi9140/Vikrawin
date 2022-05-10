@@ -23,6 +23,8 @@ app.use("/api/bidder", require("./routes/api/bidder"));
 app.use("/api/bidderauth", require("./routes/api/bidderauth"));
 
 app.use("/api/crop", require("./routes/api/crop"));
+app.use("/api/farmerprofile", require("./routes/api/farmerProfile"));
+app.use("/api/bidderprofile", require("./routes/api/bidderProfile"));
 
 const PORT = process.env.PORT || 5000;
 
@@ -35,6 +37,7 @@ app.listen(PORT, () =>
 
 Farmer.hasMany(BiddingEvent, { foreignKey: "farmerId", onDelete: "CASCADE" });
 BiddingEvent.belongsTo(Farmer, { foreignKey: "farmerId", onDelete: "CASCADE" });
+
 Farmer.hasMany(Bidding, { foreignKey: "farmerId", onDelete: "CASCADE" });
 Bidding.belongsTo(Farmer, { foreignKey: "farmerId", onDelete: "CASCADE" });
 
