@@ -7,7 +7,6 @@ const { check, validationResult } = require("express-validator");
 // Bring Model
 const Farmer = require("../../models/Farmer");
 const BiddingEvent = require("../../models/BiddingEvent");
-const Crop = require("../../models/Crop");
 
 // Bring Auth Middleware
 const farmerauth = require("../../middleware/farmerauth");
@@ -17,27 +16,22 @@ const farmerauth = require("../../middleware/farmerauth");
 // @access Private
 
 router.post("/", farmerauth, async (req, res) => {
-  //   const farmer = await Farmer.findByPk(req.farmer.farmerId, {
-  //     attributes: { exclude: ["farmerPassword"] },
-  //   });
+  let cred = req.body;
 
-  const farmerId = req.farmer.farmerId;
+  let farmer1 = await Farmer.findByPk(req.farmer.farmerId);
+  console.log(farmer1);
 
-  const { quantity, price, fertilizer, soilPh, crop } = req.body;
-
-  const cropName = crop.charAt(0).toUpperCase() + crop.slice(1);
-
-  const cropId = await Crop.findOne(
-    { where: { cropName: cropName } },
-    { attributes: ["cropId"] }
-  );
-
-  const biddingevent = new BiddingEvent({
-    sellQuantity: quantity,
-    basePrice: price,
-    fertilizerType: fertilizer,
-    soilPhCertificate: soilPh,
-    cropId: cropId,
-    farmerId: farmerId,
+  const biddingevent = await BiddingEvent.create({
+    cropName: cred.cropName,
+    sellQuantity: cred.quantity,
+    basePrice: cred.basePrice,
+    //  isSold: cred.sold,
+    // currentBid: cred.currentBid,
+    createrFarmerName: farmer1.farmerName,
+    createrId: req.farmer.farmerId,
   });
+  console.log(biddingevent);
+  res.send({ msg: `Bidding Event Created` });
 });
+
+module.exports = router;
