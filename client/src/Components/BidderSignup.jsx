@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import {
   Grid,
   Paper,
@@ -10,13 +11,14 @@ import {
 } from "@mui/material";
 import { FormControlLabel } from "@mui/material";
 import { connect } from "react-redux";
+import axios from "axios";
 import { setAlert } from "../actions/alert";
 import PropTypes from "prop-types";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 import { registerbidder } from "../actions/authbidder";
 
-const BidderSignup = ({ setAlert, registerbidder }) => {
+const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,6 +33,26 @@ const BidderSignup = ({ setAlert, registerbidder }) => {
     password: "",
     password1: "",
   });
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.worldpostallocations.com/pincode?postalcode=${pincode}&countrycode=IN`
+      )
+      .then((res) => {
+        const location = res.data.result[0];
+        if (location != null) {
+          setFormData({
+            ...formData,
+            state: location.state,
+            city: location.district,
+          });
+        }
+        if (location == null) {
+          setAlert("Invalid PinCode", "error");
+        }
+      });
+  }, [formData.pincode]);
 
   const {
     name,
@@ -81,6 +103,11 @@ const BidderSignup = ({ setAlert, registerbidder }) => {
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const tfieldStyle = { width: "25vw", marginLeft: "15px", marginTop: "14px" };
   // const marginTop = { marginTop: 5 };
+
+  // Return if logged in
+  if (isAuthenticatedBidder) {
+    return <Navigate to="/BidderUpcomingEvents" />;
+  }
   return (
     <>
       <Grid>
@@ -148,6 +175,14 @@ const BidderSignup = ({ setAlert, registerbidder }) => {
             />
             <TextField
               style={tfieldStyle}
+              label="PinCode"
+              name="pincode"
+              value={pincode}
+              onChange={(e) => onChange(e)}
+              placeholder="Pincode"
+            />
+            <TextField
+              style={tfieldStyle}
               label="City"
               name="city"
               value={city}
@@ -161,14 +196,6 @@ const BidderSignup = ({ setAlert, registerbidder }) => {
               value={state}
               onChange={(e) => onChange(e)}
               placeholder="State"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="PinCode"
-              name="pincode"
-              value={pincode}
-              onChange={(e) => onChange(e)}
-              placeholder="Pincode"
             />
             <TextField
               style={tfieldStyle}
@@ -212,9 +239,16 @@ const BidderSignup = ({ setAlert, registerbidder }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isAuthenticatedBidder: state.authbidder.isAuthenticatedBidder,
+});
+
 BidderSignup.propTypes = {
   setAlert: PropTypes.func.isRequired,
   registerbidder: PropTypes.func.isRequired,
+  isAuthenticatedBidder: PropTypes.bool,
 };
 
-export default connect(null, { setAlert, registerbidder })(BidderSignup);
+export default connect(mapStateToProps, { setAlert, registerbidder })(
+  BidderSignup
+);
