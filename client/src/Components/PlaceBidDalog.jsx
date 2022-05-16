@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -11,7 +11,10 @@ import { useTheme, styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { useRef } from "react";
+
+import { placebid } from "../actions/marketplace";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -46,15 +49,12 @@ const BootstrapDialogTitle = (props) => {
   );
 };
 
-BootstrapDialogTitle.propTypes = {
-  children: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
-};
+export const PlaceBidDialog = ({ biddingId, placebid }) => {
+  // console.log(typeof props.biddingId);
+  //const { biddingId } = props;
+  const [open, setOpen] = useState(false);
 
-export default function PlaceBidDialog() {
-  const [open, setOpen] = React.useState(false);
-
-  const [calc, setCalc] = React.useState("");
+  const [bidAmt, setCalc] = useState("");
 
   const updateCalc = (value) => {
     setCalc(value);
@@ -69,7 +69,6 @@ export default function PlaceBidDialog() {
       setOpen(false);
     }
   };
-
   return (
     <div>
       <Button
@@ -103,14 +102,14 @@ export default function PlaceBidDialog() {
           Place Your Bid Here
         </BootstrapDialogTitle>
         <DialogContent dividers disableBackdropClick>
-          {calc ? (
+          {bidAmt ? (
             <TextField
               id="outlined-basic"
               placeHolder=" "
               variant="outlined"
               dividers
               fullWidth="100%"
-              value={calc}
+              value={bidAmt}
             />
           ) : (
             <TextField
@@ -124,7 +123,7 @@ export default function PlaceBidDialog() {
 
           <Stack direction="row" spacing={2}>
             <Button
-              sx={{ alignContent: "center", color: "orange" }}
+              sx={{ alignContent: "center", color: "green" }}
               onClick={() => {
                 updateCalc("100");
                 handleClickOpen();
@@ -135,7 +134,7 @@ export default function PlaceBidDialog() {
             </Button>
 
             <Button
-              sx={{ alignContent: "center", color: "green" }}
+              sx={{ alignContent: "center", color: "#222" }}
               onClick={() => {
                 updateCalc("500");
                 handleClickOpen();
@@ -146,7 +145,7 @@ export default function PlaceBidDialog() {
             </Button>
 
             <Button
-              sx={{ alignContent: "center", color: "blue" }}
+              sx={{ alignContent: "center", color: "#222" }}
               onClick={() => {
                 updateCalc("1000");
                 handleClickOpen();
@@ -157,7 +156,7 @@ export default function PlaceBidDialog() {
             </Button>
 
             <Button
-              sx={{ alignContent: "center", color: "red" }}
+              sx={{ alignContent: "center", color: "#222" }}
               onClick={() => {
                 updateCalc("2000");
                 handleClickOpen();
@@ -166,36 +165,15 @@ export default function PlaceBidDialog() {
             >
               <b>₹2000</b>
             </Button>
-
-            <Button
-              sx={{ alignContent: "center", color: "#b023b8" }}
-              onClick={() => {
-                updateCalc("5000");
-                handleClickOpen();
-              }}
-              style={{ marginLeft: "1rem", fontSize: "25px" }}
-            >
-              <b>₹5000</b>
-            </Button>
-
-            <Button
-              sx={{ alignContent: "center", color: "#29ab8a" }}
-              onClick={() => {
-                updateCalc("10,000");
-                handleClickOpen();
-              }}
-              style={{ marginLeft: "1rem", fontSize: "25px" }}
-            >
-              <b>₹10,000</b>
-            </Button>
           </Stack>
         </DialogContent>
         <DialogActions>
           <Button
             autoFocus
             onClick={() => {
+              placebid({ biddingId, bidAmt });
               handleClose();
-              updateCalc("");
+              // updateCalc("");
             }}
           >
             PLACE BID
@@ -204,4 +182,20 @@ export default function PlaceBidDialog() {
       </BootstrapDialog>
     </div>
   );
-}
+};
+
+BootstrapDialogTitle.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+};
+
+PlaceBidDialog.propTypes = {
+  placebid: PropTypes.func.isRequired,
+  biddingId: PropTypes.number,
+};
+
+const mapStateToProps = (state, ownProps) => ({
+  biddingId: ownProps.biddingId,
+});
+
+export default connect(mapStateToProps, { placebid })(PlaceBidDialog);
