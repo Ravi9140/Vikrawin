@@ -3,6 +3,9 @@ import {
   F_REGISTER_FAIL,
   F_LOADED,
   F_AUTH_ERROR,
+  F_LOGIN_SUCCESS,
+  F_LOGIN_FAIL,
+  F_LOGOUT,
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -54,6 +57,7 @@ export const registerfarmer =
       name,
       email,
       contact,
+      landarea,
       address,
       city,
       state,
@@ -86,3 +90,52 @@ export const registerfarmer =
       });
     }
   };
+
+// Login Farmer
+export const loginfarmer =
+  ({ email, password }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({
+      email,
+      password,
+    });
+
+    try {
+      const res = await axios.post("/api/farmerauth", body, config);
+      dispatch(setAlert("Login Succesfully", "success"));
+      dispatch({
+        type: F_LOGIN_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(loadFarmer());
+      //   dispatch({
+      //     type: B_REGISTER_SUCCESS,
+      //     payload: res.data,
+      //   });
+    } catch (err) {
+      const errors = err.response.data.errors;
+      console.log(errors);
+      if (errors) {
+        errors.forEach((error) => {
+          dispatch(setAlert(error.msg, "error"));
+        });
+      }
+      dispatch({
+        type: F_LOGIN_FAIL,
+      });
+    }
+  };
+
+// Farmer Bidder
+
+export const logoutfarmer = () => (dispatch) => {
+  dispatch({
+    type: F_LOGOUT,
+  });
+};

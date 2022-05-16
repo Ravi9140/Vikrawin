@@ -5,6 +5,7 @@ import {
   B_AUTH_ERROR,
   B_LOGIN_SUCCESS,
   B_LOGIN_FAIL,
+  B_LOGOUT,
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -105,10 +106,13 @@ export const loginbidder =
 
     try {
       const res = await axios.post("/api/bidderauth", body, config);
-      dispatch(setAlert(res.data.msg, "success"));
+      dispatch(setAlert("Login Successfully", "success"));
       dispatch({
         type: B_LOGIN_SUCCESS,
+        payload: res.data,
       });
+
+      dispatch(loadBidder());
       //   dispatch({
       //     type: B_REGISTER_SUCCESS,
       //     payload: res.data,
@@ -125,3 +129,11 @@ export const loginbidder =
       });
     }
   };
+
+// Logout Bidder
+
+export const logoutbidder = () => (dispatch) => {
+  dispatch({
+    type: B_LOGOUT,
+  });
+};
