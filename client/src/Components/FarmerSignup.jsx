@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   Paper,
@@ -16,10 +16,12 @@ import {
   RadioGroup,
 } from "@mui/material";
 import { connect } from "react-redux";
+import axios from "axios";
 import { setAlert } from "../actions/alert";
 import PropTypes from "prop-types";
 import { registerfarmer } from "../actions/authfarmer";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { Navigate } from "react-router-dom";
 
 const FarmerSignup = ({ setAlert, registerfarmer }) => {
   const [formData, setFormData] = useState({
@@ -37,6 +39,23 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
     password: "",
     password1: "",
   });
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.worldpostallocations.com/pincode?postalcode=${pincode}&countrycode=IN`
+      )
+      .then((res) => {
+        const location = res.data.result[0];
+        if (location != null) {
+          setFormData({
+            ...formData,
+            state: location.state,
+            city: location.district,
+          });
+        }
+      });
+  }, [formData.pincode]);
 
   const {
     name,
@@ -169,7 +188,14 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
               onChange={(e) => onChange(e)}
               placeholder="Enter your City"
             />
-            <TextField style={tfieldStyle} label="State" placeholder="State" />
+            <TextField
+              style={tfieldStyle}
+              label="State"
+              name="state"
+              value={state}
+              onChange={(e) => onChange(e)}
+              placeholder="State"
+            />
             <TextField
               style={tfieldStyle}
               label="PinCode"

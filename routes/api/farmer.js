@@ -16,8 +16,31 @@ const Farmer = require("../../models/Farmer");
 router.post(
   "/",
   [
-    check("email", "Please include valid email").isEmail(),
     check("name", "Name is required").not().isEmpty(),
+    check("email", "Please include valid email").isEmail(),
+    check("contact", "Please enter valid contact no").isLength({
+      min: 10,
+      max: 10,
+    }),
+    check("address", "Address is required").not().isEmpty(),
+    check("city", "city is required").not().isEmpty(),
+    check("state", "State sis required").not().isEmpty(),
+    check("pincode", "Please enter valid PIN code").isLength({
+      min: 6,
+      max: 6,
+    }),
+    check("accountno", "Account no is required").not().isEmpty(),
+    check(
+      "adhaarno",
+      "Please enter valid Aadhaar No. Don't include spaces"
+    ).isLength({
+      min: 12,
+      max: 12,
+    }),
+    check("panno", "Please enter valid PAN no").isLength({
+      min: 10,
+      max: 10,
+    }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -41,7 +64,7 @@ router.post(
       pancard,
       password,
     } = req.body;
-
+    console.log(req.body);
     try {
       // see if farmer exists
       let farmer = await Farmer.findOne({

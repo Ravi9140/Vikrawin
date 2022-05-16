@@ -1,0 +1,30 @@
+.tab {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+.tab:hover {
+  color: #ea4f4c;
+}
+.body {
+  font-family: "Roboto", sans-serif;
+}
+
+.tab1 {
+  border-radius: 5%;
+  font-weight: bolder;
+  /* display: flex; */
+  align-items: center;
+  /* text-decoration: underline; */
+  transition: all 0.3s ease-in-out;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+.tab1:hover {
+  font-weight: bolder;
+  color: #ea4f4c;
+  background-color: white;
+}

@@ -9,12 +9,15 @@ import {
   Link,
   Checkbox,
 } from "@mui/material";
+
+import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginbidder } from "../actions/authbidder";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FormControlLabel from "@mui/material/FormControlLabel";
-const BidderLogin = ({ loginbidder }) => {
+
+const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -37,6 +40,12 @@ const BidderLogin = ({ loginbidder }) => {
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };
+
+  // Redirect if Logged In
+
+  if (isAuthenticatedBidder) {
+    return <Navigate to="/BidderUpcomingEvents" />;
+  }
   return (
     <>
       <center>
@@ -59,7 +68,6 @@ const BidderLogin = ({ loginbidder }) => {
               onChange={(e) => onChange(e)}
               placeholder="Enter username"
               fullWidth
-              required
             />
             <TextField
               style={{ marginTop: "5px" }}
@@ -70,7 +78,6 @@ const BidderLogin = ({ loginbidder }) => {
               placeholder="Enter password"
               type="password"
               fullWidth
-              required
             />
             <FormControlLabel
               control={<Checkbox name="checkedB" color="primary" />}
@@ -99,8 +106,13 @@ const BidderLogin = ({ loginbidder }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isAuthenticatedBidder: state.authbidder.isAuthenticatedBidder,
+});
+
 BidderLogin.propTypes = {
   loginbidder: PropTypes.func.isRequired,
+  isAuthenticatedBidder: PropTypes.bool,
 };
 
-export default connect(null, { loginbidder })(BidderLogin);
+export default connect(mapStateToProps, { loginbidder })(BidderLogin);

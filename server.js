@@ -3,9 +3,7 @@ const express = require("express");
 // Import Database Model
 const sequelize = require("./config/db");
 const Bidder = require("./models/Bidder");
-const Bidding = require("./models/Bidding");
 const BiddingEvent = require("./models/BiddingEvent");
-const Crop = require("./models/Crop");
 const Farmer = require("./models/Farmer");
 const app = express();
 
@@ -17,14 +15,25 @@ app.get("/", (req, res) => res.send("API Running"));
 
 // Define routes
 
+// Farmer
 app.use("/api/farmer", require("./routes/api/farmer"));
 app.use("/api/farmerauth", require("./routes/api/farmerauth"));
+app.use("/api/createauction", require("./routes/api/biddingEvent"));
+app.use("/api/mycrops", require("./routes/api/myCrops"));
+app.use("/api/farmerhistory", require("./routes/api/farmerHistory"));
+app.use("/api/farmerprofile", require("./routes/api/farmerProfile"));
+
+// Bidder
 app.use("/api/bidder", require("./routes/api/bidder"));
 app.use("/api/bidderauth", require("./routes/api/bidderauth"));
-
-app.use("/api/crop", require("./routes/api/crop"));
-app.use("/api/farmerprofile", require("./routes/api/farmerProfile"));
+app.use("/api/registerauction", require("./routes/api/registerAuction"));
+app.use("/api/availableauctions", require("./routes/api/availableAuctions"));
+app.use("/api/bidderhistory", require("./routes/api/bidderHistory"));
 app.use("/api/bidderprofile", require("./routes/api/bidderProfile"));
+
+app.use("/api/registeredbids", require("./routes/api/registeredBids"));
+app.use("/api/placebid", require("./routes/api/placeBid"));
+app.use("/api/endbid", require("./routes/api/endBidding"));
 
 const PORT = process.env.PORT || 5000;
 
@@ -33,30 +42,39 @@ app.listen(PORT, () =>
 );
 
 // Define Association
-// 1:M
-
-Farmer.hasMany(BiddingEvent, { foreignKey: "farmerId", onDelete: "CASCADE" });
-BiddingEvent.belongsTo(Farmer, { foreignKey: "farmerId", onDelete: "CASCADE" });
-
-Farmer.hasMany(Bidding, { foreignKey: "farmerId", onDelete: "CASCADE" });
-Bidding.belongsTo(Farmer, { foreignKey: "farmerId", onDelete: "CASCADE" });
-
-Crop.hasMany(BiddingEvent, { foreignKey: "cropId", onDelete: "CASCADE" });
-BiddingEvent.belongsTo(Crop, { foreignKey: "cropId", onDelete: "CASCADE" });
-
-// 1:1
-BiddingEvent.hasOne(Bidding, {
-  foreignKey: "biddingeventId",
+//Farmer - BiddingEvent     1 to M relationship
+Farmer.hasMany(BiddingEvent, {
+  foreignKey: "createrId",
   onDelete: "CASCADE",
 });
-Bidding.belongsTo(BiddingEvent, {
-  foreignKey: "biddingeventId",
+BiddingEvent.belongsTo(Farmer, {
+  foreignKey: "createrId",
   onDelete: "CASCADE",
 });
 
-// M: M
-Bidding.belongsToMany(Bidder, { through: "winner", timestamps: false });
-Bidder.belongsToMany(Bidding, { through: "winner", timestamps: false });
+//Bidder - BiddingEvent     1 to M relationship
+Bidder.hasMany(BiddingEvent, {
+  foreignKey: "currentBidderId",
+  allowNull: true,
+  onDelete: "CASCADE",
+});
+BiddingEvent.belongsTo(Bidder, {
+  foreignKey: "currentBidderId",
+  allowNull: true,
+  onDelete: "CASCADE",
+});
+
+//Bidder - BiddingEvent M - M to relationship
+Bidder.belongsToMany(BiddingEvent, {
+  through: "registeredbids",
+  foreignKey: "bidderId",
+  onDelete: "CASCADE",
+});
+BiddingEvent.belongsToMany(Bidder, {
+  through: "registeredbids",
+  foreignKey: "biddingId",
+  onDelete: "CASCADE",
+});
 
 // sequelize
 //   .sync({ alter: true })
