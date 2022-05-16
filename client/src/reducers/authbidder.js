@@ -5,6 +5,7 @@ import {
   B_AUTH_ERROR,
   B_LOGIN_SUCCESS,
   B_LOGIN_FAIL,
+  B_LOGOUT,
 } from "../actions/types";
 
 const initialState = {
@@ -27,6 +28,7 @@ export default function (state = initialState, action) {
 
     case B_AUTH_ERROR:
     case B_LOGIN_FAIL:
+    case B_LOGOUT:
       localStorage.removeItem("token");
       return {
         ...state,

@@ -3,6 +3,9 @@ import {
   F_REGISTER_FAIL,
   F_LOADED,
   F_AUTH_ERROR,
+  F_LOGIN_SUCCESS,
+  F_LOGIN_FAIL,
+  F_LOGOUT,
 } from "../actions/types";
 
 const initialState = {
@@ -24,6 +27,8 @@ export default function (state = initialState, action) {
       };
 
     case F_AUTH_ERROR:
+    case F_LOGIN_FAIL:
+    case F_LOGOUT:
       localStorage.removeItem("token");
       return {
         ...state,
@@ -32,6 +37,14 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
+    case F_LOGIN_SUCCESS:
+      localStorage.setItem("token", payload.token);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticatedFarmer: true,
+        loading: false,
+      };
     case F_REGISTER_SUCCESS:
       return state;
 
