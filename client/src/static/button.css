@@ -1,0 +1,43 @@
+.btn-grad {
+  color: black;
+  font-weight: bold;
+  background-image: linear-gradient(
+    to right,
+    #ece9e6 0%,
+    #ffffff 51%,
+    #ece9e6 100%
+  );
+}
+.btn-grad {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+  box-shadow: 0 0 3px #eee;
+  border-radius: 10px;
+  display: block;
+  height: 50px;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: black;
+  text-decoration: none;
+  /* background-color: #ece9e6; */
+  /* background-color: white; */
+  background-image: linear-gradient(
+    to right,
+    #ece9e6 0%,
+    #ffffff 51%,
+    #ece9e6 100%
+  );
+}
+
+h3 {
+  color: #222;
+  font-weight: lighter;
+  /* text-decoration: underline; */
+}
