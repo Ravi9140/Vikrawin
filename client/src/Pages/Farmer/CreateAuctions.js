@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FarmerResponsiveAppBar from "../../Components/FarmerNav";
 import {
   Button,
@@ -9,76 +9,79 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import image5 from "../../Images/farming-5.jpg";
-//import { makeStyles } from "@mui/material";
+import "./../../static/button.css";
 
-const CreateAuctions = () => {
-  //const classes = useStyles();
+import Spinner from "../../Components/layout/Spinner";
 
-  const [value, SetValue] = React.useState("");
-  const [quantity, SetQuantity] = React.useState("");
-  const [baseprice, SetBasePrice] = React.useState("");
+import { createauction } from "../../actions/createauction";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-  const disableDates = () => {
-    var today, dd, mm, yyyy;
-    today = new Date();
-    dd = today.getDate();
-    mm = today.getMonth();
-    yyyy = today.getFullYear();
-    return yyyy + "-" + mm + "-" + dd;
-  };
+const CreateAuctions = ({ createauction, loading }) => {
+  const [formData, setFormData] = useState({
+    cropName: "",
+    quantity: "",
+    basePrice: "",
+  });
 
-  const handleChange = (event) => {
-    SetValue(event.target.value);
+  const { cropName, quantity, basePrice } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.table(formData);
+    createauction({ cropName, quantity, basePrice });
   };
 
   return (
     <>
-      <FarmerResponsiveAppBar />
-      <div
-        style={{ backgroundImage: `url(${image5})`, backgroundSize: "cover" }}
-      >
-        {/*<div style={{ width: "98vw" }}>
+      <div style={{ backgroundColor: "#a3c1ad", height: "100vh" }}>
+        <FarmerResponsiveAppBar />
+        {/* <img style={{}} src={background} /> */}
+        <div style={{ width: "98vw" }}>
           <h1>
             <center>Create Auction</center>
           </h1>
-  </div>*/}
+        </div>
 
         <Card
           style={{
-            borderRadius: "7%",
+            // borderRadius: "7%",
             width: "50vw",
             margin: "0 auto",
             padding: "10px 0px",
-            backgroundColor: "transparent",
+            background: "#f6f5f7",
+            boxShadow: "0 0 3px #eee",
           }}
         >
           <CardContent>
-            <form>
+            <form onSubmit={(e) => onSubmit(e)}>
               <Grid container spacing={1}>
                 <Grid xs={12} item>
                   <h3>Crop Name</h3>
                 </Grid>
-
                 <Grid xs={12} item>
                   <Select
-                    sx={{ background: "white" }}
-                    onChange={handleChange}
-                    value={value}
+                    sx={{ background: "white", width: "50%" }}
+                    name="cropName"
+                    value={cropName}
+                    onChange={(e) => onChange(e)}
                     displayEmpty
-                    fullWidth
+                    // fullWidth
                     required
                   >
                     <MenuItem value="" disabled>
                       Select Crop
                     </MenuItem>
-                    <MenuItem value={0}>Rice</MenuItem>
-                    <MenuItem value={1}>Wheat</MenuItem>
-                    <MenuItem value={2}>Jowar</MenuItem>
-                    <MenuItem value={3}>Bajra</MenuItem>
-                    <MenuItem value={4}>SugarCance</MenuItem>
-                    <MenuItem value={5}>Moong</MenuItem>
-                    <MenuItem value={6}>Til</MenuItem>
+                    <MenuItem value="Rice">Rice</MenuItem>
+                    <MenuItem value="Wheat">Wheat</MenuItem>
+                    <MenuItem value="Jowar">Jowar</MenuItem>
+                    <MenuItem value="Bajra">Bajra</MenuItem>
+                    <MenuItem value="Sugarcane">SugarCance</MenuItem>
+                    <MenuItem value="Moong">Moong</MenuItem>
+                    <MenuItem value="Til">Til</MenuItem>
                   </Select>
                 </Grid>
 
@@ -87,16 +90,15 @@ const CreateAuctions = () => {
                 </Grid>
                 <Grid xs={12} item>
                   <TextField
-                    sx={{ background: "white" }}
+                    sx={{ background: "white", width: "50%" }}
                     type="number"
                     label="Enter Crop Quantity in kgs"
+                    name="quantity"
+                    value={quantity}
+                    onChange={(e) => onChange(e)}
                     placeholder="Enter Crop Quantity"
                     variant="outlined"
-                    fullWidth
                     required
-                    onChange={(e) => {
-                      SetQuantity(e.target.value);
-                    }}
                   />
                 </Grid>
 
@@ -105,46 +107,33 @@ const CreateAuctions = () => {
                 </Grid>
                 <Grid xs={12} item>
                   <TextField
-                    sx={{ background: "white" }}
+                    className="form-field"
+                    sx={{ background: "white", width: "50%" }}
                     type="number"
                     label="Enter Base Price in Rupees"
+                    name="basePrice"
+                    value={basePrice}
+                    onChange={(e) => onChange(e)}
                     placeholder="Enter Base Price"
                     variant="outlined"
-                    fullWidth
                     required
-                    onChange={(e) => {
-                      SetBasePrice(e.target.value);
-                    }}
                   />
                 </Grid>
-
-                {/*<Grid xs={12} md={3} item>
-                <h3>Start Date</h3>
-              </Grid>
-
-              <Grid xs={12} md={9} item>
-                <TextField type="date"  placeholder='Enter Start Date' variant="outlined" fullWidth required />
-              </Grid>
-
-              <Grid xs={12} md={3} item>
-              <h3>End Date</h3>
-              </Grid>
-
-              <Grid xs={12} md={9} item>
-                <TextField type="date"  placeholder='Enter End Date' variant="outlined" fullWidth required />
-  </Grid>*/}
                 <br />
                 <Grid xs={12} item>
                   <Button
+                    className="btn-grad"
                     sx={{
+                      marginTop: "20px",
+                      width: "50%",
                       alignContent: "center",
                       background: "#3f823b",
                       marginBottom: "5px",
+                      borderRadius: "25px",
                     }}
                     type="submit"
                     variant="contained"
                     color="primary"
-                    fullWidth
                   >
                     Create Auction
                   </Button>
@@ -158,4 +147,12 @@ const CreateAuctions = () => {
   );
 };
 
-export default CreateAuctions;
+CreateAuctions.propTypes = {
+  createauction: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  loading: state.createauction.loading,
+});
+export default connect(mapStateToProps, { createauction })(CreateAuctions);
