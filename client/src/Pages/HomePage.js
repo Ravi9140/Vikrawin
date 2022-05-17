@@ -2,25 +2,16 @@ import React from "react";
 import { Grid, Paper } from "@mui/material";
 import MainResponsiveAppBar from "../Components/MainPageNav";
 import logo from "../Images/logo-2.png";
-import farmerImg from "../Images/farming-5.jpg";
+import farmerImg from "../Images/farmer-1.jpg";
 import farmersMarket from "../Images/farmer's-market-1.jpg";
 import bidding from "../Images/bidding-1.jpg";
 import backgroundImg from "../Images/backgroungImg.jpg";
-import sample from "../static/trim6.mp4";
-
+// import BidderNav from "../Components/BidderNav";
 // import Overlay from "react-image-overlay";
 import "./video.css";
 // import "";
+// import "../static/home.css";
 const HomePage = () => {
-  const imgStyle1 = {
-    backgroundImage:
-      "url('https://media.geeksforgeeks.org/wp-content/uploads/rk.png')",
-    // height: "100vh",
-    marginTop: "-70px",
-    fontSize: "50px",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-  };
   const imgStyle2 = {
     height: "50vh",
     width: "30vw",
@@ -36,41 +27,47 @@ const HomePage = () => {
   };
   const h1style = {
     fontWeight: "bold",
-    fontSize: "",
+    fontSize: "35px",
     textAlign: "center",
-  };
-  const invertedcommas = {
-    fontSize: "50px",
-    fontFamily: "comic sans",
-
-    fontWeight: "bold",
   };
 
   return (
     <>
+      <MainResponsiveAppBar />
+      {/* <BidderNav /> */}
       <div class="container">
-        <MainResponsiveAppBar />
-
-        <video autoPlay loop muted>
-          <source src={sample} type="video/mp4" />
-        </video>
+        <img src={farmerImg} className="video" />
         <div class="overlay">
           <h1 style={h1style}>
             <h1>
-              <div className="invertedcommas">
+              <div
+                style={{
+                  color: "#222",
+                  fontFamily: "canela web",
+                  // fontFamily:
+                  //   "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
+                }}
+              >
                 “I would rather be on my farm than
                 <br></br>
-                &nbsp;&nbsp;&nbsp;&nbsp; be an emperor of the world.”
+                be an emperor of the world.”
               </div>
             </h1>
 
-            <h2 style={{ textAlign: "right", color: "black" }}>
+            <h2
+              style={{
+                textAlign: "right",
+                marginRight: "10%",
+                color: "#222",
+                fontFamily:
+                  "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
+              }}
+            >
               — George Washington
             </h2>
           </h1>
 
-          {/* <img src={farmerImg} style={imgStyle1} /> */}
-          <div className="2" style={{ zIndex: "1" }}>
+          <div className="des" style={{ zIndex: "1", marginTop: "-28%" }}>
             <div style={{ alignContent: "center" }}>
               <Grid container spacing={4}>
                 <Grid
@@ -99,15 +96,17 @@ const HomePage = () => {
                       <Paper
                         style={{
                           fontSize: "17px",
+                          fontWeight: "bold",
                           width: "45vw",
                           marginLeft: "70px",
+                          marginRight: "5px",
                           textAlign: "justify",
                           padding: "2rem",
                           borderRadius: "25px",
                           border: "solid black 3px",
-                          background: "#1a1110",
-                          border: "solid 2px white",
-                          color: "white",
+                          background: "transparent",
+                          border: "solid 2px black",
+                          color: "black",
                         }}
                       >
                         <div style={{ fontSize: "40px" }}>Agriculture,</div>
@@ -143,12 +142,14 @@ const HomePage = () => {
                           fontSize: "17px",
                           width: "45vw",
                           marginLeft: "70px",
+                          marginRight: "10px",
                           textAlign: "justify",
                           padding: "2rem",
                           borderRadius: "25px",
-                          border: "solid white 2px",
-                          background: "#1a1110",
-                          color: "white",
+                          border: "solid black 2px",
+                          background: "transparent",
+                          color: "black",
+                          fontWeight: "bold",
                         }}
                       >
                         <div

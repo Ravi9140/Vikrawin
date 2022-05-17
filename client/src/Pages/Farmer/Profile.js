@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from "axios";
 // import image from "../../Images/farmer-1.jpg";
-
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {
   getfarmerprofile,
   updatefarmerprofile,
@@ -94,7 +94,7 @@ const Profile = ({ updatefarmerprofile }) => {
   };
 
   const myStyle = {
-    background: "#a3c1ad",
+    background: "#f0fff0",
     boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
     backdropFilter: "blur(3px)",
 
@@ -112,8 +112,19 @@ const Profile = ({ updatefarmerprofile }) => {
         <div style={myStyle}>
           <FarmerResponsiveAppBar />
           <div style={{ width: "98vw" }}>
-            <h1>
-              <center>My Profile</center>
+            <h1
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                fontFamily:
+                  "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
+              }}
+            >
+              <AccountCircleIcon
+                fontSize="large"
+                style={{ marginRight: "15px" }}
+              />
+              My Profile
             </h1>
           </div>
 
@@ -190,7 +201,7 @@ const Profile = ({ updatefarmerprofile }) => {
                       }}
                       value={contact}
                       onChange={handleMobile}
-                      type="number"
+                      type="numeric"
                       variant="standard"
                       InputProps={{
                         disableUnderline: true,
@@ -234,7 +245,7 @@ const Profile = ({ updatefarmerprofile }) => {
                       }}
                       value={pincode}
                       onChange={handlePincode}
-                      type="number"
+                      type="numeric"
                       variant="standard"
                       InputProps={{
                         disableUnderline: true,

@@ -54,6 +54,7 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
           ) : (
             <>
               <Tabs
+                TabIndicatorProps={{ style: { background: "white" } }}
                 sx={{
                   marginLeft: "auto",
                   color: "white",

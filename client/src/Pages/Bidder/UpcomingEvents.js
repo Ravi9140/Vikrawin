@@ -12,7 +12,7 @@ import { Button, MenuItem, Select, TextField } from "@mui/material";
 import { fontSize, fontWeight } from "@mui/system";
 import { Link } from "react-router-dom";
 import "../../static/button2.css";
-
+import GavelIcon from "@mui/icons-material/Gavel";
 import Spinner from "../../Components/layout/Spinner";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -49,21 +49,6 @@ const UpcomingEvents = ({
     setOpen(false);
   };
 
-  const [appState, changeState] = useState({
-    activeObject: null,
-    name: [
-      {
-        crop: "Rice",
-        id: 1,
-        quantity: 250,
-        base_price: 5000,
-        farmer_name: "Ravindra Patel",
-        cur_bid: 6000,
-        prev_bid: 5500,
-      },
-    ],
-  });
-
   if (loading) {
     return <Spinner />;
   }
@@ -72,8 +57,16 @@ const UpcomingEvents = ({
       <div style={{ backgroundColor: "#ebebeb" }}>
         <BidderResponsiveAppBar />
 
-        <h1>
-          <center>Available Auctions</center>
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontFamily:
+              "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
+          }}
+        >
+          <GavelIcon fontSize="large" style={{ marginRight: "10px" }} />
+          Available Auctions
         </h1>
         <div></div>
         <Grid container>

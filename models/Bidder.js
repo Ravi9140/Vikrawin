@@ -39,7 +39,7 @@ const Bidder = sequelize.define(
       unique: true,
     },
     bidderAdhaarNo: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       unique: true,
     },
     bidderAdhaarCard: {

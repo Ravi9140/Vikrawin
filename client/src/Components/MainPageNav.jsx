@@ -14,7 +14,7 @@ import logo from "../Images/logo-2.png";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MainDrawerComp from "./MainDrawerComp";
-
+import "./../static/nav.css";
 const PAGES = [
   "Auctions",
   "CreateAuctions",
@@ -39,34 +39,36 @@ const MainResponsiveAppBar = () => {
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
+  const heading = {
+    fontFamily: "Canela  Web",
+    fontWeight: "bold",
+    fontSize: "42px",
+    lineHeight: "10px",
+    textDecoration: "none solid rgb(212,46,35)",
+    color: "#222",
+    marginLeft: "-150px",
+  };
 
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "green" }} position="sticky">
+      <AppBar sx={{ background: "transparent" }} position="relative">
         <Toolbar>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: "flex", md: "flex" } }}
-            style={{ height: "5rem", width: "9rem", backgroundColor: "white" }}
-          >
-            <img style={{ backgroundColor: "white" }} src={logo} alt="Logo" />
-          </Typography>
+            style={{ height: "5rem", width: "9rem" }}
+          ></Typography>
+          <h3 style={heading}>vikraWin &#x2E;</h3>
           {isMatch ? (
             <>
               <MainDrawerComp />
             </>
           ) : (
             <>
-              {/* <Tabs sx={{ marginLeft:"auto", color:"black", fontWeight:"bold", fontSize:"20px" }}  indicatorColor="secondary" textColor="inherit"
-                value={value}
-                onChange={(e, value) => setValue(value)}
-              >
-                <Tab sx={{ fontWeight:"bold",fontSize:"17px" }} label="Auctions" to='/FarmerAuctions' component={Link}/>
-                <Tab sx={{ fontWeight:"bold", fontSize:"17px" }} label="Create Auctions"  to='/FarmerCreateAuctions' component={Link} />
-              </Tabs> */}
               <Button
+                className="tab1"
                 id="basic-button"
                 aria-controls={open ? "basic-menu" : undefined}
                 aria-haspopup="true"
@@ -74,12 +76,16 @@ const MainResponsiveAppBar = () => {
                 onClick={handleClick}
                 sx={{
                   marginLeft: "auto",
-                  background: "rgba(200,247,197)",
+                  background: "transparent",
+                  fontSize: "20px",
+                  // // borderRadius: "35px",
                   color: "black",
+                  width: "70",
                 }}
               >
-                Log In
+                LogIn
               </Button>
+
               <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
@@ -105,18 +111,7 @@ const MainResponsiveAppBar = () => {
                 >
                   Bidder
                 </MenuItem>
-                {/* <MenuItem
-                  onClick={handleClose}
-                  label="Logout"
-                  to="/"
-                  component={Link}
-                >
-                  Logout
-                </MenuItem> */}
               </Menu>
-              {/* <Button sx={{ marginLeft: "auto" , background:"rgba(200,247,197)", color:"black"}} component={Link} to="/" >
-                Logout
-              </Button> */}
             </>
           )}
         </Toolbar>
@@ -124,5 +119,4 @@ const MainResponsiveAppBar = () => {
     </React.Fragment>
   );
 };
-
 export default MainResponsiveAppBar;

@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getmycrops, endbidding } from "../../actions/mycrops";
 import Spinner from "../../Components/layout/Spinner";
-
+import GrassIcon from "@mui/icons-material/Grass";
 import {
   Button,
   CardActionArea,
@@ -67,8 +67,16 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
         position="sticky"
       >
         <div style={{ width: "100vw" }}>
-          <h1>
-            <center>My Crops</center>
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontFamily:
+                "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
+            }}
+          >
+            <GrassIcon fontSize="large" style={{ marginRight: "15px" }} />
+            My Crops
           </h1>
         </div>
       </div>
