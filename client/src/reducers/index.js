@@ -9,6 +9,7 @@ import createauction from "./createauction";
 import mycrops from "./mycrops";
 import auction from "./auction";
 import marketplace from "./marketplace";
+import bidderhistory from "./bidderhistory";
 // import bidderhistory from "./bidderhistory";
 export default combineReducers({
   alert,
@@ -17,6 +18,7 @@ export default combineReducers({
   profile,
   bidderprofile,
   farmerhistory,
+  bidderhistory,
   createauction,
   mycrops,
   auction,

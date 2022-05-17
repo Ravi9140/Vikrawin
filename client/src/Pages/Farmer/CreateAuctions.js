@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FarmerResponsiveAppBar from "../../Components/FarmerNav";
+import gif from "../../Images/gif1.gif";
 import {
   Button,
   Card,
@@ -10,7 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import "./../../static/button.css";
-
+import GavelIcon from "@mui/icons-material/Gavel";
 import Spinner from "../../Components/layout/Spinner";
 
 import { createauction } from "../../actions/createauction";
@@ -37,12 +38,20 @@ const CreateAuctions = ({ createauction, loading }) => {
 
   return (
     <>
-      <div style={{ backgroundColor: "#a3c1ad", height: "100vh" }}>
+      <div style={{ backgroundColor: "#f0fff0", height: "100vh" }}>
         <FarmerResponsiveAppBar />
         {/* <img style={{}} src={background} /> */}
         <div style={{ width: "98vw" }}>
-          <h1>
-            <center>Create Auction</center>
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontFamily:
+                "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
+            }}
+          >
+            <GavelIcon fontSize="large" style={{ marginRight: "15px" }} />
+            Create Auction
           </h1>
         </div>
 
@@ -61,6 +70,28 @@ const CreateAuctions = ({ createauction, loading }) => {
               <Grid container spacing={1}>
                 <Grid xs={12} item>
                   <h3>Crop Name</h3>
+                </Grid>
+                <Grid
+                  xs={12}
+                  item
+                  style={{
+                    position: "absolute",
+                    left: "790px",
+                    top: "215px",
+                    // borderRadius: "25px",
+                  }}
+                >
+                  <img
+                    src={gif}
+                    height="400px"
+                    width="250px"
+                    style={{
+                      marginLeft: "10px",
+                      borderRadius: "22px",
+                      boxShadow: "0 0 3px #eee",
+                      border: "solid 2px #009f6b",
+                    }}
+                  />
                 </Grid>
                 <Grid xs={12} item>
                   <Select
@@ -92,11 +123,11 @@ const CreateAuctions = ({ createauction, loading }) => {
                   <TextField
                     sx={{ background: "white", width: "50%" }}
                     type="number"
-                    label="Enter Crop Quantity in kgs"
+                    label="Enter crop quantity in kgs"
                     name="quantity"
                     value={quantity}
                     onChange={(e) => onChange(e)}
-                    placeholder="Enter Crop Quantity"
+                    // placeholder="Enter Crop Quantity"
                     variant="outlined"
                     required
                   />
@@ -110,11 +141,11 @@ const CreateAuctions = ({ createauction, loading }) => {
                     className="form-field"
                     sx={{ background: "white", width: "50%" }}
                     type="number"
-                    label="Enter Base Price in Rupees"
+                    label="Enter base price in rupees"
                     name="basePrice"
                     value={basePrice}
                     onChange={(e) => onChange(e)}
-                    placeholder="Enter Base Price"
+                    // placeholder="Enter Base Price"
                     variant="outlined"
                     required
                   />

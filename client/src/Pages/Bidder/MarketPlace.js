@@ -6,6 +6,7 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
+import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -61,8 +62,16 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
         position="sticky"
       >
         <div style={{ width: "100vw" }}>
-          <h1>
-            <center>Market Place</center>
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontFamily:
+                "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
+            }}
+          >
+            <AddBusinessIcon fontSize="large" style={{ marginRight: "10px" }} />
+            Market Place
           </h1>
         </div>
       </div>
