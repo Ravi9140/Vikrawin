@@ -26,7 +26,7 @@ export const endbidding = (biddingeventId) => async (dispatch) => {
     biddingeventId,
   });
   try {
-    const res = axios.patch("api/endbid", body, config);
+    const res = await axios.patch("api/endbid", body, config);
     dispatch({
       type: END_BIDDING,
     });
