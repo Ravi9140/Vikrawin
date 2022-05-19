@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import BidderResponsiveAppBar from "../../Components/BidderNav";
 import {
   Grid,
@@ -26,9 +26,11 @@ const UpcomingEvents = ({
   loading,
   setAlert,
 }) => {
+  const [toggle, setToggle] = useReducer((x) => x + 1, 0);
   useEffect(() => {
     getauctions();
-  }, [getauctions]);
+  }, [toggle]);
+
   const [open, setOpen] = useState(false);
   const [color, setColor] = useState("gray");
   const [value, SetValue] = useState("");
@@ -201,6 +203,7 @@ const UpcomingEvents = ({
                     onClick={() => {
                       console.log(elem.biddingeventId);
                       registerauction(elem.biddingeventId);
+                      setToggle();
                     }}
                     // component={Link}
                     // to="/BidderMarketPlace"
