@@ -1,11 +1,16 @@
-image: node:16.15.0
+
 stages:
   - production
 
 before_script:
+  image: node:16.15.0
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
+  - npm install
+  - cd client
+  - npm install
+  - cd ..
 
 production:
   stage: production
