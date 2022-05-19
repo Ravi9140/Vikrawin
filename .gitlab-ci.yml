@@ -1,11 +1,12 @@
-image: node:16.15.0
 stages:
   - production
 
-before_script:
-  - apt-get update -qy
-  - apt-get install -y ruby-dev
-  - gem install dpl
+dependency:
+  image: node:16.15.0
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
 
 production:
   stage: production
