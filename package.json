@@ -10,7 +10,8 @@
   "scripts": {
     "server": "nodemon server",
     "client": "npm start --prefix client",
-    "start": "concurrently \"npm run server\" \"npm run client\" "
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "start": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -33,7 +34,7 @@
     "sequelize": "^6.19.0"
   },
   "devDependencies": {
-    "concurrently": "^7.1.0",
+    "concurrently": "^7.2.0",
     "nodemon": "^2.0.15"
   }
 }
