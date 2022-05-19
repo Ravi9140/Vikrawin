@@ -4,10 +4,9 @@
   "description": "Online Bidding Platform for Farmer to sell crops.",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
     "server": "nodemon server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" "
+    "start": "concurrently \"npm run server\" \"npm run client\" "
   },
   "repository": {
     "type": "git",
