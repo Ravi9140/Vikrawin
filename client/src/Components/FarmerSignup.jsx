@@ -33,7 +33,6 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
     city: "",
     state: "",
     pincode: "",
-    accountno: "",
     adhaarno: "",
     panno: "",
     password: "",
@@ -61,12 +60,10 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
     name,
     email,
     contact,
-    landarea,
     address,
     city,
     state,
     pincode,
-    accountno,
     adhaarno,
     panno,
     password,
@@ -85,12 +82,10 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
         name,
         email,
         contact,
-        landarea,
         address,
         city,
         state,
         pincode,
-        accountno,
         adhaarno,
         panno,
         password,
@@ -99,7 +94,7 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
   };
   const paperStyle = {
     padding: "30px 20px",
-    height: "100vh",
+    height: "82vh",
     width: "60vw",
     margin: "20px auto",
   };
@@ -148,37 +143,19 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
             />
             <TextField
               style={tfieldStyle}
-              label="Password"
-              name="password"
-              value={password}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your Password"
-              type="password"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Confirm Password"
-              name="password1"
-              value={password1}
-              onChange={(e) => onChange(e)}
-              placeholder="Confirm your Password"
-              type="password"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Land Area"
-              name="landarea"
-              value={landarea}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your Land Area"
-            />
-            <TextField
-              style={tfieldStyle}
               label="Address"
               name="address"
               value={address}
               onChange={(e) => onChange(e)}
               placeholder="Enter your Address"
+            />
+            <TextField
+              style={tfieldStyle}
+              label="PinCode"
+              name="pincode"
+              value={pincode}
+              onChange={(e) => onChange(e)}
+              placeholder="Pincode"
             />
             <TextField
               style={tfieldStyle}
@@ -198,22 +175,6 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
             />
             <TextField
               style={tfieldStyle}
-              label="PinCode"
-              name="pincode"
-              value={pincode}
-              onChange={(e) => onChange(e)}
-              placeholder="Pincode"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Account No"
-              name="accountno"
-              value={accountno}
-              onChange={(e) => onChange(e)}
-              laceholder="Enter your Account No"
-            />
-            <TextField
-              style={tfieldStyle}
               label="Adhaar No"
               name="adhaarno"
               value={adhaarno}
@@ -228,9 +189,27 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
               onChange={(e) => onChange(e)}
               placeholder="Enter your PAN No"
             />
+            <TextField
+              style={tfieldStyle}
+              label="Password"
+              name="password"
+              value={password}
+              onChange={(e) => onChange(e)}
+              placeholder="Enter your Password"
+              type="password"
+            />
+            <TextField
+              style={tfieldStyle}
+              label="Confirm Password"
+              name="password1"
+              value={password1}
+              onChange={(e) => onChange(e)}
+              placeholder="Confirm your Password"
+              type="password"
+            />
 
             <FormControlLabel
-              control={<Checkbox name="checkedA" />}
+              control={<Checkbox name="checkedA" required />}
               label="I accept the terms and conditions."
             />
             <center>

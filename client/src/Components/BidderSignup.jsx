@@ -27,7 +27,6 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
     city: "",
     state: "",
     pincode: "",
-    accountno: "",
     adhaarno: "",
     panno: "",
     password: "",
@@ -62,7 +61,6 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
     city,
     state,
     pincode,
-    accountno,
     adhaarno,
     panno,
     password,
@@ -85,7 +83,6 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
         city,
         state,
         pincode,
-        accountno,
         adhaarno,
         panno,
         password,
@@ -95,7 +92,7 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
 
   const paperStyle = {
     padding: "30px 20px",
-    height: "90vh",
+    height: "82vh",
     width: "60vw",
     margin: "20px auto",
   };
@@ -123,7 +120,7 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
           </Grid>
           <form style={{ flexDirection: "row" }} onSubmit={(e) => onSubmit(e)}>
             <TextField
-              style={tfieldStyle}
+              style={{ width: "51vw", marginLeft: "15px", marginTop: "14px" }}
               label="Name"
               name="name"
               value={name}
@@ -138,24 +135,6 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
               onChange={(e) => onChange(e)}
               placeholder="Enter your email"
               type="email"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Password"
-              name="password"
-              value={password}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your Password"
-              type="password"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Confirm Password"
-              name="password1"
-              value={password1}
-              onChange={(e) => onChange(e)}
-              placeholder="Confirm Your Password"
-              type="password"
             />
             <TextField
               style={tfieldStyle}
@@ -199,14 +178,6 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
             />
             <TextField
               style={tfieldStyle}
-              label="Account No"
-              name="accountno"
-              value={accountno}
-              onChange={(e) => onChange(e)}
-              laceholder="Enter your Account No"
-            />
-            <TextField
-              style={tfieldStyle}
               label="Adhaar No"
               name="adhaarno"
               value={adhaarno}
@@ -222,9 +193,27 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
               ss
               placeholder="Enter your PAN No"
             />
+            <TextField
+              style={tfieldStyle}
+              label="Password"
+              name="password"
+              value={password}
+              onChange={(e) => onChange(e)}
+              placeholder="Enter your Password"
+              type="password"
+            />
+            <TextField
+              style={tfieldStyle}
+              label="Confirm Password"
+              name="password1"
+              value={password1}
+              onChange={(e) => onChange(e)}
+              placeholder="Confirm Your Password"
+              type="password"
+            />
 
             <FormControlLabel
-              control={<Checkbox name="checkedA" />}
+              control={<Checkbox name="checkedA" required />}
               label="I accept the terms and conditions."
             />
             <center>
