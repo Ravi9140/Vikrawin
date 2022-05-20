@@ -33,7 +33,7 @@ const UpcomingEvents = ({
     let timer = setInterval(() => {
       getauctions();
       marketplace();
-    }, 1000);
+    }, 3000);
     return () => {
       clearInterval(timer);
     };

@@ -29,7 +29,7 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
   useState(() => {
     let timer = setInterval(() => {
       getmycrops();
-    }, 1000);
+    }, 3000);
     return () => {
       clearInterval(timer);
     };
