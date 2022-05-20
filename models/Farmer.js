@@ -22,9 +22,6 @@ const Farmer = sequelize.define(
       type: DataTypes.STRING,
       unique: true,
     },
-    farmerLandArea: {
-      type: DataTypes.DOUBLE,
-    },
     farmerAddress: {
       type: DataTypes.STRING,
     },
@@ -37,23 +34,13 @@ const Farmer = sequelize.define(
     farmerPinCode: {
       type: DataTypes.INTEGER,
     },
-    farmerAccountNo: {
-      type: DataTypes.DOUBLE,
-      unique: true,
-    },
     farmerAdhaarNo: {
       type: DataTypes.STRING,
       unique: true,
     },
-    farmerAdhaarCard: {
-      type: DataTypes.STRING,
-    },
     farmerPanNo: {
       type: DataTypes.STRING,
       unique: true,
-    },
-    farmerPanCard: {
-      type: DataTypes.STRING,
     },
     farmerPassword: {
       type: DataTypes.STRING,
