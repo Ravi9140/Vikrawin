@@ -18,7 +18,25 @@ router.post(
   [
     check("name", "Name is required").not().isEmpty(),
     check("email", "Please include valid email").isEmail(),
-    check("contact", "Please enter valid contact Number.").isLength({
+    check("contact", "Please enter valid contact no").isLength({
+      min: 10,
+      max: 10,
+    }),
+    check("address", "Address is required").not().isEmpty(),
+    check("city", "city is required").not().isEmpty(),
+    check("state", "State sis required").not().isEmpty(),
+    check("pincode", "Please enter valid PIN code").isLength({
+      min: 6,
+      max: 6,
+    }),
+    check(
+      "adhaarno",
+      "Please enter valid Aadhaar No. Don't include spaces"
+    ).isLength({
+      min: 12,
+      max: 12,
+    }),
+    check("panno", "Please enter valid PAN no").isLength({
       min: 10,
       max: 10,
     }),
@@ -37,11 +55,8 @@ router.post(
       city,
       state,
       pincode,
-      accountno,
       adhaarno,
-      adhaarcard,
       panno,
-      pancard,
       password,
     } = req.body;
 
@@ -52,7 +67,6 @@ router.post(
           [Op.or]: {
             bidderEmail: email,
             bidderContact: contact,
-            bidderAccountNo: accountno,
             bidderPanNo: panno,
             bidderAdhaarNo: adhaarno,
           },
@@ -73,11 +87,8 @@ router.post(
         bidderCity: city,
         bidderState: state,
         bidderPinCode: pincode,
-        bidderAccountNo: accountno,
         bidderAdhaarNo: adhaarno,
-        bidderAdhaarCard: adhaarcard,
         bidderPanNo: panno,
-        bidderPanCard: pancard,
       });
 
       // Encrypt password

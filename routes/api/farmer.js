@@ -29,7 +29,6 @@ router.post(
       min: 6,
       max: 6,
     }),
-    check("accountno", "Account no is required").not().isEmpty(),
     check(
       "adhaarno",
       "Please enter valid Aadhaar No. Don't include spaces"
@@ -52,16 +51,12 @@ router.post(
       name,
       email,
       contact,
-      landarea,
       address,
       city,
       state,
       pincode,
-      accountno,
       adhaarno,
-      adhaarcard,
       panno,
-      pancard,
       password,
     } = req.body;
     console.log(req.body);
@@ -72,7 +67,6 @@ router.post(
           [Op.or]: {
             farmerEmail: email,
             farmerContact: contact,
-            farmerAccountNo: accountno,
             farmerPanNo: panno,
             farmerAdhaarNo: adhaarno,
           },
@@ -89,16 +83,12 @@ router.post(
         farmerName: name,
         farmerEmail: email,
         farmerContact: contact,
-        farmerLandArea: landarea,
         farmerAddress: address,
         farmerCity: city,
         farmerState: state,
         farmerPinCode: pincode,
-        farmerAccountNo: accountno,
         farmerAdhaarNo: adhaarno,
-        farmerAdhaarCard: adhaarcard,
         farmerPanNo: panno,
-        farmerPanCard: pancard,
       });
 
       // Encrypt password
