@@ -33,7 +33,7 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
   useEffect(() => {
     let timer = setInterval(() => {
       marketplace();
-    }, 1000);
+    }, 3000);
     return () => {
       clearInterval(timer);
     };
