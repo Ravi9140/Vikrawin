@@ -19,18 +19,23 @@ router.post("/", farmerauth, async (req, res) => {
   let cred = req.body;
 
   let farmer1 = await Farmer.findByPk(req.farmer.farmerId);
-  console.log(farmer1);
+
+  let address =
+    farmer1.farmerCity +
+    " " +
+    farmer1.farmerState +
+    " " +
+    farmer1.farmerPinCode;
 
   const biddingevent = await BiddingEvent.create({
     cropName: cred.cropName,
     sellQuantity: cred.quantity,
     basePrice: cred.basePrice,
-    //  isSold: cred.sold,
-    // currentBid: cred.currentBid,
     createrFarmerName: farmer1.farmerName,
+    createrFarmerContact: farmer1.farmerContact,
+    createrFarmerAddress: address,
     createrId: req.farmer.farmerId,
   });
-  console.log(biddingevent);
   res.send({ msg: `Bidding Event Created` });
 });
 

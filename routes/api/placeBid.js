@@ -18,12 +18,13 @@ router.patch("/", bidderauth, async (req, res) => {
 
   try {
     const placebid = await sequelize.query(
-      "update biddingevent set biddingevent.currentBid = case when biddingevent.currentBid< biddingevent.basePrice then biddingevent.basePrice  else biddingevent.currentBid+? end,biddingevent.currentBidderId=?,biddingevent.currentBidderName=? where biddingevent.biddingeventId=?;",
+      "update biddingevent set biddingevent.currentBid = ?,biddingevent.currentBidderId=?,biddingevent.currentBidderName=?,biddingevent.currentBidderContact=? where biddingevent.biddingeventId=?;",
       {
         replacements: [
           cred.bidAmt,
           req.bidder.bidderId,
           bidder.bidderName,
+          bidder.bidderContact,
           cred.biddingId,
         ],
         type: QueryTypes.UPDATE,
