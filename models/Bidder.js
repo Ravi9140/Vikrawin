@@ -34,23 +34,13 @@ const Bidder = sequelize.define(
     bidderPinCode: {
       type: DataTypes.INTEGER,
     },
-    bidderAccountNo: {
-      type: DataTypes.DOUBLE,
-      unique: true,
-    },
     bidderAdhaarNo: {
       type: DataTypes.STRING,
       unique: true,
     },
-    bidderAdhaarCard: {
-      type: DataTypes.STRING,
-    },
     bidderPanNo: {
       type: DataTypes.STRING,
       unique: true,
-    },
-    bidderPanCard: {
-      type: DataTypes.STRING,
     },
     bidderPassword: {
       type: DataTypes.STRING,
