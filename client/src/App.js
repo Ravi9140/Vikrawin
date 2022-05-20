@@ -14,9 +14,7 @@ import MyCrops from "./Pages/Farmer/MyCrops";
 // Bidder
 import UpcomingEvents from "./Pages/Bidder/UpcomingEvents";
 import MarketPlace from "./Pages/Bidder/MarketPlace";
-// import Wishlist from "./Pages/Bidder/Wishlist";
-// import AboutUs from "./Pages/Bidder/AboutUs";
-import BidderHome from "./Pages/Bidder/Home";
+
 import BidderProfile from "./Pages/Bidder/BidderProfile";
 import BidderHistory from "./Pages/Bidder/History";
 import FarmerRegistration from "./Pages/Farmer/FarmerRegistration";
@@ -67,7 +65,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         {/* FarmerPages */}
 
-        {/* <Route path="/FarmerAuctions" element={<Auctions />} /> */}
         <Route
           path="/FarmerHistory"
           element={<FarmerPrivateRoute component={History} />}
@@ -86,10 +83,6 @@ function App() {
         />
 
         {/* BidderPages */}
-        <Route
-          path="/BidderHome"
-          element={<BidderPrivateRoute component={BidderHome} />}
-        />
         <Route
           path="/BidderUpcomingEvents"
           element={<BidderPrivateRoute component={UpcomingEvents} />}
