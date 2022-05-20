@@ -99,7 +99,7 @@ const Profile = ({ updatefarmerprofile }) => {
     backdropFilter: "blur(3px)",
 
     border: "1px solid rgba(255, 255, 255, 0.18)",
-    height: "100vh",
+    //height: "100vh",
 
     fontFamily: "sans-serif,'Jost'",
   };
@@ -142,11 +142,11 @@ const Profile = ({ updatefarmerprofile }) => {
             <CardContent>
               <form onSubmit={(e) => onSubmit(e)}>
                 <Grid container spacing={1}>
-                  <Grid xs={2} sm={2} md={1} item>
+                  <Grid xs={3} sm={2} md={1} item>
                     <h3>Name</h3>
                   </Grid>
 
-                  <Grid xs={10} sm={10} md={11} item>
+                  <Grid xs={9} sm={10} md={11} item>
                     <TextField
                       sx={{
                         borderBottom: "solid #3f823b 3px",
@@ -166,11 +166,11 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={2} sm={2} md={1} item>
+                  <Grid xs={3} sm={2} md={1} item>
                     <h3>Email</h3>
                   </Grid>
 
-                  <Grid xs={4} sm={4} md={5} item>
+                  <Grid xs={9} sm={10} md={5} item>
                     <TextField
                       sx={{
                         borderBottom: "solid #3f823b 3px",
@@ -189,11 +189,11 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={2} sm={2} md={1} item>
+                  <Grid xs={3} sm={2} md={1} item>
                     <h3>Mobile</h3>
                   </Grid>
 
-                  <Grid xs={4} sm={4} md={5} item>
+                  <Grid xs={9} sm={10} md={5} item>
                     <TextField
                       sx={{
                         borderBottom: "solid #3f823b 3px",
@@ -211,11 +211,11 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={2} sm={2} md={1} item>
+                  <Grid xs={3} sm={2} md={1} item>
                     <h3>Address</h3>
                   </Grid>
 
-                  <Grid xs={4} sm={4} md={5} item>
+                  <Grid xs={9} sm={10} md={5} item>
                     <TextField
                       sx={{
                         borderBottom: "solid #3f823b 3px",
@@ -233,11 +233,11 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={2} sm={2} md={1} item>
+                  <Grid xs={3} sm={2} md={1} item>
                     <h3>PIN Code</h3>
                   </Grid>
 
-                  <Grid xs={4} sm={4} md={5} item>
+                  <Grid xs={9} sm={10} md={5} item>
                     <TextField
                       sx={{
                         borderBottom: "solid #3f823b 3px",
@@ -255,11 +255,11 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={2} sm={2} md={1} item>
+                  <Grid xs={3} sm={2} md={1} item>
                     <h3>City</h3>
                   </Grid>
 
-                  <Grid xs={4} sm={4} md={5} item>
+                  <Grid xs={9} sm={10} md={5} item>
                     <TextField
                       sx={{
                         borderBottom: "solid #3f823b 3px",
@@ -277,11 +277,11 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={2} sm={2} md={1} item>
+                  <Grid xs={3} sm={2} md={1} item>
                     <h3>State</h3>
                   </Grid>
 
-                  <Grid xs={4} sm={4} md={5} item>
+                  <Grid xs={9} sm={10} md={5} item>
                     <TextField
                       sx={{
                         borderBottom: "solid #3f823b 3px",
@@ -299,11 +299,11 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={2} sm={2} md={1} item>
+                  <Grid xs={3} sm={2} md={1} item>
                     <h3>PAN</h3>
                   </Grid>
 
-                  <Grid xs={4} sm={4} md={5} item>
+                  <Grid xs={9} sm={10} md={5} item>
                     <TextField
                       sx={{
                         borderBottom: "solid #3f823b 3px",
@@ -321,11 +321,11 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={2} sm={2} md={1} item>
+                  <Grid xs={3} sm={2} md={1} item>
                     <h3>Aadhaar</h3>
                   </Grid>
 
-                  <Grid xs={4} sm={4} md={5} item>
+                  <Grid xs={9} sm={10} md={5} item>
                     <TextField
                       sx={{
                         borderBottom: "solid #3f823b 3px",

@@ -31,21 +31,14 @@ import Spinner from "../../Components/layout/Spinner";
 
 const MarketPlace = ({ marketplace, registeredevents, loading }) => {
   useEffect(() => {
-    marketplace();
-  }, []);
-  // const data = {
-  //   name: [
-  //     {
-  //       crop: "Rice",
-  //       id: 1,
-  //       quantity: 250,
-  //       base_price: 5000,
-  //       farmer_name: "Ravindra",
-  //       cur_bid: 6000,
-  //       prev_bid: 5500,
-  //     },
-  //   ],
-  // };
+    let timer = setInterval(() => {
+      marketplace();
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+    // marketplace();
+  }, [registeredevents]);
 
   if (loading) {
     return <Spinner />;
@@ -93,7 +86,7 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
               >
                 <Card
                   style={{
-                    width: "15rem",
+                    //width: "15rem",
                     /*borderStyle:"solid", */ alignContent: "center",
                   }}
                 >
@@ -106,8 +99,8 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
                     title={elem.cropName}
                   />
                   <CardActionArea>
-                    <CardContent>
-                      <TableContainer style={{ width: "13rem" }}>
+                    <CardContent style={{ height: "18rem" }}>
+                      <TableContainer style={{ height: "10rem" }}>
                         <Table
                           sx={{
                             align: "center",
@@ -125,12 +118,12 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
                           </TableRow>
                           <TableRow>
                             <TableCell>Base Price: </TableCell>
-                            <TableCell>Rs: {elem.basePrice}</TableCell>
+                            <TableCell>₹{elem.basePrice}</TableCell>
                           </TableRow>
                         </Table>
                       </TableContainer>
 
-                      <TableContainer style={{ width: "14rem" }}>
+                      <TableContainer style={{}}>
                         <Table>
                           <TableRow>
                             <TableCell
@@ -163,7 +156,7 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
                                 fontSize: "15px",
                               }}
                             >
-                              Rs:{elem.currentBid}
+                              ₹{elem.currentBid}
                             </TableCell>
                             <TableCell
                               sx={{
@@ -194,7 +187,16 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
                     >
                       PLACE BID
                     </Button> */}
-                    <PlaceBidDialog biddingId={elem.biddingeventId} />
+                    <PlaceBidDialog
+                      biddingId={elem.biddingeventId}
+                      cur_bid={elem.currentBid}
+                      //basePrice={elem.basePrice}
+                      your_bid={
+                        elem.currentBid > 0
+                          ? elem.currentBid + 100
+                          : elem.basePrice
+                      }
+                    />
                   </CardActionArea>
                 </Card>
               </Grid>

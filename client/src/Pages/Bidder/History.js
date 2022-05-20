@@ -19,28 +19,14 @@ import { MenuItem } from "@mui/material";
 
 const BidderHistory = ({ getbidderhistory, loading, history }) => {
   useEffect(() => {
+    // let timer = setInterval(() => {
+    //   getbidderhistory();
+    // }, 1000);
+    // return () => {
+    //   clearInterval(timer);
+    // };
     getbidderhistory();
   }, []);
-
-  const [open, setOpen] = React.useState(false);
-  const [color, setColor] = React.useState("gray");
-  const [value, SetValue] = React.useState("");
-
-  const handleChange = (event) => {
-    SetValue(event.target.value);
-  };
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   const columns = [
     // { field: 'bid', headerName: 'BID', width: 90  },
@@ -53,7 +39,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
     },
     {
       field: "sellQuantity",
-      headerName: "Quantity",
+      headerName: "Quantity (kg)",
       width: 200,
       type: "number",
       align: "left",
@@ -61,7 +47,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
     },
     {
       field: "basePrice",
-      headerName: "Base Price",
+      headerName: "Base Price (₹)",
       width: 200,
       type: "number",
       align: "left",
@@ -69,7 +55,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
     },
     {
       field: "currentBid",
-      headerName: "Bought For",
+      headerName: "Bought For (₹)",
       width: 200,
       type: "number",
       align: "left",
@@ -86,6 +72,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
       field: "sellDate",
       headerName: "Purchase Date",
       width: 200,
+      type: "date",
       align: "left",
       headerAlign: "left",
     },
@@ -97,9 +84,11 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
     return history.filter(
       (item) =>
         item.cropName.toLowerCase().includes(query) ||
-        item.currentBidderName.toLowerCase().includes(query)
+        item.createrFarmerName.toLowerCase().includes(query)
     );
   };
+
+  const [noOfRows, SetRows] = useState(10);
 
   if (loading) {
     return <Spinner></Spinner>;
@@ -121,7 +110,16 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
           Purchase History
         </h1>
         <Grid container sx={{ marginTop: "20px" }}>
-          <Grid md={9} xs={6} item></Grid>
+          <Grid md={3} xs={6} item>
+            <input
+              type="no_Rows"
+              placeholder="No. of Rows"
+              //className="Serach"
+              style={{ height: "35px", width: "80%", marginLeft: "10px" }}
+              onChange={(e) => SetRows(e.target.value)}
+            ></input>
+          </Grid>
+          <Grid item md={6} xs={0}></Grid>
           <Grid md={3} xs={6} item>
             <input
               type="search"
@@ -155,12 +153,12 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
 
               fontFamily: "sans-serif,Times new roman,algerian",
             }}
-            rowHeight={60}
+            rowHeight={35}
             rows={search(history)}
             columns={columns}
             getRowId={(history) => history.biddingeventId}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
+            pageSize={noOfRows > 0 ? noOfRows : 10}
+            rowsPerPageOptions={[noOfRows > 0 ? noOfRows : 10]}
           />
         </div>
       </div>
