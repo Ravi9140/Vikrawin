@@ -3,7 +3,6 @@ const path = require("path");
 
 // Import Database Model
 const sequelize = require("./config/db");
-const path = require("path");
 const Bidder = require("./models/Bidder");
 const BiddingEvent = require("./models/BiddingEvent");
 const Farmer = require("./models/Farmer");
