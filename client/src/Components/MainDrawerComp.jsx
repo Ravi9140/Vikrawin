@@ -43,7 +43,7 @@ const MainDrawerComp = () => {
               <ListItemText>
                 <Link
                   style={{ textDecoration: "none", color: "black" }}
-                  to="/BidderRegistration"
+                  to="/FarmerRegistration"
                 >
                   Farmer Login
                 </Link>
@@ -56,7 +56,7 @@ const MainDrawerComp = () => {
               <ListItemText>
                 <Link
                   style={{ textDecoration: "none", color: "black" }}
-                  to="/FarmerRegistration"
+                  to="/BidderRegistration"
                 >
                   Bidder Login
                 </Link>

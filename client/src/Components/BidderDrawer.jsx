@@ -1,14 +1,38 @@
 import React, { useState } from "react";
-import { Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText,} from "@mui/material";
+import {
+  Drawer,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutbidder } from "../actions/authbidder";
 
-const pages=["Home","Upcoming Events","Market Place","Wishlist","History","About Us"];
+const pages = [
+  "Home",
+  "Upcoming Events",
+  "Market Place",
+  "Wishlist",
+  "History",
+  "About Us",
+];
 
-const path=["BidderHome","BidderUpcomingEvents","BidderMarketPlace","BidderWishlist","BidderHistory","BidderAboutUs"];
+const path = [
+  "BidderHome",
+  "BidderUpcomingEvents",
+  "BidderMarketPlace",
+  "BidderWishlist",
+  "BidderHistory",
+  "BidderAboutUs",
+];
 
-const BidderDrawerComp = () => {
-const [openDrawer, setOpenDrawer] = useState(false);
+const BidderDrawerComp = ({ logoutbidder }) => {
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
     <React.Fragment>
@@ -30,60 +54,67 @@ const [openDrawer, setOpenDrawer] = useState(false);
             </ListItemButton>
           ))*/}
 
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/BidderHome'>
-                      Home
+          <ListItemButton onClick={() => setOpenDrawer(false)}>
+            <ListItemIcon>
+              <ListItemText>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/BidderUpcomingEvents"
+                >
+                  Auctions
                 </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
-          
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/BidderUpcomingEvents'>
-                      Auctions
-                </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
+              </ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
 
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/BidderMarketPlace'>
-                      Market Place
+          <ListItemButton onClick={() => setOpenDrawer(false)}>
+            <ListItemIcon>
+              <ListItemText>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/BidderMarketPlace"
+                >
+                  Market Place
                 </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
+              </ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
 
-          <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/BidderHistory'>
-                      History
+          <ListItemButton onClick={() => setOpenDrawer(false)}>
+            <ListItemIcon>
+              <ListItemText>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/BidderHistory"
+                >
+                  History
                 </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
+              </ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
 
-            <ListItemButton onClick={()=> setOpenDrawer(false)} >
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to='/BidderProfile'>
-                      Profile
+          <ListItemButton onClick={() => setOpenDrawer(false)}>
+            <ListItemIcon>
+              <ListItemText>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/BidderProfile"
+                >
+                  Profile
                 </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
+              </ListItemText>
+            </ListItemIcon>
+          </ListItemButton>
 
-          <ListItemButton style={{background:"black"}} component={Link} to="/">
-              <ListItemIcon>
-                  <ListItemText style={{color:"white"}}>Logout</ListItemText>
-              </ListItemIcon>
+          <ListItemButton
+            style={{ background: "black" }}
+            component={Link}
+            onClick={logoutbidder}
+            to="/"
+          >
+            <ListItemIcon>
+              <ListItemText style={{ color: "white" }}>Logout</ListItemText>
+            </ListItemIcon>
           </ListItemButton>
         </List>
       </Drawer>
@@ -97,4 +128,7 @@ const [openDrawer, setOpenDrawer] = useState(false);
   );
 };
 
-export default BidderDrawerComp;
+BidderDrawerComp.propTypes = {
+  logoutbidder: PropTypes.func.isRequired,
+};
+export default connect(null, { logoutbidder })(BidderDrawerComp);

@@ -1,12 +1,36 @@
 import React, { useState } from "react";
-import { Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, } from "@mui/material";
+import {
+  Drawer,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import { logoutfarmer } from "../actions/authfarmer";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-const pages = ["Auctions", "Create Auctions", "History", "My Crops", "Profile", "Update Account"];
-const path = ["FarmerAuctions", "FarmerCreateAuctions", "FarmerHistory", "FarmerMyCrops", "FarmerProfile", "FarmerUpdateAccount"];
+const pages = [
+  "Auctions",
+  "Create Auctions",
+  "History",
+  "My Crops",
+  "Profile",
+  "Update Account",
+];
+const path = [
+  "FarmerAuctions",
+  "FarmerCreateAuctions",
+  "FarmerHistory",
+  "FarmerMyCrops",
+  "FarmerProfile",
+  "FarmerUpdateAccount",
+];
 
-const FarmerDrawerComp = () => {
+const FarmerDrawerComp = ({ logoutfarmer }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
@@ -17,61 +41,64 @@ const FarmerDrawerComp = () => {
         onClose={() => setOpenDrawer(false)}
       >
         <List>
-          {/*pages.map((page,index) => (
-            <ListItemButton onClick={()=> setOpenDrawer(false)} key={index}>
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to={`/${path}`}>
-                      {page}
-                </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
-          ))*/}
-
-          <ListItemButton onClick={() => setOpenDrawer(false)} >
+          <ListItemButton onClick={() => setOpenDrawer(false)}>
             <ListItemIcon>
               <ListItemText>
-                <Link style={{ textDecoration: "none", color: "black" }} to='/FarmerMyCrops'>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/FarmerMyCrops"
+                >
                   My Crops
                 </Link>
               </ListItemText>
             </ListItemIcon>
           </ListItemButton>
 
-          <ListItemButton onClick={() => setOpenDrawer(false)} >
+          <ListItemButton onClick={() => setOpenDrawer(false)}>
             <ListItemIcon>
               <ListItemText>
-                <Link style={{ textDecoration: "none", color: "black" }} to='/FarmerCreateAuctions'>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/FarmerCreateAuctions"
+                >
                   Create Auctions
                 </Link>
               </ListItemText>
             </ListItemIcon>
           </ListItemButton>
 
-          <ListItemButton onClick={() => setOpenDrawer(false)} >
+          <ListItemButton onClick={() => setOpenDrawer(false)}>
             <ListItemIcon>
               <ListItemText>
-                <Link style={{ textDecoration: "none", color: "black" }} to='/FarmerHistory'>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/FarmerHistory"
+                >
                   History
                 </Link>
               </ListItemText>
             </ListItemIcon>
           </ListItemButton>
 
-
-
-          <ListItemButton onClick={() => setOpenDrawer(false)} >
+          <ListItemButton onClick={() => setOpenDrawer(false)}>
             <ListItemIcon>
               <ListItemText>
-                <Link style={{ textDecoration: "none", color: "black" }} to='/FarmerProfile'>
+                <Link
+                  style={{ textDecoration: "none", color: "black" }}
+                  to="/FarmerProfile"
+                >
                   Profile
                 </Link>
               </ListItemText>
             </ListItemIcon>
           </ListItemButton>
 
-          <ListItemButton style={{ background: "black" }} component={Link} to="/">
+          <ListItemButton
+            style={{ background: "black" }}
+            component={Link}
+            onClick={logoutfarmer}
+            to="/"
+          >
             <ListItemIcon>
               <ListItemText style={{ color: "white" }}>Logout</ListItemText>
             </ListItemIcon>
@@ -88,4 +115,8 @@ const FarmerDrawerComp = () => {
   );
 };
 
-export default FarmerDrawerComp;
+FarmerDrawerComp.propTypes = {
+  logoutfarmer: PropTypes.func.isRequired,
+};
+
+export default connect(null, { logoutfarmer })(FarmerDrawerComp);
