@@ -49,16 +49,18 @@ const BootstrapDialogTitle = (props) => {
   );
 };
 
-export const PlaceBidDialog = ({ biddingId, placebid }) => {
-  // console.log(typeof props.biddingId);
-  //const { biddingId } = props;
+export const PlaceBidDialog = ({ biddingId, cur_bid, your_bid, placebid }) => {
   const [open, setOpen] = useState(false);
+  //const [bidAmt, setCalc] = useState(cur_bid);
+  // const [bidAmt, setCalc] = useState(cur_bid>0 ? (cur_bid+100) :basePrice);
 
-  const [bidAmt, setCalc] = useState("");
+  const [bidAmt, setCalc] = useState(your_bid);
 
   const updateCalc = (value) => {
-    setCalc(value);
+    setCalc(your_bid + value);
   };
+
+  useEffect(() => {}, [your_bid]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -99,71 +101,93 @@ export const PlaceBidDialog = ({ biddingId, placebid }) => {
             handleClose();
           }}
         >
-          Place Your Bid Here
+          Increment The Bid Here
         </BootstrapDialogTitle>
         <DialogContent dividers disableBackdropClick>
-          {bidAmt ? (
-            <TextField
-              id="outlined-basic"
-              placeHolder=" "
-              variant="outlined"
-              dividers
-              fullWidth="100%"
-              value={bidAmt}
-            />
-          ) : (
-            <TextField
-              id="outlined-basic"
-              placeHolder=" "
-              variant="outlined"
-              dividers
-              fullWidth="100%"
-            />
-          )}
+          <Grid container>
+            <Grid item sm={3} xs={3} md={3}>
+              <h3>Current Bid:</h3>
+            </Grid>
+            <Grid item sm={9} xs={9} md={9}>
+              <TextField
+                id="outlined-basic"
+                placeHolder=" "
+                variant="outlined"
+                dividers
+                fullWidth="100%"
+                value={cur_bid}
+              />
+            </Grid>
+            <Grid item sm={3} xs={3} md={3}>
+              <h3>Your Bid: </h3>
+            </Grid>
+            <Grid item sm={9} xs={9} md={9}>
+              {bidAmt ? (
+                <TextField
+                  id="outlined-basic"
+                  placeHolder=" "
+                  variant="outlined"
+                  dividers
+                  fullWidth="100%"
+                  value={bidAmt}
+                  // value={your_bid}
+                />
+              ) : (
+                <TextField
+                  id="outlined-basic"
+                  placeHolder=" "
+                  variant="outlined"
+                  dividers
+                  fullWidth="100%"
+                />
+              )}
+            </Grid>
+          </Grid>
 
           <Stack direction="row" spacing={2}>
             <Button
               sx={{ alignContent: "center", color: "green" }}
               onClick={() => {
-                updateCalc("100");
-                handleClickOpen();
-              }}
-              style={{ marginLeft: "1rem", fontSize: "25px", width: "25px" }}
-            >
-              <b>₹100</b>
-            </Button>
-
-            <Button
-              sx={{ alignContent: "center", color: "#222" }}
-              onClick={() => {
-                updateCalc("500");
+                //your_bid=your_bid+100;
+                updateCalc(100);
                 handleClickOpen();
               }}
               style={{ marginLeft: "1rem", fontSize: "25px" }}
             >
-              <b>₹500</b>
+              <b>+ ₹100</b>
             </Button>
 
             <Button
-              sx={{ alignContent: "center", color: "#222" }}
+              sx={{ alignContent: "center", color: "green" }}
               onClick={() => {
-                updateCalc("1000");
+                updateCalc(500);
                 handleClickOpen();
               }}
               style={{ marginLeft: "1rem", fontSize: "25px" }}
             >
-              <b>₹1000</b>
+              <b>+ ₹500</b>
             </Button>
 
             <Button
-              sx={{ alignContent: "center", color: "#222" }}
+              sx={{ alignContent: "center", color: "green" }}
               onClick={() => {
-                updateCalc("2000");
+                updateCalc(1000);
                 handleClickOpen();
               }}
               style={{ marginLeft: "1rem", fontSize: "25px" }}
             >
-              <b>₹2000</b>
+              <b>+ ₹1000</b>
+            </Button>
+
+            <Button
+              sx={{ alignContent: "center", color: "green" }}
+              onClick={() => {
+                updateCalc(2000);
+                handleClickOpen();
+              }}
+              style={{ marginLeft: "1rem", fontSize: "25px" }}
+            >
+              <b>+ ₹2000</b>
             </Button>
           </Stack>
         </DialogContent>
@@ -196,6 +220,9 @@ PlaceBidDialog.propTypes = {
 
 const mapStateToProps = (state, ownProps) => ({
   biddingId: ownProps.biddingId,
+  cur_bid: ownProps.cur_bid,
+  //basePrice: ownProps.basePrice
+  your_bid: ownProps.your_bid,
 });
 
 export default connect(mapStateToProps, { placebid })(PlaceBidDialog);

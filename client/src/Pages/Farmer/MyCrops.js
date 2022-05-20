@@ -27,30 +27,14 @@ import FarmerResponsiveAppBar from "../../Components/FarmerNav";
 
 const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
   useState(() => {
-    getmycrops();
+    let timer = setInterval(() => {
+      getmycrops();
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+    //getmycrops();
   }, []);
-  // const data = {
-  //   name: [
-  //     {
-  //       crop: "Rice",
-  //       id: 1,
-  //       quantity: 250,
-  //       base_price: 5000,
-  //       farmer_name: "Ravindra",
-  //       cur_bid: 6000,
-  //       prev_bid: 5500,
-  //     },
-  //   ],
-  // };
-
-  /* const[crop,updateCrop]=useState({
-     [prev_bid,prev_bid]:[cur_bid,cur_bid+500]
-          
-   });
-
-   function changeBidding(index) {
-     updateCrop({...appState, activeObject: appState.objects[index]});
-   }*/
 
   if (loading) {
     return <Spinner />;
@@ -92,7 +76,7 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
               <Grid item xs={12} sm={6} md={3} key={mycrops.indexOf(elem)}>
                 <Card
                   style={{
-                    width: "15rem",
+                    //width: "15rem",
                     /*borderStyle:"solid", */ alignContent: "center",
                   }}
                 >
@@ -105,8 +89,8 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
                     title={`${elem.cropName}`}
                   />
                   <CardActionArea>
-                    <CardContent>
-                      <TableContainer style={{ width: "13rem" }}>
+                    <CardContent style={{ height: "15rem" }}>
+                      <TableContainer style={{}}>
                         <Table
                           sx={{
                             align: "center",
@@ -120,12 +104,12 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
                           </TableRow>
                           <TableRow>
                             <TableCell>Base Price: </TableCell>
-                            <TableCell>Rs: {elem.basePrice}</TableCell>
+                            <TableCell>₹{elem.basePrice}</TableCell>
                           </TableRow>
                         </Table>
                       </TableContainer>
 
-                      <TableContainer style={{ width: "14rem" }}>
+                      <TableContainer style={{}}>
                         <Table>
                           <TableRow>
                             <TableCell
@@ -158,7 +142,7 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
                                 fontSize: "15px",
                               }}
                             >
-                              Rs:{elem.currentBid}{" "}
+                              ₹{elem.currentBid}{" "}
                             </TableCell>
                             <TableCell
                               sx={{
@@ -173,17 +157,22 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
                           </TableRow>
                         </Table>
                       </TableContainer>
-                      <Button
-                        variant="contained"
-                        fullWidth
-                        sx={{ alignContent: "center", background: "#3f823b" }}
-                        onClick={() => {
-                          endbidding(elem.biddingeventId);
-                        }}
-                      >
-                        END BIDDING
-                      </Button>
                     </CardContent>
+                    <Button
+                      variant="contained"
+                      fullWidth
+                      sx={{
+                        alignContent: "center",
+                        background: "#3f823b",
+                        marginBottom: "5px",
+                        marginTopm: "0px",
+                      }}
+                      onClick={() => {
+                        endbidding(elem.biddingeventId);
+                      }}
+                    >
+                      END BIDDING
+                    </Button>
                   </CardActionArea>
                 </Card>
               </Grid>

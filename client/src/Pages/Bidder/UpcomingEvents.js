@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import BidderResponsiveAppBar from "../../Components/BidderNav";
 import {
   Grid,
@@ -18,37 +18,103 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getauctions, registerauction } from "../../actions/auction";
 import { setAlert } from "../../actions/alert";
+import { DataGrid } from "@mui/x-data-grid";
+import { marketplace } from "../../actions/marketplace";
 
 const UpcomingEvents = ({
   getauctions,
   registerauction,
+  marketplace,
   auctions,
   loading,
   setAlert,
 }) => {
-  const [toggle, setToggle] = useReducer((x) => x + 1, 0);
   useEffect(() => {
-    getauctions();
-  }, [toggle]);
+    let timer = setInterval(() => {
+      getauctions();
+      marketplace();
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
+    //getauctions();
+  }, [getauctions]);
 
-  const [open, setOpen] = useState(false);
-  const [color, setColor] = useState("gray");
-  const [value, SetValue] = useState("");
+  const columns = [
+    {
+      field: "cropName",
+      headerName: "Crop Name",
+      width: 160,
+      align: "left",
+      headerAlign: "left",
+    },
+    {
+      field: "createrFarmerName",
+      headerName: "Farmer Name",
+      width: 230,
+      align: "left",
+      headerAlign: "left",
+    },
+    {
+      field: "sellQuantity",
+      headerName: "Quantity (kg)",
+      width: 150,
+      type: "number",
+      align: "left",
+      headerAlign: "left",
+    },
+    {
+      field: "basePrice",
+      headerName: "Base Price (₹)",
+      width: 200,
+      type: "number",
+      align: "left",
+      headerAlign: "left",
+    },
+    {
+      field: "currentBid",
+      headerName: "Current Bid (₹)",
+      width: 150,
+      type: "number",
+      align: "left",
+      headerAlign: "left",
+    },
+    {
+      field: "currentBidderName",
+      headerName: "Current Bidder Name",
+      width: 200,
+      align: "left",
+      headerAlign: "left",
+    },
 
-  const handleChange = (event) => {
-    SetValue(event.target.value);
-  };
+    {
+      field: "Register",
+      width: 150,
+      renderCell: (cellValues) => {
+        return (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(event) => {
+              registerauction(cellValues.row.biddingeventId);
+            }}
+          >
+            Register
+          </Button>
+        );
+      },
+    },
+  ];
 
-  const handleClick = () => {
-    setOpen(true);
-  };
+  const [query, SetQuery] = useState("");
+  const [noOfRows, SetRows] = useState(5);
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
+  const search = (auctions) => {
+    return auctions.filter(
+      (item) =>
+        item.cropName.toLowerCase().includes(query) ||
+        item.createrFarmerName.toLowerCase().includes(query)
+    );
   };
 
   if (loading) {
@@ -70,158 +136,59 @@ const UpcomingEvents = ({
           <GavelIcon fontSize="large" style={{ marginRight: "10px" }} />
           Available Auctions
         </h1>
-        <div></div>
-        <Grid container>
-          <Grid md={9} xs={6} item></Grid>
-          <Grid md={1} xs={3} item>
-            <Select
-              align="right"
-              onChange={handleChange}
-              value={value}
-              displayEmpty
-              fullWidth
-            >
-              <MenuItem value="">Search Crop</MenuItem>
-              <MenuItem value={0}>Rice</MenuItem>
-              <MenuItem value={1}>Wheat</MenuItem>
-              <MenuItem value={2}>Jowar</MenuItem>
-              <MenuItem value={3}>Bajra</MenuItem>
-              <MenuItem value={4}>SugarCance</MenuItem>
-              <MenuItem value={5}>Moong</MenuItem>
-              <MenuItem value={6}>Til</MenuItem>
-            </Select>
-          </Grid>
 
-          <Grid md={1} xs={3} item>
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{
-                marginLeft: "30px",
-                alignContent: "center",
-                height: "55px",
-                background: "black",
+        <Grid container sx={{ marginTop: "20px" }}>
+          <Grid md={3} xs={6} item>
+            <input
+              type="no_Rows"
+              placeholder="No. of Rows"
+              //className="Serach"
+              style={{ height: "35px", width: "80%", marginLeft: "10px" }}
+              onChange={(e) => SetRows(e.target.value)}
+            ></input>
+          </Grid>
+          <Grid item md={6} xs={0}></Grid>
+          <Grid md={3} xs={6} item>
+            <input
+              type="search"
+              placeholder="Search"
+              className="Serach"
+              style={{ height: "40px", width: "95%" }}
+              onChange={(e) => SetQuery(e.target.value)}
+            ></input>
+          </Grid>
+        </Grid>
+        <div style={{ height: 450, width: "100%" }}>
+          <DataGrid
+            sx={{
+              margin: "10px",
+              justifyContent: "center",
+              fontWeight: "light",
+              borderRadius: "5px",
+              boxShadow: "15px 15px 15px gray",
+              border: 2,
+              borderColor: "green",
+
+              "& .MuiDataGrid-cell:hover": {
+                color: "green",
+              },
+
+              "& .MuiDataGrid-columnHeaders": {
+                backgroundColor: "#2f4f4f",
                 color: "white",
-              }}
-            >
-              Search
-            </Button>
-          </Grid>
-        </Grid>
-        <br></br>
+                fontSize: 16,
+              },
 
-        <Grid>
-          <TableContainer
-            style={{
-              width: "95vw",
-              marginLeft: "1vw",
-              borderRadius: "10px 10px 0px 0px",
+              fontFamily: "sans-serif,Times new roman,algerian",
             }}
-          >
-            <Table
-              sx={{ align: "left", background: "#2f4f4f", color: "white" }}
-            >
-              <TableRow>
-                <TableCell
-                  sx={{ fontWeight: "bold", fontSize: "20px" }}
-                  align="left"
-                  width={"20px"}
-                >
-                  Crop
-                </TableCell>
-                <TableCell
-                  sx={{ fontWeight: "bold", fontSize: "20px" }}
-                  align="left"
-                  width={"20px"}
-                >
-                  Farmer Name
-                </TableCell>
-                <TableCell
-                  sx={{ fontWeight: "bold", fontSize: "20px" }}
-                  align="left"
-                  width={"20px"}
-                >
-                  Quantity
-                </TableCell>
-                <TableCell
-                  sx={{ fontWeight: "bold", fontSize: "20px" }}
-                  align="left"
-                  width={"20px"}
-                >
-                  Base Price{" "}
-                </TableCell>
-                <TableCell
-                  sx={{ fontWeight: "bold", fontSize: "20px" }}
-                  align="left"
-                  width={"20px"}
-                >
-                  Current Bid{" "}
-                </TableCell>
-                <TableCell
-                  sx={{ fontWeight: "bold", fontSize: "20px" }}
-                  align="left"
-                  width={"30px"}
-                >
-                  Bidder Name
-                </TableCell>
-                <TableCell
-                  sx={{ fontWeight: "bold", fontSize: "20px" }}
-                  align="left"
-                  width={"20px"}
-                >
-                  Register
-                </TableCell>
-              </TableRow>
-            </Table>
-          </TableContainer>
-        </Grid>
-        {auctions.map((elem) => (
-          <TableContainer style={{ width: "95vw", marginLeft: "1vw" }}>
-            <Table sx={{ align: "left", background: "white", color: "black" }}>
-              <TableRow>
-                <TableCell align="left" width={"90px"}>
-                  {elem.cropName}
-                </TableCell>
-                <TableCell align="left" width={"140px"}>
-                  {elem.createrFarmerName}
-                </TableCell>
-                <TableCell align="left" width={"120px"}>
-                  {elem.sellQuantity} kg
-                </TableCell>
-                <TableCell align="left" width={"110px"}>
-                  Rs: {elem.basePrice}
-                </TableCell>
-                <TableCell align="left" width={"130px"}>
-                  Rs: {elem.currentBid}
-                </TableCell>
-                <TableCell align="left" width={"120px"}>
-                  {elem.currentBidderName}
-                </TableCell>
-                <TableCell align="left" width={"120px"}>
-                  <Button
-                    className="btn-grad1"
-                    onClick={() => {
-                      console.log(elem.biddingeventId);
-                      registerauction(elem.biddingeventId);
-                      setToggle();
-                    }}
-                    // component={Link}
-                    // to="/BidderMarketPlace"
-                    variant="contained"
-                    fullWidth
-                    sx={{
-                      alignContent: "center",
-                      // background: "#f6f5f7",
-                      color: "white",
-                    }}
-                  >
-                    Register
-                  </Button>
-                </TableCell>
-              </TableRow>
-            </Table>
-          </TableContainer>
-        ))}
+            rowHeight={60}
+            rows={search(auctions)}
+            columns={columns}
+            getRowId={(auctions) => auctions.biddingeventId}
+            pageSize={noOfRows > 0 ? noOfRows : 5}
+            rowsPerPageOptions={[noOfRows > 0 ? noOfRows : 5]}
+          />
+        </div>
       </div>
     </>
   );
@@ -230,6 +197,7 @@ const UpcomingEvents = ({
 UpcomingEvents.propTypes = {
   getauctions: PropTypes.func.isRequired,
   registerauction: PropTypes.func.isRequired,
+  marketplace: PropTypes.func.isRequired,
   setAlert: PropTypes.func,
   auctions: PropTypes.object,
   loading: PropTypes.bool.isRequired,
@@ -243,4 +211,5 @@ export default connect(mapStateToProps, {
   getauctions,
   registerauction,
   setAlert,
+  marketplace,
 })(UpcomingEvents);

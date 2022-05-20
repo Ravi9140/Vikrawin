@@ -118,20 +118,6 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
               >
                 Logout
               </Button>
-              {/* <Button
-                className="tab1"
-                sx={{
-                  marginLeft: "auto",
-                  background: "#ea4f4c",
-                  color: "white",
-                  borderRadius: "25px",
-                  fontWeight: "bolder",
-                }}
-                component={Link}
-                to="/"
-              >
-                {farmer.farmerName}
-              </Button> */}
             </>
           )}
         </Toolbar>
