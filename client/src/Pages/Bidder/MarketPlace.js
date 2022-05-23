@@ -28,8 +28,15 @@ import { marketplace, placebid } from "../../actions/marketplace";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../../Components/layout/Spinner";
+import { setAlert } from "../../actions/alert";
 
-const MarketPlace = ({ marketplace, registeredevents, loading }) => {
+const MarketPlace = ({
+  marketplace,
+  registeredevents,
+  loading,
+  userId,
+  setAlert,
+}) => {
   useEffect(() => {
     let timer = setInterval(() => {
       marketplace();
@@ -40,6 +47,7 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
     // marketplace();
   }, [registeredevents]);
 
+  console.log(userId);
   if (loading) {
     return <Spinner />;
   }
@@ -95,8 +103,12 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
                       textAlign: "center",
                       fontWeight: "bold",
                       background: "rgba(200,247,197)",
+                      height: "4rem",
                     }}
+                    subheaderTypographyProps={{ fontSize: "14px" }}
+                    titleTypographyProps={{ fontSize: "30px" }}
                     title={elem.cropName}
+                    subheader={elem.createrFarmerAddress}
                   />
                   <CardActionArea>
                     <CardContent style={{ height: "18rem" }}>
@@ -166,7 +178,9 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
                                 fontSize: "15px",
                               }}
                             >
-                              {elem.currentBidderName}
+                              {elem.currentBidderId == userId
+                                ? elem.currentBidderName + " (You)"
+                                : elem.currentBidderName}
                             </TableCell>
                           </TableRow>
                         </Table>
@@ -187,16 +201,36 @@ const MarketPlace = ({ marketplace, registeredevents, loading }) => {
                     >
                       PLACE BID
                     </Button> */}
-                    <PlaceBidDialog
-                      biddingId={elem.biddingeventId}
-                      cur_bid={elem.currentBid}
-                      //basePrice={elem.basePrice}
-                      your_bid={
-                        elem.currentBid > 0
-                          ? elem.currentBid + 100
-                          : elem.basePrice
-                      }
-                    />
+                    {elem.currentBidderId == userId ? (
+                      <Button
+                        variant="contained"
+                        fullWidth
+                        sx={{
+                          alignContent: "center",
+                          background: "#3f823b",
+                          marginBottom: "5px",
+                          marginTopm: "0px",
+                        }}
+                        onClick={() => {
+                          setAlert(
+                            "Highest bid already belongs to You",
+                            "error"
+                          );
+                        }}
+                      >
+                        Place Bid
+                      </Button>
+                    ) : (
+                      <PlaceBidDialog
+                        biddingId={elem.biddingeventId}
+                        cur_bid={elem.currentBid}
+                        //basePrice={elem.basePrice}
+                        your_bid={
+                          elem.currentBid > 0 ? elem.currentBid : elem.basePrice
+                        }
+                        disabled
+                      />
+                    )}
                   </CardActionArea>
                 </Card>
               </Grid>
@@ -213,11 +247,16 @@ MarketPlace.propTypes = {
   placebid: PropTypes.func,
   loading: PropTypes.bool.isRequired,
   registeredevents: PropTypes.object,
+  userId: PropTypes.object.isRequired,
+  setAlert: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   loading: state.marketplace.loading,
   registeredevents: state.marketplace.registeredevents,
+  userId: state.authbidder.bidder.bidderId,
 });
 
-export default connect(mapStateToProps, { marketplace, placebid })(MarketPlace);
+export default connect(mapStateToProps, { marketplace, placebid, setAlert })(
+  MarketPlace
+);
