@@ -9,6 +9,7 @@ import {
   MenuItem,
   Select,
   TextField,
+  Autocomplete,
 } from "@mui/material";
 import "./../../static/button.css";
 import GavelIcon from "@mui/icons-material/Gavel";
@@ -18,21 +19,55 @@ import { createauction } from "../../actions/createauction";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+const cropList = [
+  "Maize",
+  "Wheat",
+  "Jowar",
+  "Bajra",
+  "Rice",
+  "Cotton",
+  "Sugarcane",
+  "Legume",
+  "Barley",
+  "Peanut",
+  "Tea",
+  "Coffee",
+  "Jute",
+  "Soyabean",
+  "Rubber",
+  "Millets",
+  "Tobacco",
+  "Moong",
+  "Tur Dal",
+  "Masoor Dal",
+  "Udid Dal",
+  "Ground Nut",
+  "Mustard",
+  "Sesame",
+  "Peas",
+  "Gram",
+  "Poppy",
+  "Sunflower",
+  "Silk",
+  "Ginger",
+  "Turmeric",
+];
+
 const CreateAuctions = ({ createauction, loading }) => {
-  const [formData, setFormData] = useState({
-    cropName: "",
-    quantity: "",
-    basePrice: "",
-  });
+  const [cropName, setCropName] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [basePrice, setBasePrice] = useState("");
 
-  const { cropName, quantity, basePrice } = formData;
+  //const [cropName, setCropName] = useState();
 
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  // const { cropName, quantity, basePrice } = formData;
+
+  // const onChange = (e) =>
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.table(formData);
+    console.table(cropName, quantity, basePrice);
     createauction({ cropName, quantity, basePrice });
   };
 
@@ -62,6 +97,7 @@ const CreateAuctions = ({ createauction, loading }) => {
             margin: "0 auto",
             padding: "10px 0px",
             background: "#f6f5f7",
+            //background: { gif },
             boxShadow: "0 0 3px #eee",
           }}
         >
@@ -73,26 +109,31 @@ const CreateAuctions = ({ createauction, loading }) => {
                 </Grid>
 
                 <Grid xs={12} item>
-                  <Select
+                  <Autocomplete
+                    id="combo-box-demo"
+                    onChange={(event, value) => {
+                      setCropName(value);
+                      console.log(value);
+                    }}
+                    options={cropList}
+                    renderInput={(params) => (
+                      <React.Fragment>
+                        <TextField
+                          {...params}
+                          label="Crop Name"
+                          value={cropName}
+                          onChange={(e) => setCropName(e.target.value)}
+                          sx={{ background: "white" }}
+                          required
+                          fullWidth
+                        />
+                      </React.Fragment>
+                    )}
                     sx={{ background: "white" }}
-                    name="cropName"
-                    value={cropName}
-                    onChange={(e) => onChange(e)}
-                    displayEmpty
-                    fullWidth
+                    freeSolo
                     required
-                  >
-                    <MenuItem value="" disabled>
-                      Select Crop
-                    </MenuItem>
-                    <MenuItem value="Rice">Rice</MenuItem>
-                    <MenuItem value="Wheat">Wheat</MenuItem>
-                    <MenuItem value="Jowar">Jowar</MenuItem>
-                    <MenuItem value="Bajra">Bajra</MenuItem>
-                    <MenuItem value="Sugarcane">SugarCance</MenuItem>
-                    <MenuItem value="Moong">Moong</MenuItem>
-                    <MenuItem value="Til">Til</MenuItem>
-                  </Select>
+                    fullWidth
+                  />{" "}
                 </Grid>
 
                 <Grid xs={12} item>
@@ -103,14 +144,15 @@ const CreateAuctions = ({ createauction, loading }) => {
                     sx={{ background: "white" }}
                     type="number"
                     label="Enter crop quantity in kgs"
-                    name="quantity"
                     value={quantity}
                     InputProps={{
                       inputProps: {
                         min: 0,
                       },
                     }}
-                    onChange={(e) => onChange(e)}
+                    onChange={(e) => {
+                      setQuantity(e.target.value);
+                    }}
                     // placeholder="Enter Crop Quantity"
                     variant="outlined"
                     fullWidth
@@ -127,28 +169,30 @@ const CreateAuctions = ({ createauction, loading }) => {
                     sx={{ background: "white" }}
                     type="number"
                     label="Enter base price in rupees"
-                    name="basePrice"
                     value={basePrice}
                     InputProps={{
                       inputProps: {
                         min: 0,
                       },
                     }}
-                    onChange={(e) => onChange(e)}
-                    // placeholder="Enter Base Price"
+                    onChange={(e) => {
+                      setBasePrice(e.target.value);
+                    }}
                     variant="outlined"
                     fullWidth
                     required
                   />
                 </Grid>
                 <br />
-                <Grid xs={12} sx={{ alignContent: "center" }} item>
+                <Grid xs={12} md={4} sm={12} item></Grid>
+                <Grid xs={12} md={4} sm={12} item>
                   <Button
                     className="btn-grad"
                     sx={{
                       marginTop: "20px",
                       // width: "50%",
                       alignContent: "center",
+                      alignSelf: "center",
                       background: "#3f823b",
                       marginBottom: "5px",
                       borderRadius: "25px",
@@ -156,6 +200,7 @@ const CreateAuctions = ({ createauction, loading }) => {
                     type="submit"
                     variant="contained"
                     color="primary"
+                    fullWidth
                   >
                     Create Auction
                   </Button>
