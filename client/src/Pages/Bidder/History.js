@@ -19,12 +19,6 @@ import { MenuItem } from "@mui/material";
 
 const BidderHistory = ({ getbidderhistory, loading, history }) => {
   useEffect(() => {
-    // let timer = setInterval(() => {
-    //   getbidderhistory();
-    // }, 1000);
-    // return () => {
-    //   clearInterval(timer);
-    // };
     getbidderhistory();
   }, []);
 
@@ -33,14 +27,14 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
     {
       field: "cropName",
       headerName: "Crop Name",
-      width: 200,
+      width: 170,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "sellQuantity",
       headerName: "Quantity (kg)",
-      width: 200,
+      width: 150,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -48,7 +42,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
     {
       field: "basePrice",
       headerName: "Base Price (₹)",
-      width: 200,
+      width: 150,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -56,7 +50,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
     {
       field: "currentBid",
       headerName: "Bought For (₹)",
-      width: 200,
+      width: 150,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -64,14 +58,21 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
     {
       field: "createrFarmerName",
       headerName: "Farmer Name",
-      width: 220,
+      width: 200,
+      align: "left",
+      headerAlign: "left",
+    },
+    {
+      field: "createrFarmerContact",
+      headerName: "Farmer Contact",
+      width: 180,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "sellDate",
       headerName: "Purchase Date",
-      width: 200,
+      width: 220,
       type: "date",
       align: "left",
       headerAlign: "left",
@@ -83,13 +84,13 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
   const search = (history) => {
     return history.filter(
       (item) =>
-        item.cropName.toLowerCase().includes(query) ||
-        item.createrFarmerName.toLowerCase().includes(query)
+        item.cropName.toLowerCase().includes(query.toLowerCase()) ||
+        item.createrFarmerName.toLowerCase().includes(query.toLowerCase()) ||
+        item.sellDate.includes(query)
     );
   };
 
   const [noOfRows, SetRows] = useState(10);
-
   if (loading) {
     return <Spinner></Spinner>;
   }
