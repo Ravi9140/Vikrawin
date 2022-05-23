@@ -93,4 +93,8 @@ BiddingEvent.belongsToMany(Bidder, {
 //     //working with the tables
 //     console.log("Table and Model Updated Successfully");
 //   })
-//   .catch((err) => console.log(err));
+//   .catch((err) =>
+//     console.log(
+//       "Database is Under Maintainance or max_connection limit is reached"
+//     )
+//   );

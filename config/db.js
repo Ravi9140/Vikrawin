@@ -7,8 +7,9 @@ const sequelize = new Sequelize(db, {
     freezeTableName: true,
   },
 });
-// const sequelize = new Sequelize("vikrawin", "vikraWinAdmin", "vikraWin@123", {
-//   host: "localhost",
+
+// const sequelize = new Sequelize("sql6493999", "sql6493999", "zF1IyVcDxM", {
+//   host: "sql6.freemysqlhosting.net",
 //   port: 3306,
 //   dialect: "mysql",
 //   define: {
