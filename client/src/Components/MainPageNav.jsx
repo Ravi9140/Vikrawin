@@ -51,7 +51,7 @@ const MainResponsiveAppBar = () => {
 
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "transparent" }} position="relative">
+      <AppBar sx={{ background: "#222" }} position="sticky">
         <Toolbar>
           <Typography
             variant="h6"
@@ -59,8 +59,14 @@ const MainResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "flex", md: "flex" } }}
             style={{ height: "5rem", width: "9rem" }}
-          ></Typography>
-          <h3 style={heading}>vikraWin &#x2E;</h3>
+          >
+            <img
+              style={{ backgroundColor: "#222", height: "75px" }}
+              src={logo}
+              alt="Logo"
+            />
+          </Typography>
+          {/* <h3 style={heading}>vikraWin &#x2E;</h3> */}
           {isMatch ? (
             <>
               <MainDrawerComp />
@@ -76,9 +82,9 @@ const MainResponsiveAppBar = () => {
                 onClick={handleClick}
                 sx={{
                   marginLeft: "auto",
-                  background: "transparent",
+                  background: "green",
                   fontSize: "20px",
-                  // // borderRadius: "35px",
+                  borderRadius: "35px",
                   color: "black",
                   width: "70",
                 }}

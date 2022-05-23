@@ -13,6 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useRef } from "react";
+import { setAlert } from "../actions/alert";
 
 import { placebid } from "../actions/marketplace";
 
@@ -49,12 +50,16 @@ const BootstrapDialogTitle = (props) => {
   );
 };
 
-export const PlaceBidDialog = ({ biddingId, cur_bid, your_bid, placebid }) => {
+export const PlaceBidDialog = ({
+  biddingId,
+  cur_bid,
+  your_bid,
+  placebid,
+  setAlert,
+}) => {
   const [open, setOpen] = useState(false);
-  //const [bidAmt, setCalc] = useState(cur_bid);
-  // const [bidAmt, setCalc] = useState(cur_bid>0 ? (cur_bid+100) :basePrice);
 
-  const [bidAmt, setCalc] = useState(your_bid);
+  const [bidAmt, setCalc] = useState(cur_bid < 1 ? your_bid : null);
 
   const updateCalc = (value) => {
     setCalc(your_bid + value);
@@ -69,6 +74,7 @@ export const PlaceBidDialog = ({ biddingId, cur_bid, your_bid, placebid }) => {
   const handleClose = (event, reason) => {
     if (reason !== "backdropClick") {
       setOpen(false);
+      setCalc(cur_bid < 1 ? your_bid : null);
     }
   };
   return (
@@ -195,9 +201,14 @@ export const PlaceBidDialog = ({ biddingId, cur_bid, your_bid, placebid }) => {
           <Button
             autoFocus
             onClick={() => {
-              placebid({ biddingId, bidAmt });
-              handleClose();
-              // updateCalc("");
+              if (bidAmt == null || bidAmt <= cur_bid) {
+                setAlert("Bid should be more than current bid", "error");
+              } else {
+                placebid({ biddingId, bidAmt });
+                handleClose();
+                setCalc(cur_bid < 1 ? your_bid : null);
+                // updateCalc("");
+              }
             }}
           >
             PLACE BID
@@ -216,6 +227,7 @@ BootstrapDialogTitle.propTypes = {
 PlaceBidDialog.propTypes = {
   placebid: PropTypes.func.isRequired,
   biddingId: PropTypes.number,
+  setAlert: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -225,4 +237,4 @@ const mapStateToProps = (state, ownProps) => ({
   your_bid: ownProps.your_bid,
 });
 
-export default connect(mapStateToProps, { placebid })(PlaceBidDialog);
+export default connect(mapStateToProps, { placebid, setAlert })(PlaceBidDialog);
