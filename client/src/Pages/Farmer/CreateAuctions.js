@@ -142,7 +142,7 @@ const CreateAuctions = ({ createauction, loading }) => {
                   />
                 </Grid>
                 <br />
-                <Grid xs={12} item>
+                <Grid xs={12} sx={{ alignContent: "center" }} item>
                   <Button
                     className="btn-grad"
                     sx={{
