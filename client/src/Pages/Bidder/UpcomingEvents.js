@@ -44,21 +44,28 @@ const UpcomingEvents = ({
     {
       field: "cropName",
       headerName: "Crop Name",
-      width: 160,
+      width: 120,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "createrFarmerName",
       headerName: "Farmer Name",
-      width: 230,
+      width: 180,
+      align: "left",
+      headerAlign: "left",
+    },
+    {
+      field: "createrFarmerAddress",
+      headerName: "Farmer Address",
+      width: 250,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "sellQuantity",
       headerName: "Quantity (kg)",
-      width: 150,
+      width: 120,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -66,7 +73,7 @@ const UpcomingEvents = ({
     {
       field: "basePrice",
       headerName: "Base Price (₹)",
-      width: 200,
+      width: 130,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -74,27 +81,35 @@ const UpcomingEvents = ({
     {
       field: "currentBid",
       headerName: "Current Bid (₹)",
-      width: 150,
+      width: 130,
       type: "number",
       align: "left",
       headerAlign: "left",
     },
     {
       field: "currentBidderName",
-      headerName: "Current Bidder Name",
-      width: 200,
+      headerName: "Bidder Name",
+      width: 180,
       align: "left",
       headerAlign: "left",
     },
 
     {
       field: "Register",
-      width: 150,
+      width: 120,
       renderCell: (cellValues) => {
         return (
           <Button
             variant="contained"
             color="primary"
+            sx={{
+              marginLeft: "auto",
+              background: "green",
+              fontSize: "12px",
+              borderRadius: "25px",
+              color: "white",
+              //width: "70",
+            }}
             onClick={(event) => {
               registerauction(cellValues.row.biddingeventId);
             }}
@@ -107,13 +122,14 @@ const UpcomingEvents = ({
   ];
 
   const [query, SetQuery] = useState("");
-  const [noOfRows, SetRows] = useState(5);
+  const [noOfRows, SetRows] = useState(6);
 
   const search = (auctions) => {
     return auctions.filter(
       (item) =>
-        item.cropName.toLowerCase().includes(query) ||
-        item.createrFarmerName.toLowerCase().includes(query)
+        item.cropName.toLowerCase().includes(query.toLowerCase()) ||
+        item.createrFarmerName.toLowerCase().includes(query.toLowerCase()) ||
+        item.createrFarmerAddress.toLowerCase().includes(query.toLowerCase())
     );
   };
 
@@ -185,8 +201,8 @@ const UpcomingEvents = ({
             rows={search(auctions)}
             columns={columns}
             getRowId={(auctions) => auctions.biddingeventId}
-            pageSize={noOfRows > 0 ? noOfRows : 5}
-            rowsPerPageOptions={[noOfRows > 0 ? noOfRows : 5]}
+            pageSize={noOfRows > 0 ? noOfRows : 6}
+            rowsPerPageOptions={[noOfRows > 0 ? noOfRows : 6]}
           />
         </div>
       </div>
