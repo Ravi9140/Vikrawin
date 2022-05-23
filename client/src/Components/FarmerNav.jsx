@@ -8,7 +8,13 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@mui/material";
+
 import { Link } from "react-router-dom";
 import logo from "../Images/logo-2.png";
 import FarmerDrawerComp from "./FarmerDrawer";
@@ -28,10 +34,20 @@ import { connect } from "react-redux";
 // ];
 
 const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
+  const [open, setOpen] = useState(false);
   const [value, setValue] = useState();
   const theme = useTheme();
   // console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   console.log(isMatch);
   // console.log("farmer", farmer);
 
@@ -112,12 +128,38 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
                   borderRadius: "25px",
                   fontWeight: "bolder",
                 }}
-                onClick={logoutfarmer}
-                component={Link}
-                to="/"
+                onClick={handleClickOpen}
               >
                 Logout
               </Button>
+              <Dialog
+                fullScreen={fullScreen}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="responsive-dialog-title"
+              >
+                <DialogTitle id="responsive-dialog-title">
+                  {"Logout"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    Are you sure, You want to logout ?
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button autoFocus onClick={handleClose}>
+                    No
+                  </Button>
+                  <Button
+                    onClick={logoutfarmer}
+                    component={Link}
+                    to="/"
+                    autoFocus
+                  >
+                    Yes
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </>
           )}
         </Toolbar>

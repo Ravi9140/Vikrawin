@@ -8,6 +8,11 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import logo from "../Images/logo-2.png";
@@ -21,11 +26,21 @@ import { connect } from "react-redux";
 // const PAGES=["Auctions","CreateAuctions","History","MyCrops","Profile","UpdateAccount"];
 
 const BidderResponsiveAppBar = ({ logoutbidder }) => {
+  const [open, setOpen] = useState(false);
   const [value, setValue] = useState();
   const theme = useTheme();
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(isMatch);
+
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <React.Fragment>
@@ -133,12 +148,40 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
                   color: "white",
                   borderRadius: "25px",
                 }}
-                onClick={logoutbidder}
-                component={Link}
-                to="/"
+                onClick={handleClickOpen}
+                // component={Link}
+                // to="/"
               >
                 Logout
               </Button>
+              <Dialog
+                fullScreen={fullScreen}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="responsive-dialog-title"
+              >
+                <DialogTitle id="responsive-dialog-title">
+                  {"Logout"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    Are you sure, You want to logout ?
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button autoFocus onClick={handleClose}>
+                    No
+                  </Button>
+                  <Button
+                    onClick={logoutbidder}
+                    component={Link}
+                    to="/"
+                    autoFocus
+                  >
+                    Yes
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </>
           )}
         </Toolbar>
