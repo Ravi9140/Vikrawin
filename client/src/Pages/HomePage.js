@@ -13,21 +13,20 @@ import "./video.css";
 // import "../static/home.css";
 const HomePage = () => {
   const imgStyle2 = {
-    height: "50vh",
-    width: "30vw",
-    marginLeft: "10rem",
-    borderRadius: "25px",
-    // boxShadow: "0 0 5px #eee",
+    // height: "50vh",
+    // width: "30vw",
+    // marginLeft: "10rem",
+    // borderRadius: "25px",
   };
   const imgStyle3 = {
-    height: "40vh",
-    width: "25vw",
-    marginTop: "6rem",
-    marginLeft: "5rem",
+    // height: "40vh",
+    // width: "25vw",
+    // marginTop: "6rem",
+    // marginLeft: "5rem",
   };
   const h1style = {
     fontWeight: "bold",
-    fontSize: "35px",
+    fontSize: "30px",
     textAlign: "center",
   };
 
@@ -67,7 +66,7 @@ const HomePage = () => {
             </h2>
           </h1>
 
-          <div className="des" style={{ zIndex: "1", marginTop: "-28%" }}>
+          {/* <div className="des" style={{ zIndex: "1", marginTop: "-28%" }}>
             <div style={{ alignContent: "center" }}>
               <Grid container spacing={4}>
                 <Grid
@@ -187,7 +186,7 @@ const HomePage = () => {
                 </Grid>
               </Grid>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
