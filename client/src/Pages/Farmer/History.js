@@ -21,12 +21,6 @@ import Spinner from "../../Components/layout/Spinner";
 
 const History = ({ getfarmerhistory, history, loading }) => {
   useEffect(() => {
-    // let timer = setInterval(() => {
-    //   getfarmerhistory();
-    // }, 1000);
-    // return () => {
-    //   clearInterval(timer);
-    // };
     getfarmerhistory();
   }, []);
 
@@ -35,14 +29,14 @@ const History = ({ getfarmerhistory, history, loading }) => {
     {
       field: "cropName",
       headerName: "Crop Name",
-      width: 200,
+      width: 170,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "sellQuantity",
       headerName: "Quantity (kg)",
-      width: 200,
+      width: 150,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -50,7 +44,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
     {
       field: "basePrice",
       headerName: "Base Price (₹)",
-      width: 200,
+      width: 150,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -58,7 +52,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
     {
       field: "currentBid",
       headerName: "Sold For (₹)",
-      width: 200,
+      width: 150,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -66,14 +60,21 @@ const History = ({ getfarmerhistory, history, loading }) => {
     {
       field: "currentBidderName",
       headerName: "Buyer Name",
-      width: 220,
+      width: 200,
+      align: "left",
+      headerAlign: "left",
+    },
+    {
+      field: "currentBidderContact",
+      headerName: "Buyer Contact",
+      width: 170,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "sellDate",
       headerName: "Sell Date",
-      width: 200,
+      width: 220,
       type: "date",
       align: "left",
       headerAlign: "left",
@@ -85,8 +86,9 @@ const History = ({ getfarmerhistory, history, loading }) => {
 
   const search = (history) => {
     return history.filter(
-      (item) => item.cropName.toLowerCase().includes(query)
-      // item.currentBidderName.toLowerCase().includes(query)
+      (item) =>
+        item.cropName.toLowerCase().includes(query.toLowerCase()) ||
+        item.sellDate.includes(query)
     );
   };
 
