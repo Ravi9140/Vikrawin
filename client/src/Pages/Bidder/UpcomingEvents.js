@@ -7,10 +7,8 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { Button, MenuItem, Select, TextField } from "@mui/material";
-import { fontSize, fontWeight } from "@mui/system";
-import { Link } from "react-router-dom";
+
+import { Button } from "@mui/material";
 import "../../static/button2.css";
 import GavelIcon from "@mui/icons-material/Gavel";
 import Spinner from "../../Components/layout/Spinner";
@@ -33,7 +31,7 @@ const UpcomingEvents = ({
     let timer = setInterval(() => {
       getauctions();
       marketplace();
-    }, 3000);
+    }, 1000);
     return () => {
       clearInterval(timer);
     };
@@ -62,19 +60,11 @@ const UpcomingEvents = ({
       align: "left",
       headerAlign: "left",
     },
+
     {
-      field: "sellQuantity",
-      headerName: "Quantity (kg)",
-      width: 120,
-      type: "number",
-      align: "left",
-      headerAlign: "left",
-    },
-    {
-      field: "basePrice",
-      headerName: "Base Price (₹)",
-      width: 130,
-      type: "number",
+      field: "currentBidderName",
+      headerName: "Bidder Name",
+      width: 180,
       align: "left",
       headerAlign: "left",
     },
@@ -83,15 +73,40 @@ const UpcomingEvents = ({
       headerName: "Current Bid (₹)",
       width: 130,
       type: "number",
-      align: "left",
-      headerAlign: "left",
+      align: "right",
+      headerAlign: "right",
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return "";
+        }
+
+        const valueFormatted = Number(params.value).toLocaleString();
+        return `${valueFormatted}.00`;
+      },
     },
     {
-      field: "currentBidderName",
-      headerName: "Bidder Name",
-      width: 180,
-      align: "left",
-      headerAlign: "left",
+      field: "sellQuantity",
+      headerName: "Quantity (kg)",
+      width: 120,
+      type: "number",
+      align: "right",
+      headerAlign: "right",
+    },
+    {
+      field: "basePrice",
+      headerName: "Base Price (₹)",
+      width: 130,
+      type: "number",
+      align: "right",
+      headerAlign: "right",
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return "";
+        }
+
+        const valueFormatted = Number(params.value).toLocaleString();
+        return `${valueFormatted}.00`;
+      },
     },
 
     {
@@ -157,7 +172,7 @@ const UpcomingEvents = ({
           <Grid md={3} xs={6} item>
             <input
               type="no_Rows"
-              placeholder="No. of Rows"
+              placeholder="Records per page"
               //className="Serach"
               style={{ height: "35px", width: "80%", marginLeft: "10px" }}
               onChange={(e) => SetRows(e.target.value)}
