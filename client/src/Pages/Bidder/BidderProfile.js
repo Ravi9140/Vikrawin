@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BidderResponsiveAppBar from "../../Components/BidderNav";
-import {
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Button, Card, CardContent, Grid, TextField } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./../../static/button.css";
 import PropTypes from "prop-types";

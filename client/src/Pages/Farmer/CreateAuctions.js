@@ -69,6 +69,8 @@ const CreateAuctions = ({ createauction, loading }) => {
     e.preventDefault();
     console.table(cropName, quantity, basePrice);
     createauction({ cropName, quantity, basePrice });
+    setBasePrice("");
+    setQuantity("");
   };
 
   return (
@@ -93,12 +95,13 @@ const CreateAuctions = ({ createauction, loading }) => {
         <Card
           style={{
             // borderRadius: "7%",
-            width: "50vw",
+            maxWidth: "50vw",
             margin: "0 auto",
             padding: "10px 0px",
             background: "#f6f5f7",
+            // borderShadow: "5px 5px 5px 5px black",
             //background: { gif },
-            boxShadow: "0 0 3px #eee",
+            boxShadow: "5px 5px 5px 3px gray",
           }}
         >
           <CardContent>

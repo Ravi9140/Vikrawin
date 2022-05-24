@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {
-  Grid,
-  Table,
-  TableContainer,
-  TableRow,
-  TableCell,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import HistoryIcon from "@mui/icons-material/History";
 import { getbidderhistory } from "../../actions/bidderhistory";
-import { Button } from "@mui/material";
-import { Select } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid/DataGrid";
+
+import { DataGrid, GridValueFormatterParams } from "@mui/x-data-grid/DataGrid";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "./../../Components/layout/Spinner";
 import BidderResponsiveAppBar from "../../Components/BidderNav";
-import { MenuItem } from "@mui/material";
 
 const BidderHistory = ({ getbidderhistory, loading, history }) => {
   useEffect(() => {
@@ -31,30 +23,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
       align: "left",
       headerAlign: "left",
     },
-    {
-      field: "sellQuantity",
-      headerName: "Quantity (kg)",
-      width: 150,
-      type: "number",
-      align: "left",
-      headerAlign: "left",
-    },
-    {
-      field: "basePrice",
-      headerName: "Base Price (₹)",
-      width: 150,
-      type: "number",
-      align: "left",
-      headerAlign: "left",
-    },
-    {
-      field: "currentBid",
-      headerName: "Bought For (₹)",
-      width: 150,
-      type: "number",
-      align: "left",
-      headerAlign: "left",
-    },
+
     {
       field: "createrFarmerName",
       headerName: "Farmer Name",
@@ -76,6 +45,46 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
       type: "date",
       align: "left",
       headerAlign: "left",
+    },
+    {
+      field: "sellQuantity",
+      headerName: "Quantity (kg)",
+      width: 150,
+      type: "number",
+      align: "right",
+      headerAlign: "right",
+    },
+    {
+      field: "basePrice",
+      headerName: "Base Price (₹)",
+      width: 150,
+      type: "number",
+      align: "right",
+      headerAlign: "right",
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return "";
+        }
+
+        const valueFormatted = Number(params.value).toLocaleString();
+        return `${valueFormatted}.00`;
+      },
+    },
+    {
+      field: "currentBid",
+      headerName: "Bought For (₹)",
+      width: 150,
+      type: "number",
+      align: "right",
+      headerAlign: "right",
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return "";
+        }
+
+        const valueFormatted = Number(params.value).toLocaleString();
+        return `${valueFormatted}.00`;
+      },
     },
   ];
 
@@ -114,7 +123,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
           <Grid md={3} xs={6} item>
             <input
               type="no_Rows"
-              placeholder="No. of Rows"
+              placeholder="Records per page"
               //className="Serach"
               style={{ height: "35px", width: "80%", marginLeft: "10px" }}
               onChange={(e) => SetRows(e.target.value)}

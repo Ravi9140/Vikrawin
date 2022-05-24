@@ -7,20 +7,10 @@ import {
   TableCell,
 } from "@mui/material";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
-import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import {
-  Button,
-  CardActionArea,
-  CardActions,
-  CardHeader,
-  Box,
-  Paper,
-} from "@mui/material";
-import { fontSize, fontWeight, height } from "@mui/system";
+
+import { Button, CardActionArea, CardHeader, Box } from "@mui/material";
 import BidderResponsiveAppBar from "../../Components/BidderNav";
 import PlaceBidDialog from "../../Components/PlaceBidDalog";
 
@@ -40,7 +30,7 @@ const MarketPlace = ({
   useEffect(() => {
     let timer = setInterval(() => {
       marketplace();
-    }, 3000);
+    }, 1000);
     return () => {
       clearInterval(timer);
     };
