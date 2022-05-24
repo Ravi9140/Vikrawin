@@ -33,30 +33,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
       align: "left",
       headerAlign: "left",
     },
-    {
-      field: "sellQuantity",
-      headerName: "Quantity (kg)",
-      width: 150,
-      type: "number",
-      align: "left",
-      headerAlign: "left",
-    },
-    {
-      field: "basePrice",
-      headerName: "Base Price (₹)",
-      width: 150,
-      type: "number",
-      align: "left",
-      headerAlign: "left",
-    },
-    {
-      field: "currentBid",
-      headerName: "Sold For (₹)",
-      width: 150,
-      type: "number",
-      align: "left",
-      headerAlign: "left",
-    },
+
     {
       field: "currentBidderName",
       headerName: "Buyer Name",
@@ -78,6 +55,47 @@ const History = ({ getfarmerhistory, history, loading }) => {
       type: "date",
       align: "left",
       headerAlign: "left",
+    },
+
+    {
+      field: "sellQuantity",
+      headerName: "Quantity (kg)",
+      width: 150,
+      type: "number",
+      align: "right",
+      headerAlign: "right",
+    },
+    {
+      field: "basePrice",
+      headerName: "Base Price (₹)",
+      width: 150,
+      type: "number",
+      align: "right",
+      headerAlign: "right",
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return "";
+        }
+
+        const valueFormatted = Number(params.value).toLocaleString();
+        return `${valueFormatted}.00`;
+      },
+    },
+    {
+      field: "currentBid",
+      headerName: "Sold For (₹)",
+      width: 150,
+      type: "number",
+      align: "right",
+      headerAlign: "right",
+      valueFormatter: (params) => {
+        if (params.value == null) {
+          return "";
+        }
+
+        const valueFormatted = Number(params.value).toLocaleString();
+        return `${valueFormatted}.00`;
+      },
     },
   ];
 
@@ -114,7 +132,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
         <Grid md={3} xs={6} item>
           <input
             type="no_Rows"
-            placeholder="No. of Rows"
+            placeholder="Records per page"
             //className="Serach"
             style={{ height: "35px", width: "80%", marginLeft: "10px" }}
             onChange={(e) => SetRows(e.target.value)}
