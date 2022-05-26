@@ -36,6 +36,13 @@ app.use("/api/registeredbids", require("./routes/api/registeredBids"));
 app.use("/api/placebid", require("./routes/api/placeBid"));
 app.use("/api/endbid", require("./routes/api/endBidding"));
 
+// SMS
+app.use("/api/send", require("./routes/api/sms"));
+
+// Password
+app.use("/api/reset", require("./routes/api/resetPassword"));
+app.use("/api/bidder-reset", require("./routes/api/bidderResetPassword"));
+
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
