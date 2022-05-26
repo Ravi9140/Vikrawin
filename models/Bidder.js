@@ -45,6 +45,13 @@ const Bidder = sequelize.define(
     bidderPassword: {
       type: DataTypes.STRING,
     },
+    token: {
+      type: DataTypes.STRING,
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
   {
     timestamps: false,
