@@ -10,6 +10,7 @@ import mycrops from "./mycrops";
 import auction from "./auction";
 import marketplace from "./marketplace";
 import bidderhistory from "./bidderhistory";
+import resetPassword from "./resetPassword";
 // import bidderhistory from "./bidderhistory";
 export default combineReducers({
   alert,
@@ -23,4 +24,5 @@ export default combineReducers({
   mycrops,
   auction,
   marketplace,
+  resetPassword,
 });
