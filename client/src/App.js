@@ -35,6 +35,11 @@ import setAuthToken from "./utils/setAuthToken";
 import BidderPrivateRoute from "./Components/routing/BidderPrivateRoute";
 import FarmerPrivateRoute from "./Components/routing/FarmerPrivateRoute";
 
+import ForgotPassword from "./Pages/Farmer/ForgotPassword";
+import ResetPassword from "./Pages/Farmer/ResetPassword";
+import BForgotPassword from "./Pages/Bidder/BForgotPassword";
+import BResetPassword from "./Pages/Bidder/BResetPassword";
+
 function App() {
   // useEffect(() => {}, []);
 
@@ -61,6 +66,13 @@ function App() {
 
         <Route path="/FarmerRegistration" element={<FarmerRegistration />} />
         <Route path="/BidderRegistration" element={<BidderRegistration />} />
+
+        {/* ForgotPassword */}
+        <Route path="/FarmerForgotPassword" element={<ForgotPassword />} />
+        <Route path="/FarmerResetPassword" element={<ResetPassword />} />
+
+        <Route path="/BidderForgotPassword" element={<BForgotPassword />} />
+        <Route path="/BidderResetPassword" element={<BResetPassword />} />
 
         <Route path="/" element={<HomePage />} />
         {/* FarmerPages */}
