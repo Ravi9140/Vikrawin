@@ -2,7 +2,7 @@ import axios from "axios";
 import { EMAIL_SEND } from "./types";
 
 export const sendemail =
-  ({ bidderId, msg1, farmerId, msg2 }) =>
+  ({ bidderId, msg }) =>
   async (dispatch) => {
     const config = {
       headers: {
@@ -11,9 +11,7 @@ export const sendemail =
     };
     const body = JSON.stringify({
       bidderId,
-      msg1,
-      farmerId,
-      msg2,
+      msg,
     });
     console.log(body);
     try {
