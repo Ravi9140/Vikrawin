@@ -58,27 +58,12 @@ const CreateAuctions = ({ createauction, loading }) => {
   const [cropName, setCropName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [basePrice, setBasePrice] = useState("");
-  const [endDate, setDateTime] = useState("");
-
-  var today = new Date(),
-    date =
-      today.getFullYear() +
-      "-0" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate() +
-      "T" +
-      today.getHours() +
-      ":" +
-      today.getMinutes();
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.table(cropName, quantity, basePrice, endDate);
-    createauction({ cropName, quantity, basePrice, endDate });
+    createauction({ cropName, quantity, basePrice });
     setBasePrice("");
     setQuantity("");
-    setDateTime("");
     setCropName("");
   };
 
@@ -103,7 +88,7 @@ const CreateAuctions = ({ createauction, loading }) => {
 
         <Card
           style={{
-            // borderRadius: "4%",
+            borderRadius: "3%",
             maxWidth: "50vw",
             margin: "0 auto",
             padding: "10px 0px",
@@ -207,38 +192,6 @@ const CreateAuctions = ({ createauction, loading }) => {
                     required
                   />
                 </Grid>
-
-                <Grid xs={12} sm={12} md={12} item>
-                  <h3 style={{ color: "black", fontFamily: "sans-serif" }}>
-                    End Date and Time:
-                  </h3>
-                </Grid>
-                <Grid xs={12} sm={12} md={12} item>
-                  <TextField
-                    className="form-field"
-                    size="small"
-                    sx={{ background: "white" }}
-                    type="datetime-local"
-                    value={endDate}
-                    InputProps={{
-                      inputProps: {
-                        min: new Date().toISOString().slice(0, 16),
-                      },
-                    }}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    onChange={(e) => {
-                      setDateTime(e.target.value);
-                      // console.log(dateTime);
-                      console.log(new Date());
-                    }}
-                    variant="outlined"
-                    fullWidth
-                    required
-                  />
-                </Grid>
-                <br />
                 <Grid xs={12} md={4} sm={12} item></Grid>
                 <Grid xs={12} md={4} sm={12} item>
                   <Button
@@ -249,7 +202,7 @@ const CreateAuctions = ({ createauction, loading }) => {
                       alignContent: "center",
                       alignSelf: "center",
                       background: "#3f823b",
-                      marginBottom: "5px",
+                      marginBottom: "2px",
                       borderRadius: "25px",
                     }}
                     type="submit"

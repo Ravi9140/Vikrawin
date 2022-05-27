@@ -39,6 +39,9 @@ app.use("/api/endbid", require("./routes/api/endBidding"));
 // SMS
 app.use("/api/send", require("./routes/api/sms"));
 
+// email
+app.use("/api/emailsend", require("./routes/api/emailNotification"));
+
 // Password
 app.use("/api/reset", require("./routes/api/resetPassword"));
 app.use("/api/bidder-reset", require("./routes/api/bidderResetPassword"));

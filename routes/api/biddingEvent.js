@@ -31,7 +31,6 @@ router.post("/", farmerauth, async (req, res) => {
     cropName: cred.cropName,
     sellQuantity: cred.quantity,
     basePrice: cred.basePrice,
-    endDate: cred.endDate,
     createrFarmerName: farmer1.farmerName,
     createrFarmerContact: farmer1.farmerContact,
     createrFarmerAddress: address,
