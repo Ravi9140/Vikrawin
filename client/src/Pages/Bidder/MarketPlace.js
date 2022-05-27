@@ -5,6 +5,8 @@ import {
   TableContainer,
   TableRow,
   TableCell,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import Card from "@mui/material/Card";
@@ -27,6 +29,34 @@ const MarketPlace = ({
   userId,
   setAlert,
 }) => {
+  const [query, SetQuery] = useState("");
+
+  const search = (data) => {
+    return data.filter(
+      (item) =>
+        item.cropName.toLowerCase().includes(query.toLowerCase()) ||
+        item.createrFarmerAddress.toLowerCase().includes(query.toLowerCase()) ||
+        item.createrFarmerName.toLowerCase().includes(query.toLowerCase())
+    );
+  };
+
+  const [endLive, setEndLive] = useState("live");
+
+  const handleEndLive = (event, newEndLive) => {
+    setEndLive(newEndLive);
+    console.log(newEndLive);
+  };
+
+  const searchEndLive = (data) => {
+    if (endLive === "live") {
+      return data.filter((item) => !item.isSold);
+    } else if (endLive == "closed") {
+      return data.filter((item) => item.isSold);
+    } else {
+      return data;
+    }
+  };
+
   useEffect(() => {
     let timer = setInterval(() => {
       marketplace();
@@ -34,15 +64,16 @@ const MarketPlace = ({
     return () => {
       clearInterval(timer);
     };
-    // marketplace();
   }, [registeredevents]);
+
+  var today = new Date().toISOString().slice(0, 16);
 
   console.log(userId);
   if (loading) {
     return <Spinner />;
   }
   return (
-    <>
+    <div style={{ backgroundColor: "#f8f8ff" }}>
       <BidderResponsiveAppBar />
       <div
         style={{
@@ -66,15 +97,77 @@ const MarketPlace = ({
           </h1>
         </div>
       </div>
+      <Grid container sx={{ marginTop: "20px" }}>
+        <Grid item md={3} xs={6}>
+          <ToggleButtonGroup
+            exclusive
+            color="primary"
+            value={endLive}
+            onChange={handleEndLive}
+            // onChange={(e) => setEndLive(e.target.value)}
+            aria-label="text alignment"
+            style={{
+              height: "40px",
+              width: "85%",
+              marginLeft: "10%",
+            }}
+          >
+            <ToggleButton
+              value="live"
+              // style={{
+              //   backgroundColor: "black",
+              //   color: "white",
+              //   borderColor: "white",
+              // }}
+            >
+              Live
+            </ToggleButton>
+            <ToggleButton
+              value="all"
+              aria-label="centered"
+              // style={{
+              //   backgroundColor: "black",
+              //   color: "white",
+              //   borderColor: "white",
+              // }}
+            >
+              All
+            </ToggleButton>
+            <ToggleButton
+              value="closed"
+              aria-label="right aligned"
+              // style={{
+              //   backgroundColor: "black",
+              //   color: "white",
+              //   borderColor: "white",
+              // }}
+            >
+              Closed
+            </ToggleButton>
+          </ToggleButtonGroup>
+          {/* <input
+            type="search"
+            placeholder="Search"
+            className="Serach"
+            style={{ height: "40px", width: "85%", marginLeft: "10%" }}
+            onChange={(e) => setEndLive(e.target.value)}
+          ></input> */}
+        </Grid>
+        <Grid item md={6} xs={0}></Grid>
+        <Grid md={3} xs={6} item>
+          <input
+            type="search"
+            placeholder="Search"
+            className="Serach"
+            style={{ height: "40px", width: "90%" }}
+            onChange={(e) => SetQuery(e.target.value)}
+          ></input>
+        </Grid>
+      </Grid>
       <div style={{ padding: 30 }}>
         <Box sx={{ width: "100%" }}>
-          <Grid
-            container
-            spacing={
-              4
-            } /*rowSpacing={10} columnSpacing={{ xs: 3, sm: 3, md: 3 }}*/
-          >
-            {registeredevents.map((elem) => (
+          <Grid container spacing={4}>
+            {search(searchEndLive(registeredevents)).map((elem) => (
               <Grid
                 item
                 xs={12}
@@ -84,8 +177,7 @@ const MarketPlace = ({
               >
                 <Card
                   style={{
-                    //width: "15rem",
-                    /*borderStyle:"solid", */ alignContent: "center",
+                    alignContent: "center",
                   }}
                 >
                   <CardHeader
@@ -173,25 +265,49 @@ const MarketPlace = ({
                                 : elem.currentBidderName}
                             </TableCell>
                           </TableRow>
+                          {/* <TableRow>
+                            <TableCell
+                              sx={{
+                                align: "center",
+                                fontWeight: "bold",
+                                color: "green",
+                                fontSize: "16px",
+                              }}
+                            >
+                              Ends At:
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                align: "center",
+                                fontWeight: "bold",
+                                // color: "green",
+                                fontSize: "12px",
+                              }}
+                            >
+                              {today}
+                            </TableCell>
+                          </TableRow> */}
                         </Table>
                       </TableContainer>
                     </CardContent>
-                    {/* <Button
-                      variant="contained"
-                      fullWidth
-                      sx={{
-                        alignContent: "center",
-                        background: "#3f823b",
-                        marginBottom: "5px",
-                        marginTopm: "0px",
-                      }}
-                      // onClick={() => {
-                      //   <PlaceBidDialog />;
-                      // }}
-                    >
-                      PLACE BID
-                    </Button> */}
-                    {elem.currentBidderId == userId ? (
+
+                    {elem.isSold ? (
+                      <Button
+                        variant="contained"
+                        fullWidth
+                        sx={{
+                          alignContent: "center",
+                          background: "black",
+                          marginBottom: "5px",
+                          marginTopm: "0px",
+                        }}
+                        onClick={() => {
+                          setAlert("Bidding Ended!!", "error");
+                        }}
+                      >
+                        Bidding Ended
+                      </Button>
+                    ) : elem.currentBidderId == userId ? (
                       <Button
                         variant="contained"
                         fullWidth
@@ -214,13 +330,44 @@ const MarketPlace = ({
                       <PlaceBidDialog
                         biddingId={elem.biddingeventId}
                         cur_bid={elem.currentBid}
-                        //basePrice={elem.basePrice}
+                        quantity={elem.sellQuantity}
                         your_bid={
                           elem.currentBid > 0 ? elem.currentBid : elem.basePrice
                         }
                         disabled
                       />
                     )}
+
+                    {/* {elem.currentBidderId == userId ? (
+                      <Button
+                        variant="contained"
+                        fullWidth
+                        sx={{
+                          alignContent: "center",
+                          background: "#3f823b",
+                          marginBottom: "5px",
+                          marginTopm: "0px",
+                        }}
+                        onClick={() => {
+                          setAlert(
+                            "Highest bid already belongs to You",
+                            "error"
+                          );
+                        }}
+                      >
+                        Place Bid
+                      </Button>
+                    ) : (
+                      <PlaceBidDialog
+                        biddingId={elem.biddingeventId}
+                        cur_bid={elem.currentBid}
+                        quantity={elem.sellQuantity}
+                        your_bid={
+                          elem.currentBid > 0 ? elem.currentBid : elem.basePrice
+                        }
+                        disabled
+                      />
+                    )} */}
                   </CardActionArea>
                 </Card>
               </Grid>
@@ -228,7 +375,7 @@ const MarketPlace = ({
           </Grid>
         </Box>
       </div>
-    </>
+    </div>
   );
 };
 

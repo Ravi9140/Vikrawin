@@ -69,7 +69,7 @@ const FarmerLogin = ({ loginfarmer, isAuthenticatedFarmer }) => {
               fullWidth
             />
             <TextField
-              style={{ marginTop: "5px" }}
+              style={{ marginTop: "15px" }}
               label="Password"
               name="password"
               value={password}
@@ -78,20 +78,25 @@ const FarmerLogin = ({ loginfarmer, isAuthenticatedFarmer }) => {
               type="password"
               fullWidth
             />
-            <FormControlLabel
-              control={<Checkbox name="checkedB" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               color="primary"
               variant="contained"
-              style={btnstyle}
+              sx={{
+                marginTop: "20px",
+                borderRadius: "20px",
+                backgroundColor: "#1bbd7e",
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "white",
+                  color: "black",
+                },
+              }}
               fullWidth
             >
               Sign in
             </Button>
-            <Typography align="center">
+            <Typography align="center" marginTop="20px">
               <LINK to="/FarmerForgotPassword">Forgot password ?</LINK>
             </Typography>
             {/* <Typography>
