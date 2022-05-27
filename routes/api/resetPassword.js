@@ -3,8 +3,12 @@ var nodemailer = require("nodemailer");
 const express = require("express");
 const Farmer = require("../../models/Farmer");
 const router = express.Router();
+const config = require("config");
 const randtoken = require("rand-token");
 const bcrypt = require("bcrypt");
+
+const user = config.get("user");
+const pass = config.get("pass");
 
 const sendEmail = (email1, token1) => {
   let email = email1;
@@ -13,8 +17,8 @@ const sendEmail = (email1, token1) => {
   let mail = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "vikrawin2022@gmail.com", // Your email id
-      pass: "vikraWin@123", // Your password
+      user: user, // Your email id
+      pass: pass, // Your password
     },
   });
 
