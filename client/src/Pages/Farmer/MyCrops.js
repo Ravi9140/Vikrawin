@@ -13,6 +13,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getmycrops, endbidding } from "../../actions/mycrops";
 import { sendsms } from "../../actions/sms";
+import { sendemail } from "../../actions/emailNotification";
 import Spinner from "../../Components/layout/Spinner";
 import GrassIcon from "@mui/icons-material/Grass";
 import {
@@ -26,7 +27,14 @@ import {
 import { fontSize, fontWeight } from "@mui/system";
 import FarmerResponsiveAppBar from "../../Components/FarmerNav";
 
-const MyCrops = ({ getmycrops, endbidding, loading, mycrops, sendsms }) => {
+const MyCrops = ({
+  getmycrops,
+  endbidding,
+  loading,
+  mycrops,
+  sendsms,
+  sendemail,
+}) => {
   const [query, SetQuery] = useState("");
 
   const search = (data) => {
@@ -89,18 +97,12 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops, sendsms }) => {
       </Grid>
       <div style={{ padding: 30 }}>
         <Box sx={{ width: "100%" }}>
-          <Grid
-            container
-            spacing={
-              4
-            } /*rowSpacing={10} columnSpacing={{ xs: 3, sm: 3, md: 3 }}*/
-          >
+          <Grid container spacing={4}>
             {search(mycrops).map((elem) => (
               <Grid item xs={12} sm={6} md={3} key={mycrops.indexOf(elem)}>
                 <Card
                   style={{
-                    //width: "15rem",
-                    /*borderStyle:"solid", */ alignContent: "center",
+                    alignContent: "center",
                   }}
                 >
                   <CardHeader
@@ -178,28 +180,6 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops, sendsms }) => {
                               {elem.currentBidderName}
                             </TableCell>
                           </TableRow>
-                          {/* <TableRow>
-                            <TableCell
-                              sx={{
-                                align: "center",
-                                fontWeight: "bold",
-                                color: "green",
-                                fontSize: "16px",
-                              }}
-                            >
-                              Ends At:
-                            </TableCell>
-                            <TableCell
-                              sx={{
-                                align: "center",
-                                fontWeight: "bold",
-                                // color: "green",
-                                fontSize: "12px",
-                              }}
-                            >
-                              {today}
-                            </TableCell>
-                          </TableRow> */}
                         </Table>
                       </TableContainer>
                     </CardContent>
@@ -217,27 +197,55 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops, sendsms }) => {
                         sendsms({
                           phone: "+91" + elem.createrFarmerContact,
                           message:
-                            "Your crop " +
+                            "\nYour crop " +
                             elem.cropName +
-                            " got sold.\nBuyer Details:\n" +
-                            "Name: " +
+                            " got sold.\n\nDetails:\n\n" +
+                            "Buyer Name: " +
                             elem.currentBidderName +
-                            "\nSold For: " +
+                            "\nSold For : ₹ " +
                             elem.currentBid +
-                            "\nContact: " +
+                            "\nBuyer Contact No.: " +
                             elem.currentBidderContact,
                         });
                         sendsms({
                           phone: "+91" + elem.currentBidderContact,
                           message:
-                            "You won the bidding for crop " +
+                            "\nYou won the bidding for crop " +
                             elem.cropName +
-                            "\nSeller Details:\n" +
-                            "Name: " +
+                            "\n\nDetails:\n\n" +
+                            "Farmer Name: " +
                             elem.createrFarmerName +
-                            "\nBought For: " +
+                            "\nBought For: ₹ " +
                             elem.currentBid +
-                            "\nContact: " +
+                            "\nFarmer Address.: " +
+                            elem.createrFarmerAddress +
+                            "\nFarmer Contact No.: " +
+                            elem.createrFarmerContact,
+                        });
+                        sendemail({
+                          farmerId: elem.createrId,
+                          msg1:
+                            "<p>Your crop " +
+                            elem.cropName +
+                            " got sold.</p><p>Details:</p>" +
+                            "<p>Buyer Name: " +
+                            elem.currentBidderName +
+                            "</p><p>Sold For : ₹ " +
+                            elem.currentBid +
+                            "</p><p>Buyer Contact No.: " +
+                            elem.currentBidderContact,
+                          bidderId: elem.currentBidderId,
+                          msg2:
+                            "<p>You won the bidding for crop " +
+                            elem.cropName +
+                            "</p><p>Details:" +
+                            "</p><p>Farmer Name: " +
+                            elem.createrFarmerName +
+                            "</p><p>Bought For: ₹ " +
+                            elem.currentBid +
+                            "</p><p>Farmer Address.: " +
+                            elem.createrFarmerAddress +
+                            "</p><p>Farmer Contact No.: " +
                             elem.createrFarmerContact,
                         });
                       }}
@@ -259,6 +267,7 @@ MyCrops.propTypes = {
   getmycrops: PropTypes.func.isRequired,
   endbidding: PropTypes.func,
   sendsms: PropTypes.func,
+  sendemail: PropTypes.func,
   mycrops: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
 };
@@ -266,6 +275,9 @@ const mapStateProps = (state) => ({
   loading: state.mycrops.loading,
   mycrops: state.mycrops.mycrops,
 });
-export default connect(mapStateProps, { getmycrops, endbidding, sendsms })(
-  MyCrops
-);
+export default connect(mapStateProps, {
+  getmycrops,
+  endbidding,
+  sendsms,
+  sendemail,
+})(MyCrops);
