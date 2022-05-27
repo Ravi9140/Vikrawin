@@ -94,13 +94,13 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
   };
   const paperStyle = {
     padding: "30px 20px",
-    height: "82vh",
+    height: "90vh",
     width: "60vw",
     margin: "20px auto",
   };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
-  const tfieldStyle = { width: "25vw", marginLeft: "15px", marginTop: "14px" };
+  const tfieldStyle = { width: "25vw", marginLeft: "35px", marginTop: "14px" };
   const marginTop = { marginTop: 3 };
   return (
     <>
@@ -117,7 +117,7 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
           </Grid>
           <form style={{ flexDirection: "row" }} onSubmit={(e) => onSubmit(e)}>
             <TextField
-              style={{ width: "51vw", marginLeft: "15px" }}
+              style={{ width: "52vw", marginLeft: "35px" }}
               label="Name"
               name="name"
               value={name}
@@ -208,12 +208,23 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
               type="password"
             />
 
-            <FormControlLabel
-              control={<Checkbox name="checkedA" required />}
-              label="I accept the terms and conditions."
-            />
             <center>
-              <Button type="submit" variant="contained" color="primary">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{
+                  marginTop: "20px",
+                  borderRadius: "20px",
+                  backgroundColor: "#1bbd7e",
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "white",
+                    color: "black",
+                  },
+                  width: "20vw",
+                }}
+              >
                 Sign up
               </Button>
             </center>

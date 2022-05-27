@@ -53,6 +53,7 @@ const BootstrapDialogTitle = (props) => {
 export const PlaceBidDialog = ({
   biddingId,
   cur_bid,
+  quantity,
   your_bid,
   placebid,
   setAlert,
@@ -60,9 +61,11 @@ export const PlaceBidDialog = ({
   const [open, setOpen] = useState(false);
 
   const [bidAmt, setCalc] = useState(cur_bid < 1 ? your_bid : null);
+  const [perKg, setPerKg] = useState(cur_bid < 1 ? your_bid / quantity : null);
 
   const updateCalc = (value) => {
     setCalc(your_bid + value);
+    setPerKg((your_bid + value) / quantity);
   };
 
   useEffect(() => {}, [your_bid]);
@@ -75,6 +78,7 @@ export const PlaceBidDialog = ({
     if (reason !== "backdropClick") {
       setOpen(false);
       setCalc(cur_bid < 1 ? your_bid : null);
+      setPerKg(cur_bid < 1 ? your_bid / quantity : null);
     }
   };
   return (
@@ -112,7 +116,7 @@ export const PlaceBidDialog = ({
         <DialogContent dividers disableBackdropClick>
           <Grid container>
             <Grid item sm={3} xs={3} md={3}>
-              <h3>Current Bid:</h3>
+              <h3 style={{ marginLeft: "5px" }}>Current Bid:</h3>
             </Grid>
             <Grid item sm={9} xs={9} md={9}>
               <TextField
@@ -125,9 +129,9 @@ export const PlaceBidDialog = ({
               />
             </Grid>
             <Grid item sm={3} xs={3} md={3}>
-              <h3>Your Bid: </h3>
+              <h3 style={{ marginLeft: "5px" }}>Your Bid: </h3>
             </Grid>
-            <Grid item sm={9} xs={9} md={9}>
+            <Grid item sm={9} xs={9} md={3}>
               {bidAmt ? (
                 <TextField
                   id="outlined-basic"
@@ -136,6 +140,30 @@ export const PlaceBidDialog = ({
                   dividers
                   fullWidth="100%"
                   value={bidAmt}
+                  //value={your_bid}
+                />
+              ) : (
+                <TextField
+                  id="outlined-basic"
+                  placeHolder=" "
+                  variant="outlined"
+                  dividers
+                  fullWidth="100%"
+                />
+              )}
+            </Grid>
+            <Grid item sm={3} xs={3} md={3}>
+              <h3 style={{ marginLeft: "5px" }}>Per/Kg Price: </h3>
+            </Grid>
+            <Grid item sm={9} xs={9} md={3}>
+              {bidAmt ? (
+                <TextField
+                  id="outlined-basic"
+                  placeHolder=" "
+                  variant="outlined"
+                  dividers
+                  fullWidth="100%"
+                  value={perKg}
                   // value={your_bid}
                 />
               ) : (
@@ -233,7 +261,7 @@ PlaceBidDialog.propTypes = {
 const mapStateToProps = (state, ownProps) => ({
   biddingId: ownProps.biddingId,
   cur_bid: ownProps.cur_bid,
-  //basePrice: ownProps.basePrice
+  quantity: ownProps.quantity,
   your_bid: ownProps.your_bid,
 });
 
