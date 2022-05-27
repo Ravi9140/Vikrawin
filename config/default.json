@@ -1,4 +1,7 @@
 {
   "mySqlURI": "mysql://uelrc7chhbvrkchq:xqeRchW76z2PvvoH6cbg@brkmbj1g4vqvm4gyqb26-mysql.services.clever-cloud.com:3306/brkmbj1g4vqvm4gyqb26",
-  "jwtSecret": "SRGGvikraWin"
+  "jwtSecret": "SRGGvikraWin",
+  "TWILIO_ACCOUNT_SID": "AC7d1b80e6fcb32013707c15ac455fe1fe",
+  "TWILIO_AUTH_TOKEN": "daaec4a8718de7f5643fb6aba057d00a",
+  "TWILIO_PHONE_NUMBER": "+17472793536"
 }
