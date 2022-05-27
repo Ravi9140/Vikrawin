@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", bidderauth, async (req, res) => {
   try {
     const regAuctions = await sequelize.query(
-      "select biddingevent.* from biddingevent inner join registeredbids on registeredbids.biddingId=biddingevent.biddingeventId where registeredbids.bidderId=? and isSold=false order by registeredbids.createdAt desc",
+      "select biddingevent.* from biddingevent inner join registeredbids on registeredbids.biddingId=biddingevent.biddingeventId where registeredbids.bidderId=? order by registeredbids.createdAt desc",
       {
         replacements: [req.bidder.bidderId],
         type: QueryTypes.SELECT,
