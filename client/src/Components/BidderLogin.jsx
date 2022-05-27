@@ -10,7 +10,7 @@ import {
   Checkbox,
 } from "@mui/material";
 
-import { Navigate } from "react-router-dom";
+import { Navigate, Link as LINK } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginbidder } from "../actions/authbidder";
@@ -92,13 +92,13 @@ const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
             >
               Sign in
             </Button>
-            <Typography>
-              <Link href="#">Forgot password ?</Link>
+            <Typography align="center">
+              <LINK to="/BidderForgotPassword">Forgot password ?</LINK>
             </Typography>
-            <Typography>
+            {/* <Typography>
               {" "}
-              Do you have an account ?<Link href="#">Sign Up</Link>
-            </Typography>
+              Don't have an account ?<Link href="#">Sign Up</Link>
+            </Typography> */}
           </form>
         </Paper>
       </Grid>

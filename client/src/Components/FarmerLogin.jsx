@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link as LINK } from "react-router-dom";
 import { loginfarmer } from "../actions/authfarmer";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -91,13 +91,13 @@ const FarmerLogin = ({ loginfarmer, isAuthenticatedFarmer }) => {
             >
               Sign in
             </Button>
-            <Typography>
-              <Link href="#">Forgot password ?</Link>
+            <Typography align="center">
+              <LINK to="/FarmerForgotPassword">Forgot password ?</LINK>
             </Typography>
-            <Typography>
+            {/* <Typography>
               {" "}
-              Do you have an account ?<Link href="#">Sign Up</Link>
-            </Typography>
+              Don't have an account ?<Link href="#">Sign Up</Link>
+            </Typography> */}
           </form>
         </Paper>
       </Grid>
