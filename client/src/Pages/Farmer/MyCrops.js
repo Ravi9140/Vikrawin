@@ -195,19 +195,6 @@ const MyCrops = ({
                       onClick={() => {
                         endbidding(elem.biddingeventId);
                         sendsms({
-                          phone: "+91" + elem.createrFarmerContact,
-                          message:
-                            "\nYour crop " +
-                            elem.cropName +
-                            " got sold.\n\nDetails:\n\n" +
-                            "Buyer Name: " +
-                            elem.currentBidderName +
-                            "\nSold For : ₹ " +
-                            elem.currentBid +
-                            "\nBuyer Contact No.: " +
-                            elem.currentBidderContact,
-                        });
-                        sendsms({
                           phone: "+91" + elem.currentBidderContact,
                           message:
                             "\nYou won the bidding for crop " +
@@ -215,7 +202,9 @@ const MyCrops = ({
                             "\n\nDetails:\n\n" +
                             "Farmer Name: " +
                             elem.createrFarmerName +
-                            "\nBought For: ₹ " +
+                            "\nQuantity: " +
+                            elem.sellQuantity +
+                            " Kg\nBought For: ₹" +
                             elem.currentBid +
                             "\nFarmer Address.: " +
                             elem.createrFarmerAddress +
@@ -223,25 +212,16 @@ const MyCrops = ({
                             elem.createrFarmerContact,
                         });
                         sendemail({
-                          farmerId: elem.createrId,
-                          msg1:
-                            "<p>Your crop " +
-                            elem.cropName +
-                            " got sold.</p><p>Details:</p>" +
-                            "<p>Buyer Name: " +
-                            elem.currentBidderName +
-                            "</p><p>Sold For : ₹ " +
-                            elem.currentBid +
-                            "</p><p>Buyer Contact No.: " +
-                            elem.currentBidderContact,
                           bidderId: elem.currentBidderId,
-                          msg2:
+                          msg:
                             "<p>You won the bidding for crop " +
                             elem.cropName +
                             "</p><p>Details:" +
                             "</p><p>Farmer Name: " +
                             elem.createrFarmerName +
-                            "</p><p>Bought For: ₹ " +
+                            "</p><p>Quantity: " +
+                            elem.sellQuantity +
+                            " Kg</p><p>Bought For: ₹" +
                             elem.currentBid +
                             "</p><p>Farmer Address.: " +
                             elem.createrFarmerAddress +

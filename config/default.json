@@ -3,5 +3,7 @@
   "jwtSecret": "SRGGvikraWin",
   "TWILIO_ACCOUNT_SID": "AC7d1b80e6fcb32013707c15ac455fe1fe",
   "TWILIO_AUTH_TOKEN": "daaec4a8718de7f5643fb6aba057d00a",
-  "TWILIO_PHONE_NUMBER": "+17472793536"
+  "TWILIO_PHONE_NUMBER": "+17472793536",
+  "user": "vikrawin2022@gmail.com",
+  "pass": "vikraWin@123"
 }
