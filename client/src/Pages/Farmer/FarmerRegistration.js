@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
-import {Box, Paper,Typography, Tab, Tabs} from '@mui/material';
+import React, { useState } from "react";
+import { Box, Paper, Typography, Tab, Tabs } from "@mui/material";
 
-import Login from '../../Components/FarmerLogin';
-import Signup from '../../Components/FarmerSignup'; 
-const FarmerRegistration=()=>{
-const [value,setValue]=useState(0)
-const handleChange = (event, newValue) => {
+import Login from "../../Components/FarmerLogin";
+import Signup from "../../Components/FarmerSignup";
+const FarmerRegistration = () => {
+  const [value, setValue] = useState(0);
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const paperStyle={width:'70vw',height:'105vh',margin:"20px auto"}
+  const paperStyle = { width: "auto", height: "150vh", margin: "20px auto" };
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
-  
+
     return (
       <div
         role="tabpanel"
@@ -29,29 +29,28 @@ const handleChange = (event, newValue) => {
       </div>
     );
   }
-  
-    return (
-        <Paper elevation={20} style={paperStyle}>
-        <Tabs
-          value={value}
-          indicatorColor="primary"
-          textColor="primary"
-          onChange={handleChange}
-          aria-label="disabled tabs example"
-        >
-          <Tab label="Sign In" />
-         
-          <Tab label="Sign Up" />
-        </Tabs>
-        <TabPanel value={value} index={0}>
-       <Login handleChange={handleChange}/>
+
+  return (
+    <Paper elevation={20} style={paperStyle}>
+      <Tabs
+        value={value}
+        indicatorColor="primary"
+        textColor="primary"
+        onChange={handleChange}
+        aria-label="disabled tabs example"
+      >
+        <Tab label="Sign In" />
+
+        <Tab label="Sign Up" />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        <Login handleChange={handleChange} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <Signup/>
+        <Signup />
       </TabPanel>
-      </Paper>
-      
-    )
-}
+    </Paper>
+  );
+};
 
 export default FarmerRegistration;

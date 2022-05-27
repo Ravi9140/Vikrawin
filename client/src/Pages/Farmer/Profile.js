@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FarmerResponsiveAppBar from "../../Components/FarmerNav";
-import {
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Button, Card, CardContent, Grid, TextField } from "@mui/material";
 import "./../../static/button.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -94,7 +86,7 @@ const Profile = ({ updatefarmerprofile }) => {
   };
 
   const myStyle = {
-    background: "#f0fff0",
+    background: "#f8f8ff",
     boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
     backdropFilter: "blur(3px)",
 

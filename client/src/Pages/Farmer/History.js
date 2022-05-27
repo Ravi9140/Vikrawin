@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  Grid,
-  Table,
-  TableContainer,
-  TableRow,
-  TableCell,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 
 import { DataGrid } from "@mui/x-data-grid";
-import { Button } from "@mui/material";
-import { Select } from "@mui/material";
+
 import FarmerResponsiveAppBar from "../../Components/FarmerNav";
-import { MenuItem } from "@mui/material";
+
 import HistoryIcon from "@mui/icons-material/History";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -115,7 +108,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
   }
 
   return (
-    <>
+    <div style={{ backgroundColor: "#f8f8ff" }}>
       <FarmerResponsiveAppBar />
       <h1
         style={{
@@ -180,7 +173,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
           rowsPerPageOptions={[noOfRows > 0 ? noOfRows : 10]}
         />
       </div>
-    </>
+    </div>
   );
 };
 

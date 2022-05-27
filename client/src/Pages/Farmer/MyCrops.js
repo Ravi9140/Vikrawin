@@ -12,6 +12,7 @@ import CardContent from "@mui/material/CardContent";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getmycrops, endbidding } from "../../actions/mycrops";
+import { sendsms } from "../../actions/sms";
 import Spinner from "../../Components/layout/Spinner";
 import GrassIcon from "@mui/icons-material/Grass";
 import {
@@ -25,7 +26,15 @@ import {
 import { fontSize, fontWeight } from "@mui/system";
 import FarmerResponsiveAppBar from "../../Components/FarmerNav";
 
-const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
+const MyCrops = ({ getmycrops, endbidding, loading, mycrops, sendsms }) => {
+  const [query, SetQuery] = useState("");
+
+  const search = (data) => {
+    return data.filter((item) =>
+      item.cropName.toLowerCase().includes(query.toLowerCase())
+    );
+  };
+
   useState(() => {
     let timer = setInterval(() => {
       getmycrops();
@@ -35,6 +44,8 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
     };
     //getmycrops();
   }, []);
+
+  var today = new Date().toISOString().slice(0, 16);
 
   if (loading) {
     return <Spinner />;
@@ -64,6 +75,18 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
           </h1>
         </div>
       </div>
+      <Grid container sx={{ marginTop: "20px" }}>
+        <Grid item md={9} xs={6}></Grid>
+        <Grid md={3} xs={6} item>
+          <input
+            type="search"
+            placeholder="Search"
+            className="Serach"
+            style={{ height: "40px", width: "90%" }}
+            onChange={(e) => SetQuery(e.target.value)}
+          ></input>
+        </Grid>
+      </Grid>
       <div style={{ padding: 30 }}>
         <Box sx={{ width: "100%" }}>
           <Grid
@@ -72,7 +95,7 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
               4
             } /*rowSpacing={10} columnSpacing={{ xs: 3, sm: 3, md: 3 }}*/
           >
-            {mycrops.map((elem) => (
+            {search(mycrops).map((elem) => (
               <Grid item xs={12} sm={6} md={3} key={mycrops.indexOf(elem)}>
                 <Card
                   style={{
@@ -155,6 +178,28 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
                               {elem.currentBidderName}
                             </TableCell>
                           </TableRow>
+                          {/* <TableRow>
+                            <TableCell
+                              sx={{
+                                align: "center",
+                                fontWeight: "bold",
+                                color: "green",
+                                fontSize: "16px",
+                              }}
+                            >
+                              Ends At:
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                align: "center",
+                                fontWeight: "bold",
+                                // color: "green",
+                                fontSize: "12px",
+                              }}
+                            >
+                              {today}
+                            </TableCell>
+                          </TableRow> */}
                         </Table>
                       </TableContainer>
                     </CardContent>
@@ -169,6 +214,32 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
                       }}
                       onClick={() => {
                         endbidding(elem.biddingeventId);
+                        sendsms({
+                          phone: "+91" + elem.createrFarmerContact,
+                          message:
+                            "Your crop " +
+                            elem.cropName +
+                            " got sold.\nBuyer Details:\n" +
+                            "Name: " +
+                            elem.currentBidderName +
+                            "\nSold For: " +
+                            elem.currentBid +
+                            "\nContact: " +
+                            elem.currentBidderContact,
+                        });
+                        sendsms({
+                          phone: "+91" + elem.currentBidderContact,
+                          message:
+                            "You won the bidding for crop " +
+                            elem.cropName +
+                            "\nSeller Details:\n" +
+                            "Name: " +
+                            elem.createrFarmerName +
+                            "\nBought For: " +
+                            elem.currentBid +
+                            "\nContact: " +
+                            elem.createrFarmerContact,
+                        });
                       }}
                     >
                       END BIDDING
@@ -187,6 +258,7 @@ const MyCrops = ({ getmycrops, endbidding, loading, mycrops }) => {
 MyCrops.propTypes = {
   getmycrops: PropTypes.func.isRequired,
   endbidding: PropTypes.func,
+  sendsms: PropTypes.func,
   mycrops: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
 };
@@ -194,4 +266,6 @@ const mapStateProps = (state) => ({
   loading: state.mycrops.loading,
   mycrops: state.mycrops.mycrops,
 });
-export default connect(mapStateProps, { getmycrops, endbidding })(MyCrops);
+export default connect(mapStateProps, { getmycrops, endbidding, sendsms })(
+  MyCrops
+);

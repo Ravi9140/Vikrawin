@@ -18,6 +18,7 @@ import Spinner from "../../Components/layout/Spinner";
 import { createauction } from "../../actions/createauction";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Typography } from "@mui/material";
 
 const cropList = [
   "Maize",
@@ -57,25 +58,33 @@ const CreateAuctions = ({ createauction, loading }) => {
   const [cropName, setCropName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [basePrice, setBasePrice] = useState("");
+  const [endDate, setDateTime] = useState("");
 
-  //const [cropName, setCropName] = useState();
-
-  // const { cropName, quantity, basePrice } = formData;
-
-  // const onChange = (e) =>
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  var today = new Date(),
+    date =
+      today.getFullYear() +
+      "-0" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate() +
+      "T" +
+      today.getHours() +
+      ":" +
+      today.getMinutes();
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.table(cropName, quantity, basePrice);
-    createauction({ cropName, quantity, basePrice });
+    console.table(cropName, quantity, basePrice, endDate);
+    createauction({ cropName, quantity, basePrice, endDate });
     setBasePrice("");
     setQuantity("");
+    setDateTime("");
+    setCropName("");
   };
 
   return (
     <>
-      <div style={{ backgroundColor: "#f0fff0" }}>
+      <div style={{ backgroundColor: "f8f8ff" }}>
         <FarmerResponsiveAppBar />
         {/* <img style={{}} src={background} /> */}
         <div style={{ width: "98vw" }}>
@@ -94,36 +103,40 @@ const CreateAuctions = ({ createauction, loading }) => {
 
         <Card
           style={{
-            // borderRadius: "7%",
+            // borderRadius: "4%",
             maxWidth: "50vw",
             margin: "0 auto",
             padding: "10px 0px",
             background: "#f6f5f7",
+            // background: "f8f8ff",
             // borderShadow: "5px 5px 5px 5px black",
             //background: { gif },
-            boxShadow: "5px 5px 5px 3px gray",
+            boxShadow: "0px 8px 32px 0px gray",
           }}
         >
           <CardContent>
             <form onSubmit={(e) => onSubmit(e)}>
               <Grid container spacing={1}>
-                <Grid xs={12} item>
-                  <h3>Crop Name</h3>
+                <Grid xs={12} sm={12} md={12} item>
+                  <h3 style={{ color: "black", fontFamily: "sans-serif" }}>
+                    Crop Name:
+                  </h3>
                 </Grid>
 
-                <Grid xs={12} item>
+                <Grid xs={12} sm={12} md={12} item>
                   <Autocomplete
                     id="combo-box-demo"
                     onChange={(event, value) => {
                       setCropName(value);
-                      console.log(value);
+                      console.log(cropName);
                     }}
                     options={cropList}
                     renderInput={(params) => (
                       <React.Fragment>
                         <TextField
                           {...params}
-                          label="Crop Name"
+                          label="Crop name"
+                          size="small"
                           value={cropName}
                           onChange={(e) => setCropName(e.target.value)}
                           sx={{ background: "white" }}
@@ -139,13 +152,16 @@ const CreateAuctions = ({ createauction, loading }) => {
                   />{" "}
                 </Grid>
 
-                <Grid xs={12} item>
-                  <h3>Quantity</h3>
+                <Grid xs={12} sm={12} md={12} item>
+                  <h3 style={{ color: "black", fontFamily: "sans-serif" }}>
+                    Quantity:
+                  </h3>
                 </Grid>
-                <Grid xs={12} item>
+                <Grid xs={12} sm={12} md={12} item>
                   <TextField
                     sx={{ background: "white" }}
                     type="number"
+                    size="small"
                     label="Enter crop quantity in kgs"
                     value={quantity}
                     InputProps={{
@@ -155,6 +171,7 @@ const CreateAuctions = ({ createauction, loading }) => {
                     }}
                     onChange={(e) => {
                       setQuantity(e.target.value);
+                      console.log(quantity);
                     }}
                     // placeholder="Enter Crop Quantity"
                     variant="outlined"
@@ -163,12 +180,15 @@ const CreateAuctions = ({ createauction, loading }) => {
                   />
                 </Grid>
 
-                <Grid xs={12} item>
-                  <h3>Base Price</h3>
+                <Grid xs={12} sm={12} md={12} item>
+                  <h3 style={{ color: "black", fontFamily: "sans-serif" }}>
+                    Base Price:
+                  </h3>
                 </Grid>
-                <Grid xs={12} item>
+                <Grid xs={12} sm={12} md={12} item>
                   <TextField
                     className="form-field"
+                    size="small"
                     sx={{ background: "white" }}
                     type="number"
                     label="Enter base price in rupees"
@@ -180,6 +200,38 @@ const CreateAuctions = ({ createauction, loading }) => {
                     }}
                     onChange={(e) => {
                       setBasePrice(e.target.value);
+                      console.log(basePrice);
+                    }}
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+
+                <Grid xs={12} sm={12} md={12} item>
+                  <h3 style={{ color: "black", fontFamily: "sans-serif" }}>
+                    End Date and Time:
+                  </h3>
+                </Grid>
+                <Grid xs={12} sm={12} md={12} item>
+                  <TextField
+                    className="form-field"
+                    size="small"
+                    sx={{ background: "white" }}
+                    type="datetime-local"
+                    value={endDate}
+                    InputProps={{
+                      inputProps: {
+                        min: new Date().toISOString().slice(0, 16),
+                      },
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    onChange={(e) => {
+                      setDateTime(e.target.value);
+                      // console.log(dateTime);
+                      console.log(new Date());
                     }}
                     variant="outlined"
                     fullWidth

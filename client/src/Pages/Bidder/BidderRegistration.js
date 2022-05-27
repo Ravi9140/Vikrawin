@@ -9,7 +9,7 @@ const BidderRegistration = () => {
     setValue(newValue);
   };
 
-  const paperStyle = { width: "70vw", height: "95vh", margin: "20px auto" };
+  const paperStyle = { width: "auto", height: "150vh", margin: "20px auto" };
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
