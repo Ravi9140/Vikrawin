@@ -5,7 +5,7 @@ import { setAlert } from "./alert";
 // Create Auction
 
 export const createauction =
-  ({ cropName, quantity, basePrice }) =>
+  ({ cropName, quantity, basePrice, endDate }) =>
   async (dispatch) => {
     const config = {
       headers: {
@@ -16,6 +16,7 @@ export const createauction =
       cropName,
       quantity,
       basePrice,
+      endDate,
     });
     try {
       const res = await axios.post("api/createauction", body, config);
