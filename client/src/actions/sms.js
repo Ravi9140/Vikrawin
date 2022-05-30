@@ -10,12 +10,10 @@ export const sendsms =
         "Content-Type": "application/json",
       },
     };
-    console.log(phone, message);
     const body = JSON.stringify({
       phone,
       message,
     });
-    console.log(body);
     try {
       const res = await axios.post("api/send", body, config);
       dispatch({
