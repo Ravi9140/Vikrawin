@@ -24,9 +24,10 @@ export const loadBidder = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    dispatch({
-      type: B_AUTH_ERROR,
-    });
+    // dispatch({
+    //   type: B_AUTH_ERROR,
+    // });
+    console.log(err);
   }
 };
 

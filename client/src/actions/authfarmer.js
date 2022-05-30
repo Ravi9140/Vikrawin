@@ -24,9 +24,10 @@ export const loadFarmer = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    dispatch({
-      type: F_AUTH_ERROR,
-    });
+    // dispatch({
+    //   type: F_AUTH_ERROR,
+    // });
+    console.log(err);
   }
 };
 
