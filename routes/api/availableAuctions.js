@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", bidderauth, async (req, res) => {
   try {
     const availAuctions = await sequelize.query(
-      "select * from biddingevent where biddingevent.biddingeventId NOT IN(select biddingevent.biddingeventId from biddingevent inner join registeredbids on registeredbids.biddingId=biddingevent.biddingeventId where registeredbids.bidderId=?) and isSold=false order by createdAt desc",
+      "SELECT DISTINCT biddingevent.biddingeventId,biddingevent.cropName,biddingevent.sellQuantity,biddingevent.basePrice,biddingevent.currentBid,bidder.bidderName as currentBidderName,CONCAT(farmer.farmerCity,' ',farmer.farmerState,' ',farmer.farmerPinCode) as createrFarmerAddress,farmer.farmerName as createrFarmerName from biddingevent INNER JOIN farmer ON biddingevent.createrId=farmer.farmerId LEFT OUTER JOIN bidder ON biddingevent.currentBidderId = bidder.bidderId LEFT OUTER JOIN registeredbids ON biddingevent.biddingeventId = registeredbids.biddingId where biddingevent.biddingeventId NOT IN (SELECT biddingevent.biddingeventId FROM biddingevent LEFT OUTER JOIN bidder ON biddingevent.currentBidderId = bidder.bidderId LEFT OUTER JOIN registeredbids ON biddingevent.biddingeventId = registeredbids.biddingId where registeredbids.bidderId=?) and biddingevent.isSold=false order by biddingevent.createdAt desc",
       {
         replacements: [req.bidder.bidderId],
         type: QueryTypes.SELECT,

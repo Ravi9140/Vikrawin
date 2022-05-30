@@ -14,7 +14,7 @@ const BiddingEvent = require("../../models/BiddingEvent");
 router.get("/", bidderauth, async (req, res) => {
   try {
     const bidderHistory = await sequelize.query(
-      "select * from biddingevent where biddingevent.isSold=true and biddingevent.currentBidderId=? order by sellDate desc",
+      "SELECT biddingevent.biddingeventId,biddingevent.cropName,biddingevent.sellQuantity,biddingevent.basePrice,biddingevent.currentBid,biddingevent.sellDate,farmer.farmerContact as createrFarmerContact,farmer.farmerName as createrFarmerName,farmer.farmerState as createrFarmerAddress FROM biddingevent INNER JOIN farmer ON biddingevent.createrId=farmer.farmerId INNER JOIN bidder ON biddingevent.currentBidderId = bidder.bidderId where biddingevent.isSold=true and biddingevent.currentBidderId=? order by biddingevent.sellDate desc",
       {
         replacements: [req.bidder.bidderId],
         type: QueryTypes.SELECT,

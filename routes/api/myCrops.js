@@ -15,7 +15,7 @@ router.get("/", farmerauth, async (req, res) => {
 
   try {
     const farmerHistory = await sequelize.query(
-      "select * from biddingevent where biddingevent.isSold=false and biddingevent.createrId=? order by createdAt desc",
+      "SELECT biddingevent.biddingeventId,biddingevent.cropName,biddingevent.sellQuantity,biddingevent.basePrice,biddingevent.currentBid,biddingevent.currentBidderId,bidder.bidderName as currentBidderName,bidder.bidderContact as currentBidderContact,bidder.bidderEmail as currentBidderEmail,farmer.farmerName as createrFarmerName,farmer.farmerContact as createrFarmerContact,CONCAT(farmer.farmerCity,' ',farmer.farmerState,' ',farmer.farmerPinCode) as createrFarmerAddress FROM biddingevent INNER JOIN farmer ON biddingevent.createrId=farmer.farmerId LEFT OUTER JOIN bidder ON biddingevent.currentBidderId = bidder.bidderId where biddingevent.isSold=false and biddingevent.createrId=? order by biddingevent.createdAt desc",
       {
         replacements: [req.farmer.farmerId],
         type: QueryTypes.SELECT,

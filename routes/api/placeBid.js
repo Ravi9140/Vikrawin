@@ -14,19 +14,11 @@ const Bidder = require("../../models/Bidder");
 router.patch("/", bidderauth, async (req, res) => {
   let cred = req.body;
 
-  let bidder = await Bidder.findByPk(req.bidder.bidderId);
-
   try {
     const placebid = await sequelize.query(
-      "update biddingevent set biddingevent.currentBid = ?,biddingevent.currentBidderId=?,biddingevent.currentBidderName=?,biddingevent.currentBidderContact=? where biddingevent.biddingeventId=?;",
+      "update biddingevent set biddingevent.currentBid = ?,biddingevent.currentBidderId=? where biddingevent.biddingeventId=?;",
       {
-        replacements: [
-          cred.bidAmt,
-          req.bidder.bidderId,
-          bidder.bidderName,
-          bidder.bidderContact,
-          cred.biddingId,
-        ],
+        replacements: [cred.bidAmt, req.bidder.bidderId, cred.biddingId],
         type: QueryTypes.UPDATE,
       }
     );
