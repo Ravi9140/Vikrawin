@@ -30,32 +30,8 @@ const BiddingEvent = sequelize.define("biddingevent", {
     type: DataTypes.DOUBLE,
     defaultValue: 0,
   },
-  currentBidderName: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  currentBidderContact: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
   sellDate: {
     type: DataTypes.DATE,
-    allowNull: true,
-  },
-  endDate: {
-    type: DataTypes.DATE,
-    allowNull: true,
-  },
-  createrFarmerName: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  createrFarmerContact: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  createrFarmerAddress: {
-    type: DataTypes.STRING,
     allowNull: true,
   },
 });

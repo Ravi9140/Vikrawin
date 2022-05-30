@@ -94,19 +94,19 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
   };
   const paperStyle = {
     padding: "30px 20px",
-    height: "90vh",
+    height: "auto",
     width: "60vw",
     margin: "20px auto",
   };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
-  const tfieldStyle = { width: "25vw", marginLeft: "35px", marginTop: "14px" };
+  const tfieldStyle = { marginTop: "14px" };
   const marginTop = { marginTop: 3 };
   return (
     <>
-      <Grid>
+      <Grid container spacing={1}>
         <Paper elevation={20} style={paperStyle}>
-          <Grid align="center">
+          <Grid align="center" item>
             <Avatar style={avatarStyle}>
               <AddCircleOutlineOutlinedIcon />
             </Avatar>
@@ -115,119 +115,165 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
               Please fill this form to create an account !
             </Typography>
           </Grid>
-          <form style={{ flexDirection: "row" }} onSubmit={(e) => onSubmit(e)}>
-            <TextField
-              style={{ width: "52vw", marginLeft: "35px" }}
-              label="Name"
-              name="name"
-              value={name}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your name"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Email"
-              name="email"
-              value={email}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your email"
-              type="email"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Phone Number"
-              name="contact"
-              value={contact}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your phone number"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Address"
-              name="address"
-              value={address}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your Address"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="PinCode"
-              name="pincode"
-              value={pincode}
-              onChange={(e) => onChange(e)}
-              placeholder="Pincode"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="City"
-              name="city"
-              value={city}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your City"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="State"
-              name="state"
-              value={state}
-              onChange={(e) => onChange(e)}
-              placeholder="State"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Adhaar No"
-              name="adhaarno"
-              value={adhaarno}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your Adhaar No"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="PAN No"
-              name="panno"
-              value={panno}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your PAN No"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Password"
-              name="password"
-              value={password}
-              onChange={(e) => onChange(e)}
-              placeholder="Enter your Password"
-              type="password"
-            />
-            <TextField
-              style={tfieldStyle}
-              label="Confirm Password"
-              name="password1"
-              value={password1}
-              onChange={(e) => onChange(e)}
-              placeholder="Confirm your Password"
-              type="password"
-            />
 
-            <center>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                sx={{
-                  marginTop: "20px",
-                  borderRadius: "20px",
-                  backgroundColor: "#1bbd7e",
-                  color: "white",
-                  "&:hover": {
-                    backgroundColor: "white",
-                    color: "black",
-                  },
-                  width: "20vw",
-                }}
-              >
-                Sign up
-              </Button>
-            </center>
+          <form onSubmit={(e) => onSubmit(e)}>
+            <Grid xs={12} sm={12} md={12} item>
+              <TextField
+                style={tfieldStyle}
+                label="Name"
+                name="name"
+                value={name}
+                onChange={(e) => onChange(e)}
+                placeholder="Enter your name"
+                fullWidth
+              />
+            </Grid>
+            <Grid container item xs={12} md={12} sm={12} spacing={1}>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="Email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Enter your email"
+                  type="email"
+                  fullWidth
+                />
+              </Grid>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="Phone Number"
+                  name="contact"
+                  value={contact}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Enter your phone number"
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+            <Grid container item xs={12} md={12} sm={12} spacing={1}>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="Address"
+                  name="address"
+                  value={address}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Enter your Address"
+                  fullWidth
+                />
+              </Grid>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="PinCode"
+                  name="pincode"
+                  value={pincode}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Pincode"
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+            <Grid container item xs={12} md={12} sm={12} spacing={1}>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="City"
+                  name="city"
+                  value={city}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Enter your City"
+                  fullWidth
+                />
+              </Grid>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="State"
+                  name="state"
+                  value={state}
+                  onChange={(e) => onChange(e)}
+                  placeholder="State"
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+            <Grid container item xs={12} md={12} sm={12} spacing={1}>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="Adhaar No"
+                  name="adhaarno"
+                  value={adhaarno}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Enter your Adhaar No"
+                  fullWidth
+                />
+              </Grid>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="PAN No"
+                  name="panno"
+                  value={panno}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Enter your PAN No"
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+            <Grid container item xs={12} md={12} sm={12} spacing={1}>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="Password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Enter your Password"
+                  type="password"
+                  fullWidth
+                />
+              </Grid>
+              <Grid xs={12} sm={12} md={6} item>
+                <TextField
+                  style={tfieldStyle}
+                  label="Confirm Password"
+                  name="password1"
+                  value={password1}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Confirm your Password"
+                  type="password"
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
+            <Grid container item xs={12} md={12} sm={12} spacing={1}>
+              <Grid xs={3} sm={4} md={4} item></Grid>
+              <Grid xs={6} sm={4} md={4} item>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  sx={{
+                    marginTop: "20px",
+                    borderRadius: "20px",
+                    backgroundColor: "#1bbd7e",
+                    color: "white",
+                    "&:hover": {
+                      backgroundColor: "white",
+                      color: "black",
+                    },
+                  }}
+                >
+                  Sign up
+                </Button>
+              </Grid>
+            </Grid>
           </form>
         </Paper>
       </Grid>

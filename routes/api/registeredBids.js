@@ -6,19 +6,20 @@ const bidderauth = require("../../middleware/bidderauth");
 const router = express.Router();
 
 // @route api/biddingevent
-// @desc Getting the Auctions to which the Bidder has registered
+// @desc Getting the Available auctions to which the Bidder has not yet registered
 // @access Private
 
 router.get("/", bidderauth, async (req, res) => {
   try {
-    const regAuctions = await sequelize.query(
-      "select biddingevent.* from biddingevent inner join registeredbids on registeredbids.biddingId=biddingevent.biddingeventId where registeredbids.bidderId=? order by registeredbids.createdAt desc",
+    const availAuctions = await sequelize.query(
+      "SELECT DISTINCT biddingevent.biddingeventId,biddingevent.currentBidderId,biddingevent.cropName,biddingevent.sellQuantity,biddingevent.basePrice,biddingevent.currentBid,biddingevent.isSold,bidder.bidderName as currentBidderName,CONCAT(farmer.farmerCity,' ',farmer.farmerState,' ',farmer.farmerPinCode) as createrFarmerAddress,farmer.farmerName as createrFarmerName from biddingevent INNER JOIN farmer ON biddingevent.createrId=farmer.farmerId LEFT OUTER JOIN bidder ON biddingevent.currentBidderId = bidder.bidderId LEFT OUTER JOIN registeredbids ON biddingevent.biddingeventId = registeredbids.biddingId where biddingevent.biddingeventId IN (SELECT biddingevent.biddingeventId FROM biddingevent LEFT OUTER JOIN bidder ON biddingevent.currentBidderId = bidder.bidderId LEFT OUTER JOIN registeredbids ON biddingevent.biddingeventId = registeredbids.biddingId where registeredbids.bidderId=?) order by registeredbids.createdAt desc",
       {
         replacements: [req.bidder.bidderId],
         type: QueryTypes.SELECT,
       }
     );
-    res.json(regAuctions);
+    res.json(availAuctions);
+    console.log(availAuctions);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");
