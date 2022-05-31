@@ -128,12 +128,8 @@ const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
                   </Button>
                 </Grid>
                 <Typography align="center" marginTop="20px">
-                  <LINK to="/BidderForgotPassword">Forgot password ?</LINK>
+                  <LINK to="/BidderForgotPassword">Forgot password?</LINK>
                 </Typography>
-                {/* <Typography>
-              {" "}
-              Don't have an account ?<Link href="#">Sign Up</Link>
-            </Typography> */}
               </form>
             </Grid>
           </Paper>

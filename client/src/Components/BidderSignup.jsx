@@ -73,9 +73,9 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password1) {
-      setAlert("password doesnt match", "error");
+      setAlert("Password doesn't match", "error");
     } else {
-      registerbidder({
+      await registerbidder({
         name,
         email,
         contact,
@@ -86,6 +86,19 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
         adhaarno,
         panno,
         password,
+      });
+      setFormData({
+        name: "",
+        email: "",
+        contact: "",
+        address: "",
+        city: "",
+        state: "",
+        pincode: "",
+        adhaarno: "",
+        panno: "",
+        password: "",
+        password1: "",
       });
     }
   };

@@ -113,7 +113,7 @@ const FarmerLogin = ({ loginfarmer, isAuthenticatedFarmer }) => {
                 </Button>
               </Grid>
               <Typography align="center" marginTop="20px">
-                <LINK to="/FarmerForgotPassword">Forgot password ?</LINK>
+                <LINK to="/FarmerForgotPassword">Forgot password?</LINK>
               </Typography>
               {/* <Typography>
               {" "}
