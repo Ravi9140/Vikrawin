@@ -79,15 +79,6 @@ const HomePage = () => {
                 left: "1%",
               }}
             ></div>
-            <div
-              style={{
-                borderBottom: " 4px solid black",
-                width: "200px",
-                position: "fixed",
-                top: "94%",
-                left: "1%",
-              }}
-            ></div>
             {/* <CardHeader
               sx={{
                 fontSize: "150px",
