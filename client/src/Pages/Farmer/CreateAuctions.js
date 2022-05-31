@@ -64,7 +64,6 @@ const CreateAuctions = ({ createauction, loading }) => {
     createauction({ cropName, quantity, basePrice });
     setBasePrice("");
     setQuantity("");
-    setCropName("");
   };
 
   return (
