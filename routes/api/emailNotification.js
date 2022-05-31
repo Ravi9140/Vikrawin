@@ -22,7 +22,7 @@ const sendEmail = (email, message) => {
   let mailOptions = {
     from: "vikrawin2022@gmail.com",
     to: bidderEmail,
-    subject: "You have won the bidding",
+    subject: "You won the bidding",
     html: bidderMessage,
   };
 
