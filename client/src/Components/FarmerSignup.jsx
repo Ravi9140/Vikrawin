@@ -76,9 +76,9 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password1) {
-      setAlert("password doesnt match", "error");
+      setAlert("Password doesnt match", "error");
     } else {
-      registerfarmer({
+      await registerfarmer({
         name,
         email,
         contact,
@@ -89,6 +89,20 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
         adhaarno,
         panno,
         password,
+      });
+      setFormData({
+        name: "",
+        email: "",
+        contact: "",
+        landarea: "",
+        address: "",
+        city: "",
+        state: "",
+        pincode: "",
+        adhaarno: "",
+        panno: "",
+        password: "",
+        password1: "",
       });
     }
   };

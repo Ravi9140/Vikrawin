@@ -17,14 +17,14 @@ router.post(
   "/",
   [
     check("name", "Name is required").not().isEmpty(),
-    check("email", "Please include valid email").isEmail(),
+    check("email", "Please enter valid email").isEmail(),
     check("contact", "Please enter valid contact no").isLength({
       min: 10,
       max: 10,
     }),
     check("address", "Address is required").not().isEmpty(),
-    check("city", "city is required").not().isEmpty(),
-    check("state", "State sis required").not().isEmpty(),
+    check("city", "City is required").not().isEmpty(),
+    check("state", "State is required").not().isEmpty(),
     check("pincode", "Please enter valid PIN code").isLength({
       min: 6,
       max: 6,
@@ -36,7 +36,7 @@ router.post(
       min: 12,
       max: 12,
     }),
-    check("panno", "Please enter valid PAN no").isLength({
+    check("panno", "Please enter valid PAN No").isLength({
       min: 10,
       max: 10,
     }),

@@ -24,7 +24,7 @@ router.post("/", farmerauth, async (req, res) => {
     basePrice: cred.basePrice,
     createrId: req.farmer.farmerId,
   });
-  res.send({ msg: `Bidding Event Created` });
+  res.send({ msg: "Bidding Event Created" });
 });
 
 module.exports = router;

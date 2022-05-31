@@ -59,7 +59,7 @@ router.post("/resetpassword", async (req, res, next) => {
         });
       } else {
         res.send({
-          msg: "Something goes to wrong. Please try again.",
+          msg: "Something went wrong. Please try again.",
           type: "warning",
         });
       }
