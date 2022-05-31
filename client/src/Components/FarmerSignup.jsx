@@ -76,7 +76,7 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password1) {
-      setAlert("Password doesnt match", "error");
+      setAlert("Password doesn't match", "error");
     } else {
       await registerfarmer({
         name,
