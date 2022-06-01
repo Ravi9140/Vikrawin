@@ -17,6 +17,10 @@ const History = ({ getfarmerhistory, history, loading }) => {
     getfarmerhistory();
   }, []);
 
+  // useEffect(() => {
+  //   getfarmerhistory();
+  // }, [noOfRows]);
+
   const columns = [
     // { field: 'bid', headerName: 'BID', width: 90  },
     {
@@ -122,16 +126,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
         Sell History
       </h1>
       <Grid container sx={{ marginTop: "20px" }}>
-        <Grid md={3} xs={6} item>
-          <input
-            type="no_Rows"
-            placeholder="Records per page"
-            //className="Serach"
-            style={{ height: "35px", width: "80%", marginLeft: "10px" }}
-            onChange={(e) => SetRows(e.target.value)}
-          ></input>
-        </Grid>
-        <Grid md={6} xs={0} item></Grid>
+        <Grid md={9} xs={6} item></Grid>
         <Grid md={3} xs={6} item>
           <input
             type="search"
@@ -142,7 +137,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
           ></input>
         </Grid>
       </Grid>
-      <div style={{ height: 450, width: "100%" }}>
+      <div style={{ height: "65vh", width: "100%" }}>
         <DataGrid
           sx={{
             margin: "10px",
@@ -169,8 +164,9 @@ const History = ({ getfarmerhistory, history, loading }) => {
           rows={search(history)}
           columns={columns}
           getRowId={(history) => history.biddingeventId}
-          pageSize={noOfRows > 0 ? noOfRows : 10}
-          rowsPerPageOptions={[noOfRows > 0 ? noOfRows : 10]}
+          pageSize={noOfRows}
+          rowsPerPageOptions={[5, 10, 15, 20, 25]}
+          onPageSizeChange={(newPageSize) => SetRows(newPageSize)}
         />
       </div>
     </div>
