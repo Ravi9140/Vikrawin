@@ -137,7 +137,7 @@ const UpcomingEvents = ({
   ];
 
   const [query, SetQuery] = useState("");
-  const [noOfRows, SetRows] = useState(6);
+  const [noOfRows, SetRows] = useState(5);
 
   const search = (auctions) => {
     return auctions.filter(
@@ -169,16 +169,7 @@ const UpcomingEvents = ({
         </h1>
 
         <Grid container sx={{ marginTop: "20px" }}>
-          <Grid md={3} xs={6} item>
-            <input
-              type="no_Rows"
-              placeholder="Records per page"
-              //className="Serach"
-              style={{ height: "35px", width: "80%", marginLeft: "10px" }}
-              onChange={(e) => SetRows(e.target.value)}
-            ></input>
-          </Grid>
-          <Grid item md={6} xs={0}></Grid>
+          <Grid item md={9} xs={6}></Grid>
           <Grid md={3} xs={6} item>
             <input
               type="search"
@@ -189,7 +180,7 @@ const UpcomingEvents = ({
             ></input>
           </Grid>
         </Grid>
-        <div style={{ height: 450, width: "100%" }}>
+        <div style={{ height: "65vh", width: "100%" }}>
           <DataGrid
             sx={{
               margin: "10px",
@@ -212,12 +203,13 @@ const UpcomingEvents = ({
 
               fontFamily: "sans-serif,Times new roman,algerian",
             }}
-            rowHeight={60}
+            rowHeight={50}
             rows={search(auctions)}
             columns={columns}
             getRowId={(auctions) => auctions.biddingeventId}
-            pageSize={noOfRows > 0 ? noOfRows : 6}
-            rowsPerPageOptions={[noOfRows > 0 ? noOfRows : 6]}
+            pageSize={noOfRows}
+            rowsPerPageOptions={[5, 10, 15, 20, 25]}
+            onPageSizeChange={(newPageSize) => SetRows(newPageSize)}
           />
         </div>
       </div>

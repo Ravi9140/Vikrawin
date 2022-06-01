@@ -120,16 +120,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
           Purchase History
         </h1>
         <Grid container sx={{ marginTop: "20px" }}>
-          <Grid md={3} xs={6} item>
-            <input
-              type="no_Rows"
-              placeholder="Records per page"
-              //className="Serach"
-              style={{ height: "35px", width: "80%", marginLeft: "10px" }}
-              onChange={(e) => SetRows(e.target.value)}
-            ></input>
-          </Grid>
-          <Grid item md={6} xs={0}></Grid>
+          <Grid item md={9} xs={6}></Grid>
           <Grid md={3} xs={6} item>
             <input
               type="search"
@@ -140,7 +131,7 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
             ></input>
           </Grid>
         </Grid>
-        <div style={{ height: 450, width: "100%" }}>
+        <div style={{ height: "65vh", width: "100%" }}>
           <DataGrid
             sx={{
               margin: "10px",
@@ -167,8 +158,9 @@ const BidderHistory = ({ getbidderhistory, loading, history }) => {
             rows={search(history)}
             columns={columns}
             getRowId={(history) => history.biddingeventId}
-            pageSize={noOfRows > 0 ? noOfRows : 10}
-            rowsPerPageOptions={[noOfRows > 0 ? noOfRows : 10]}
+            pageSize={noOfRows}
+            rowsPerPageOptions={[5, 10, 15, 20, 25]}
+            onPageSizeChange={(newPageSize) => SetRows(newPageSize)}
           />
         </div>
       </div>
