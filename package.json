@@ -8,6 +8,7 @@
     "npm": "8.5.5"
   },
   "scripts": {
+    "test": "mocha",
     "start": "node server",
     "server": "nodemon server",
     "client": "npm start --prefix client",
@@ -38,7 +39,9 @@
     "twilio": "^3.77.1"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
     "concurrently": "^7.2.0",
+    "mocha": "^10.0.0",
     "nodemon": "^2.0.15"
   }
 }
