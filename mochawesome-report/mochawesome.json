@@ -1,0 +1,1262 @@
+{
+  "stats": {
+    "suites": 39,
+    "tests": 23,
+    "passes": 23,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-06-15T18:37:42.432Z",
+    "end": "2022-06-15T18:37:50.276Z",
+    "duration": 7844,
+    "testsRegistered": 23,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e3540ec0-4d31-41c2-b4cc-c6e2e0279f41",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b987a935-b2e3-4b9c-9495-8dd0dda6ff79",
+          "title": "SMS",
+          "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+          "file": "/test/bidder.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "365444f9-1173-4348-b9f6-9d044e80a3c8",
+              "title": "POST",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "/api/send",
+                  "fullTitle": "SMS POST /api/send",
+                  "timedOut": false,
+                  "duration": 1385,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const body = {\n  message: \"SMS Test successful\",\n  phone: \"+918308164172\",\n};\nconst res = await axios.post(`${baseURL}/api/send`, body);\nexpect(res.status).to.be.eql(200);",
+                  "err": {},
+                  "uuid": "e65b3715-1811-4313-aaa3-2041a5be2d50",
+                  "parentUUID": "365444f9-1173-4348-b9f6-9d044e80a3c8",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "e65b3715-1811-4313-aaa3-2041a5be2d50"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 1385,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 5000
+        },
+        {
+          "uuid": "679d97f2-97f6-44b8-b892-7921594f5c15",
+          "title": "EMAIL",
+          "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+          "file": "/test/bidder.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "15ca041a-58a1-4d35-a810-0a10cf780f0d",
+              "title": "POST",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Email Notification /api/emailsend",
+                  "fullTitle": "EMAIL POST Email Notification /api/emailsend",
+                  "timedOut": false,
+                  "duration": 1995,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const body = {\n  bidderId: 1,\n  msg: \"Email Notification Successful\",\n};\nconst res = await axios.post(`${baseURL}/api/emailsend`, body);\nexpect(res.data.msg).to.eql(\"success\");",
+                  "err": {},
+                  "uuid": "b2d880a0-74d7-4d87-b6c6-531c144d4d75",
+                  "parentUUID": "15ca041a-58a1-4d35-a810-0a10cf780f0d",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "b2d880a0-74d7-4d87-b6c6-531c144d4d75"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 1995,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 5000
+        },
+        {
+          "uuid": "775d67f1-4796-4775-bb66-733fc7e510d7",
+          "title": "FARMER",
+          "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+          "file": "/test/bidder.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "3812ef43-5945-4cbc-b634-a51da6cdf6fc",
+              "title": "LOGIN",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "141cc94f-84e6-4eda-bed4-86465926f19a",
+                  "title": "LOGIN SUCCESS",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": " /api/farmerauth",
+                      "fullTitle": "FARMER LOGIN LOGIN SUCCESS  /api/farmerauth",
+                      "timedOut": false,
+                      "duration": 299,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  email: \"jadhavganesh14091999@gmail.com\",\n  password: \"12345\",\n};\nconst res = await axios.post(`${baseURL}/api/farmerauth`, body);\nfarmerId = res.data.payload.farmer.farmerId;\ntoken = res.data.token;\nsetAuthToken(token);",
+                      "err": {},
+                      "uuid": "5e5c7ef3-d3b4-4b7b-8e62-2d960b23cedb",
+                      "parentUUID": "141cc94f-84e6-4eda-bed4-86465926f19a",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "5e5c7ef3-d3b4-4b7b-8e62-2d960b23cedb"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 299,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "6d3b05f1-3abb-4268-85a6-d6a3bc7b40ad",
+                  "title": "LOGIN FAILED",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "POST /api/farmerauth",
+                      "fullTitle": "FARMER LOGIN LOGIN FAILED POST /api/farmerauth",
+                      "timedOut": false,
+                      "duration": 160,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  email: \"grgaikwad09@gmail.com\",\n  password: \"12345\",\n};\ntry {\n  const res = await axios.post(`${baseURL}/api/farmerauth`, body);\n} catch (error) {\n  expect(error.response.status).to.be.eql(400);\n  expect(error.response.data.errors[0].msg).to.be.eql(\n    \"Invalid Credentials\"\n  );\n}",
+                      "err": {},
+                      "uuid": "41534467-7da7-45d5-820a-d2ff5db1b809",
+                      "parentUUID": "6d3b05f1-3abb-4268-85a6-d6a3bc7b40ad",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "41534467-7da7-45d5-820a-d2ff5db1b809"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 160,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "4369f988-e605-42ce-b956-e90eb509f2e6",
+              "title": "RESET PASSWORD",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "ee5aa0a2-4523-4ca5-a40e-0b71a9b95102",
+                  "title": "Email Not Registered",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "POST /api/bidder-reset/resetpassword",
+                      "fullTitle": "FARMER RESET PASSWORD Email Not Registered POST /api/bidder-reset/resetpassword",
+                      "timedOut": false,
+                      "duration": 166,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  email: \"grgaikwad09@gmail.com\",\n};\nconst res = await axios.post(\n  `${baseURL}/api/reset/reset-password`,\n  body\n);\nexpect(res.data.type).to.eql(\"error\");",
+                      "err": {},
+                      "uuid": "2291960f-bf03-4269-a73c-b6e36cf3b257",
+                      "parentUUID": "ee5aa0a2-4523-4ca5-a40e-0b71a9b95102",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "2291960f-bf03-4269-a73c-b6e36cf3b257"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 166,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "a9975aea-73f3-43aa-b934-24df6b294a46",
+                  "title": "Password Reset Link Sent",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "POST /api/bidder-reset/resetpassword",
+                      "fullTitle": "FARMER RESET PASSWORD Password Reset Link Sent POST /api/bidder-reset/resetpassword",
+                      "timedOut": false,
+                      "duration": 192,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  email: \"jadhavganesh14091999@gmail.com\",\n};\nconst res = await axios.post(\n  `${baseURL}/api/reset/reset-password`,\n  body\n);\nexpect(res.status).to.be.eql(200);\nexpect(res.data.type).to.eql(\"success\");",
+                      "err": {},
+                      "uuid": "8ab47763-06ea-4057-a1d0-6d83f858e946",
+                      "parentUUID": "a9975aea-73f3-43aa-b934-24df6b294a46",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "8ab47763-06ea-4057-a1d0-6d83f858e946"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 192,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "cf478465-b991-4bb4-a812-acd9fc826345",
+              "title": "AUCTION",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "cbbba3e0-1085-4dea-afbc-26b698e5d19a",
+                  "title": "CREATE AUCTION",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "POST /api/createauction",
+                      "fullTitle": "FARMER AUCTION CREATE AUCTION POST /api/createauction",
+                      "timedOut": false,
+                      "duration": 594,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const config = {\n  headers: {\n    \"Content-Type\": \"application/json\",\n  },\n};\nconst body = {\n  cropName: \"Pineapple\",\n  quantity: 50,\n  basePrice: 2000,\n};\nconst res = await axios.post(\n  `${baseURL}/api/createauction`,\n  body,\n  config\n);\nexpect(res.status).to.be.eql(200);\nexpect(res.data.msg).to.eql(\"Bidding Event Created\");",
+                      "err": {},
+                      "uuid": "de3c00ac-5b30-4231-b68e-c2668a076da8",
+                      "parentUUID": "cbbba3e0-1085-4dea-afbc-26b698e5d19a",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "de3c00ac-5b30-4231-b68e-c2668a076da8"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 594,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "54644aee-79ff-4b33-a931-ab20bedbe2e4",
+              "title": "MY CROPS",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "4fbc2436-cd58-4365-bfc3-772ce0b41f97",
+                  "title": "View My Crops",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "GET/api/mycrops",
+                      "fullTitle": "FARMER MY CROPS View My Crops GET/api/mycrops",
+                      "timedOut": false,
+                      "duration": 175,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const config = {\n  headers: {\n    \"Content-Type\": \"application/json\",\n  },\n};\nconst res = await axios.get(`${baseURL}/api/mycrops`, config);\nif (res.data.length > 0) {\n  biddingID = res.data[0].biddingeventId;\n}\nexpect(res.data).to.be.an(\"array\");\nexpect(res.status).to.be.eql(200);",
+                      "err": {},
+                      "uuid": "5ee06a40-0a21-4597-9c80-d33a34af7623",
+                      "parentUUID": "4fbc2436-cd58-4365-bfc3-772ce0b41f97",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "5ee06a40-0a21-4597-9c80-d33a34af7623"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 175,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "959709cc-4568-4620-81c3-f4831f8cebcb",
+                  "title": "End Bidding",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "PATCH /api/endbid",
+                      "fullTitle": "FARMER MY CROPS End Bidding PATCH /api/endbid",
+                      "timedOut": false,
+                      "duration": 167,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "if (biddingID != null) {\n  const body = {\n    biddingeventId: biddingID,\n  };\n  const res = await axios.patch(`${baseURL}/api/endbid`, body);\n  expect(res.status).to.be.eql(200);\n  expect(res.data.msg).to.eql(\"Bidding Stopped\");\n}",
+                      "err": {},
+                      "uuid": "99a9aedb-2f37-43d5-816b-0ce727a4d962",
+                      "parentUUID": "959709cc-4568-4620-81c3-f4831f8cebcb",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "99a9aedb-2f37-43d5-816b-0ce727a4d962"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 167,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "f0803f75-f17d-44c6-81df-84ac6b015f8e",
+              "title": "FARMER HISTORY",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "6c8c8686-1817-4491-b1e9-b14dd92216ed",
+                  "title": "View Sell History",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "GET /api/farmerhistory",
+                      "fullTitle": "FARMER FARMER HISTORY View Sell History GET /api/farmerhistory",
+                      "timedOut": false,
+                      "duration": 171,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const res = await axios.get(`${baseURL}/api/farmerhistory`);\nexpect(res.status).to.be.eql(200);\nexpect(res.data).to.be.an(\"array\");",
+                      "err": {},
+                      "uuid": "270fac29-0868-4cfb-b19c-ec997fc222d1",
+                      "parentUUID": "6c8c8686-1817-4491-b1e9-b14dd92216ed",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "270fac29-0868-4cfb-b19c-ec997fc222d1"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 171,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "62709ab8-0b8e-40f3-957d-1a8d2a7030b3",
+              "title": "FARMER PROFILE",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "84a5f618-ce61-403e-b910-95db06485ca1",
+                  "title": "View Profile",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "GET /api/farmerprofile",
+                      "fullTitle": "FARMER FARMER PROFILE View Profile GET /api/farmerprofile",
+                      "timedOut": false,
+                      "duration": 182,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const res = await axios.get(`${baseURL}/api/farmerprofile`);\nexpect(res.status).to.be.eql(200);\nexpect(res.data.farmerId).to.eql(farmerId);",
+                      "err": {},
+                      "uuid": "8bc6a33b-04c7-4f5f-a89c-e463f5c05c95",
+                      "parentUUID": "84a5f618-ce61-403e-b910-95db06485ca1",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "8bc6a33b-04c7-4f5f-a89c-e463f5c05c95"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 182,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "b1149601-3afe-4d20-a522-050a74db675c",
+                  "title": "Update Profile",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "PATCH /api/farmerprofile",
+                      "fullTitle": "FARMER FARMER PROFILE Update Profile PATCH /api/farmerprofile",
+                      "timedOut": false,
+                      "duration": 318,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  contact: \"8308164172\",\n  address: \"Hatgaon Road, Bodhegaon\",\n  city: \"Pune\",\n};\nconst res = await axios.patch(`${baseURL}/api/farmerprofile`, body);\nexpect(res.status).to.be.eql(200);\nexpect(res.data.msg).to.eql(\"Profile Updated Successfully\");",
+                      "err": {},
+                      "uuid": "bf5f57e3-4af2-4cf9-aa10-e4117acd1282",
+                      "parentUUID": "b1149601-3afe-4d20-a522-050a74db675c",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "bf5f57e3-4af2-4cf9-aa10-e4117acd1282"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 318,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 5000
+        },
+        {
+          "uuid": "00d47f02-64eb-4856-b038-d31ca914a834",
+          "title": "BIDDER",
+          "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+          "file": "/test/bidder.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "77d9378d-838e-4ef6-bf95-b85654a8b833",
+              "title": "LOGIN",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "550cea34-bee5-4d8c-aeb9-9384a9830f03",
+                  "title": "LOGIN SUCCESS",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "POST /api/bidderauth",
+                      "fullTitle": "BIDDER LOGIN LOGIN SUCCESS POST /api/bidderauth",
+                      "timedOut": false,
+                      "duration": 329,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  email: \"grgaikwad09@gmail.com\",\n  password: \"12345\",\n};\nconst res = await axios.post(`${baseURL}/api/bidderauth`, body);\nbidderId = res.data.payload.bidder.bidderId;\ntoken = res.data.token;\nsetAuthToken(token);\n// expect(res.data.status).to.be.eql(400);",
+                      "err": {},
+                      "uuid": "3314c3cf-6db1-41df-ab7b-f6a72cacb67a",
+                      "parentUUID": "550cea34-bee5-4d8c-aeb9-9384a9830f03",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "3314c3cf-6db1-41df-ab7b-f6a72cacb67a"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 329,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "2e0c5f69-bc5b-4e13-b26f-8f5e0ba5f33f",
+                  "title": "LOGIN FAILED",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "POST /api/bidderauth",
+                      "fullTitle": "BIDDER LOGIN LOGIN FAILED POST /api/bidderauth",
+                      "timedOut": false,
+                      "duration": 156,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  email: \"patelravi@gmail.com\",\n  password: \"12345\",\n};\ntry {\n  const res = await axios.post(`${baseURL}/api/bidderauth`, body);\n} catch (error) {\n  expect(error.response.status).to.be.eql(400);\n  expect(error.response.data.errors[0].msg).to.be.eql(\n    \"Invalid Credentials\"\n  );\n}",
+                      "err": {},
+                      "uuid": "08f2f8cf-4f36-4517-8a44-f324ce92ac60",
+                      "parentUUID": "2e0c5f69-bc5b-4e13-b26f-8f5e0ba5f33f",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "08f2f8cf-4f36-4517-8a44-f324ce92ac60"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 156,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "be133d13-ef3f-4ce2-bc3a-3abe1d6ef11c",
+              "title": "RESET PASSWORD",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "8176d51a-171e-4cd4-8e00-0f9ee1a674c5",
+                  "title": "Email Not Registered",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "POST /api/bidder-reset/resetpassword",
+                      "fullTitle": "BIDDER RESET PASSWORD Email Not Registered POST /api/bidder-reset/resetpassword",
+                      "timedOut": false,
+                      "duration": 161,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  email: \"jadhavganesh14091999@gmail.com\",\n};\nconst res = await axios.post(\n  `${baseURL}/api/bidder-reset/resetpassword`,\n  body\n);\nexpect(res.data.type).to.eql(\"error\");",
+                      "err": {},
+                      "uuid": "5c6df941-abb9-4497-b763-69f0d2f2fd56",
+                      "parentUUID": "8176d51a-171e-4cd4-8e00-0f9ee1a674c5",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "5c6df941-abb9-4497-b763-69f0d2f2fd56"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 161,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "b563dd37-44db-451f-b5b9-3213b5e21851",
+                  "title": "Password Reset Link Sent",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "POST /api/bidder-reset/resetpassword",
+                      "fullTitle": "BIDDER RESET PASSWORD Password Reset Link Sent POST /api/bidder-reset/resetpassword",
+                      "timedOut": false,
+                      "duration": 167,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  email: \"grgaikwad09@gmail.com\",\n};\nconst res = await axios.post(\n  `${baseURL}/api/bidder-reset/resetpassword`,\n  body\n);\nexpect(res.data.type).to.eql(\"success\");",
+                      "err": {},
+                      "uuid": "fb3c4e93-3adb-4a09-84cf-883ad7c8b036",
+                      "parentUUID": "b563dd37-44db-451f-b5b9-3213b5e21851",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "fb3c4e93-3adb-4a09-84cf-883ad7c8b036"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 167,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "396c51eb-2d0c-46c1-bb73-19c3d98c0c36",
+              "title": "AUCTIONS",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "d96755ca-1fc6-47be-ac3b-370e67f452aa",
+                  "title": "View Available Auctions",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "GET /api/availableauctions",
+                      "fullTitle": "BIDDER AUCTIONS View Available Auctions GET /api/availableauctions",
+                      "timedOut": false,
+                      "duration": 162,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const res = await axios.get(`${baseURL}/api/availableauctions`);\nif (res.data.length > 0) {\n  biddingId = res.data[0].biddingeventId;\n}\nexpect(res.status).to.be.eql(200);\nexpect(res.data).to.be.an(\"array\");",
+                      "err": {},
+                      "uuid": "ff804bd7-2da6-4ea2-bd96-6dfaab28d8a2",
+                      "parentUUID": "d96755ca-1fc6-47be-ac3b-370e67f452aa",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "ff804bd7-2da6-4ea2-bd96-6dfaab28d8a2"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 162,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "b4f4d4a3-0fbf-40e1-9d76-149389e87d05",
+                  "title": "Register for auction",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "POST /api/registerauction",
+                      "fullTitle": "BIDDER AUCTIONS Register for auction POST /api/registerauction",
+                      "timedOut": false,
+                      "duration": 0,
+                      "state": "passed",
+                      "speed": "fast",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "if (biddingId != null) {\n  const body = {\n    biddingeventId: biddingId,\n  };\n  const res = await axios.post(`${baseURL}/api/registerauction`, body);\n  expect(res.status).to.be.eql(200);\n  expect(res.data.msg).to.eql(\"Successfully registered for auction\");\n}",
+                      "err": {},
+                      "uuid": "cf968968-877f-44bc-b39a-8223e739c749",
+                      "parentUUID": "b4f4d4a3-0fbf-40e1-9d76-149389e87d05",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "cf968968-877f-44bc-b39a-8223e739c749"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 0,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "74ed2b48-c689-4752-8147-5b5fa002e2c5",
+              "title": "MARKET PLACE",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "c6d451e3-0020-409f-9d4c-18aa11f80775",
+                  "title": "View Registered Auction",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "GET /api/registeredbids",
+                      "fullTitle": "BIDDER MARKET PLACE View Registered Auction GET /api/registeredbids",
+                      "timedOut": false,
+                      "duration": 171,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const res = await axios.get(`${baseURL}/api/registeredbids`);\nif (res.data.length > 0) {\n  res.data.every((auction) => {\n    if (!auction.isSold) {\n      id = auction.biddingeventId;\n      if (auction.currentBid == 0) {\n        currentBid = auction.basePrice;\n      } else {\n        currentBid = auction.currentBid;\n      }\n      return false;\n    }\n  });\n}\nexpect(res.status).to.be.eql(200);\nexpect(res.data).to.be.an(\"array\");",
+                      "err": {},
+                      "uuid": "6f1b6440-c674-4872-a113-db3d1426b042",
+                      "parentUUID": "c6d451e3-0020-409f-9d4c-18aa11f80775",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "6f1b6440-c674-4872-a113-db3d1426b042"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 171,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "83115e1d-63d8-4744-8161-3586ffaf957e",
+                  "title": "Place Bid",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "PATCH /api/placebid",
+                      "fullTitle": "BIDDER MARKET PLACE Place Bid PATCH /api/placebid",
+                      "timedOut": false,
+                      "duration": 157,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "if (id != null) {\n  const body = {\n    bidAmt: currentBid + 100,\n    biddingId: id,\n  };\n  const res = await axios.patch(`${baseURL}/api/placebid`, body);\n  expect(res.status).to.be.eql(200);\n  expect(res.data.msg).to.eql(\"Bid Placed\");\n}",
+                      "err": {},
+                      "uuid": "24628345-e86d-44a3-9524-a8ba13838f8d",
+                      "parentUUID": "83115e1d-63d8-4744-8161-3586ffaf957e",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "24628345-e86d-44a3-9524-a8ba13838f8d"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 157,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "e5e3a727-7894-410c-8938-01e0a2dd26dd",
+              "title": "BIDDER HISTORY",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "4c2ca600-72d5-441d-86de-1ce9d9c0f49f",
+                  "title": "View Purchase History",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "GET /api/bidderhistory",
+                      "fullTitle": "BIDDER BIDDER HISTORY View Purchase History GET /api/bidderhistory",
+                      "timedOut": false,
+                      "duration": 170,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const res = await axios.get(`${baseURL}/api/bidderhistory`);\nexpect(res.status).to.be.eql(200);\nexpect(res.data).to.be.an(\"array\");",
+                      "err": {},
+                      "uuid": "935e23e3-eeae-4ef1-a64c-5f8ce38d15ac",
+                      "parentUUID": "4c2ca600-72d5-441d-86de-1ce9d9c0f49f",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "935e23e3-eeae-4ef1-a64c-5f8ce38d15ac"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 170,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            },
+            {
+              "uuid": "40a409bd-d887-45da-9a9c-b6b16d7a53a4",
+              "title": "BIDDER PROFILE",
+              "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+              "file": "/test/bidder.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [],
+              "suites": [
+                {
+                  "uuid": "cf3bb258-f999-464f-81aa-895ab1591906",
+                  "title": "View Profile",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "GET /api/bidderprofile",
+                      "fullTitle": "BIDDER BIDDER PROFILE View Profile GET /api/bidderprofile",
+                      "timedOut": false,
+                      "duration": 168,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const res = await axios.get(`${baseURL}/api/bidderprofile`);\nexpect(res.status).to.be.eql(200);\nexpect(res.data.bidderId).to.eql(bidderId);",
+                      "err": {},
+                      "uuid": "5a6a91e0-9e04-4304-bb47-390a4d3e9d94",
+                      "parentUUID": "cf3bb258-f999-464f-81aa-895ab1591906",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "5a6a91e0-9e04-4304-bb47-390a4d3e9d94"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 168,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                },
+                {
+                  "uuid": "0511c05c-1803-412d-88e6-63be1f734da6",
+                  "title": "Update Profile",
+                  "fullFile": "/home/noobcoder/Documents/Bluepineapple/vikraWin/test/bidder.js",
+                  "file": "/test/bidder.js",
+                  "beforeHooks": [],
+                  "afterHooks": [],
+                  "tests": [
+                    {
+                      "title": "PATCH /api/bidderprofile",
+                      "fullTitle": "BIDDER BIDDER PROFILE Update Profile PATCH /api/bidderprofile",
+                      "timedOut": false,
+                      "duration": 314,
+                      "state": "passed",
+                      "speed": "slow",
+                      "pass": true,
+                      "fail": false,
+                      "pending": false,
+                      "context": null,
+                      "code": "const body = {\n  contact: \"7083939852\",\n  address: \"MG Road\",\n  city: \"Yavatmal\",\n};\nconst res = await axios.patch(`${baseURL}/api/bidderprofile`, body);\nexpect(res.status).to.be.eql(200);\nexpect(res.data.msg).to.eql(\"Profile Updated Successfully\");",
+                      "err": {},
+                      "uuid": "49162647-53ed-4eb7-8b57-2916b4e8111f",
+                      "parentUUID": "0511c05c-1803-412d-88e6-63be1f734da6",
+                      "isHook": false,
+                      "skipped": false
+                    }
+                  ],
+                  "suites": [],
+                  "passes": [
+                    "49162647-53ed-4eb7-8b57-2916b4e8111f"
+                  ],
+                  "failures": [],
+                  "pending": [],
+                  "skipped": [],
+                  "duration": 314,
+                  "root": false,
+                  "rootEmpty": false,
+                  "_timeout": 5000
+                }
+              ],
+              "passes": [],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 5000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 5000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 5000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.0.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
