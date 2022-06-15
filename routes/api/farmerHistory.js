@@ -18,8 +18,7 @@ router.get("/", farmerauth, async (req, res) => {
         type: QueryTypes.SELECT,
       }
     );
-    console.log(farmerHistory);
-    res.json(farmerHistory);
+    res.status(200).json(farmerHistory);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");

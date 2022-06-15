@@ -20,7 +20,7 @@ router.get("/", bidderauth, async (req, res) => {
         type: QueryTypes.SELECT,
       }
     );
-    res.json(bidderHistory);
+    res.status(200).json(bidderHistory);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");

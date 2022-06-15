@@ -53,7 +53,7 @@ router.post("/resetpassword", async (req, res, next) => {
       if (sent != "0") {
         bidder.token = token;
         bidder.save();
-        res.send({
+        res.status(200).send({
           msg: "The reset password link has been sent to your email address.",
           type: "success",
         });

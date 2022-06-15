@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
       from: number,
       to: phone,
     });
-    res.send(msg);
+    res.status(200).send(msg);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");
