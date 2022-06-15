@@ -18,8 +18,7 @@ router.get("/", bidderauth, async (req, res) => {
         type: QueryTypes.SELECT,
       }
     );
-    res.json(availAuctions);
-    console.log(availAuctions);
+    res.status(200).json(availAuctions);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");

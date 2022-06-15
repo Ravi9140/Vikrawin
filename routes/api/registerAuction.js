@@ -20,7 +20,7 @@ router.post("/", bidderauth, async (req, res) => {
       bidderId: req.bidder.bidderId,
       biddingId: biddingeventId,
     });
-    res.json({ msg: "Successfully registered for auction" });
+    res.status(200).json({ msg: "Successfully registered for auction" });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
