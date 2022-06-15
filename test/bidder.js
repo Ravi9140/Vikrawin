@@ -28,12 +28,13 @@ describe("BIDDER", () => {
     describe("LOGIN FAILED", () => {
       it("POST /api/bidderauth", async () => {
         const body = {
-          email: "patelravi09272@gmail.com",
+          email: "patelravi@gmail.com",
           password: "12345",
         };
         try {
           const res = await axios.post(`${baseURL}/api/bidderauth`, body);
         } catch (error) {
+          expect(error.response.status).to.be.eql(400);
           expect(error.response.data.errors[0].msg).to.be.eql(
             "Invalid Credentials"
           );
@@ -42,7 +43,7 @@ describe("BIDDER", () => {
     });
   });
 
-  xdescribe("RESET PASSWORD", () => {
+  describe("RESET PASSWORD", () => {
     describe("Email Not Registered", () => {
       it("POST /api/bidder-reset/resetpassword", async () => {
         const body = {
@@ -77,24 +78,26 @@ describe("BIDDER", () => {
         if (res.data.length > 0) {
           biddingId = res.data[0].biddingeventId;
         }
+        expect(res.status).to.be.eql(200);
         expect(res.data).to.be.an("array");
       });
     });
 
     describe("Register for auction", () => {
-      it("GET /api/registerauction", async () => {
+      it("POST /api/registerauction", async () => {
         if (biddingId != null) {
           const body = {
             biddingeventId: biddingId,
           };
           const res = await axios.post(`${baseURL}/api/registerauction`, body);
+          expect(res.status).to.be.eql(200);
           expect(res.data.msg).to.eql("Successfully registered for auction");
         }
       });
     });
   });
 
-  xdescribe("MARKET PLACE", () => {
+  describe("MARKET PLACE", () => {
     let id = null;
     let currentBid = null;
     describe("View Registered Auction", () => {
@@ -104,17 +107,22 @@ describe("BIDDER", () => {
           res.data.every((auction) => {
             if (!auction.isSold) {
               id = auction.biddingeventId;
-              currentBid = auction.currentBid;
+              if (auction.currentBid == 0) {
+                currentBid = auction.basePrice;
+              } else {
+                currentBid = auction.currentBid;
+              }
               return false;
             }
           });
         }
+        expect(res.status).to.be.eql(200);
         expect(res.data).to.be.an("array");
       });
     });
 
     describe("Place Bid", () => {
-      it("GET /api/placebid", async () => {
+      it("PATCH /api/placebid", async () => {
         if (id != null) {
           const body = {
             bidAmt: currentBid + 100,
@@ -122,25 +130,28 @@ describe("BIDDER", () => {
           };
 
           const res = await axios.patch(`${baseURL}/api/placebid`, body);
+          expect(res.status).to.be.eql(200);
           expect(res.data.msg).to.eql("Bid Placed");
         }
       });
     });
   });
 
-  xdescribe("BIDDER HISTORY", () => {
+  describe("BIDDER HISTORY", () => {
     describe("View Purchase History", () => {
       it("GET /api/bidderhistory", async () => {
         const res = await axios.get(`${baseURL}/api/bidderhistory`);
+        expect(res.status).to.be.eql(200);
         expect(res.data).to.be.an("array");
       });
     });
   });
 
-  xdescribe("BIDDER PROFILE", () => {
+  describe("BIDDER PROFILE", () => {
     describe("View Profile", () => {
       it("GET /api/bidderprofile", async () => {
         const res = await axios.get(`${baseURL}/api/bidderprofile`);
+        expect(res.status).to.be.eql(200);
         expect(res.data.bidderId).to.eql(bidderId);
       });
     });

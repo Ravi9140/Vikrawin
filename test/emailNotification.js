@@ -4,7 +4,7 @@ const baseURL = "http://localhost:5000";
 
 const { expect } = require("chai");
 
-xdescribe("EMAIL", () => {
+describe("EMAIL", () => {
   describe("POST", () => {
     it("Email Notification /api/emailsend", async () => {
       const body = {

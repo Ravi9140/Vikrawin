@@ -9,7 +9,7 @@ describe("FARMER", () => {
   let farmerId;
   describe("LOGIN", () => {
     describe("LOGIN SUCCESS", () => {
-      it("post", async () => {
+      it(" /api/farmerauth", async () => {
         const body = {
           email: "jadhavganesh14091999@gmail.com",
           password: "12345",
@@ -22,7 +22,7 @@ describe("FARMER", () => {
     });
 
     describe("LOGIN FAILED", () => {
-      it("post", async () => {
+      it("POST /api/farmerauth", async () => {
         const body = {
           email: "grgaikwad09@gmail.com",
           password: "12345",
@@ -30,6 +30,7 @@ describe("FARMER", () => {
         try {
           const res = await axios.post(`${baseURL}/api/farmerauth`, body);
         } catch (error) {
+          expect(error.response.status).to.be.eql(400);
           expect(error.response.data.errors[0].msg).to.be.eql(
             "Invalid Credentials"
           );
@@ -38,9 +39,9 @@ describe("FARMER", () => {
     });
   });
 
-  xdescribe("RESET PASSWORD", () => {
+  describe("RESET PASSWORD", () => {
     describe("Email Not Registered", () => {
-      it("post /api/bidder-reset/resetpassword", async () => {
+      it("POST /api/bidder-reset/resetpassword", async () => {
         const body = {
           email: "grgaikwad09@gmail.com",
         };
@@ -53,7 +54,7 @@ describe("FARMER", () => {
     });
 
     describe("Password Reset Link Sent", () => {
-      it("post /api/bidder-reset/resetpassword", async () => {
+      it("POST /api/bidder-reset/resetpassword", async () => {
         const body = {
           email: "jadhavganesh14091999@gmail.com",
         };
@@ -61,36 +62,38 @@ describe("FARMER", () => {
           `${baseURL}/api/reset/reset-password`,
           body
         );
+        expect(res.status).to.be.eql(200);
         expect(res.data.type).to.eql("success");
       });
     });
   });
 
-  xdescribe("AUCTION", () => {
+  describe("AUCTION", () => {
     describe("CREATE AUCTION", () => {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const body = {
-        cropName: "Pineapple",
-        quantity: 50,
-        basePrice: 2000,
-      };
-
       it("POST /api/createauction", async () => {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const body = {
+          cropName: "Pineapple",
+          quantity: 50,
+          basePrice: 2000,
+        };
+
         const res = await axios.post(
           `${baseURL}/api/createauction`,
           body,
           config
         );
+        expect(res.status).to.be.eql(200);
         expect(res.data.msg).to.eql("Bidding Event Created");
       });
     });
   });
 
-  xdescribe("MY CROPS", () => {
+  describe("MY CROPS", () => {
     let biddingID;
     describe("View My Crops", () => {
       it("GET/api/mycrops", async () => {
@@ -102,36 +105,41 @@ describe("FARMER", () => {
         const res = await axios.get(`${baseURL}/api/mycrops`, config);
         if (res.data.length > 0) {
           biddingID = res.data[0].biddingeventId;
-          expect(res.data).to.be.an("array");
         }
+        expect(res.data).to.be.an("array");
+        expect(res.status).to.be.eql(200);
       });
     });
-    xdescribe("End Bidding", () => {
+
+    describe("End Bidding", () => {
       it("PATCH /api/endbid", async () => {
         if (biddingID != null) {
           const body = {
             biddingeventId: biddingID,
           };
           const res = await axios.patch(`${baseURL}/api/endbid`, body);
+          expect(res.status).to.be.eql(200);
           expect(res.data.msg).to.eql("Bidding Stopped");
         }
       });
     });
   });
 
-  xdescribe("FARMER HISTORY", () => {
+  describe("FARMER HISTORY", () => {
     describe("View Sell History", () => {
       it("GET /api/farmerhistory", async () => {
         const res = await axios.get(`${baseURL}/api/farmerhistory`);
+        expect(res.status).to.be.eql(200);
         expect(res.data).to.be.an("array");
       });
     });
   });
 
-  xdescribe("FARMER PROFILE", () => {
+  describe("FARMER PROFILE", () => {
     describe("View Profile", () => {
       it("GET /api/farmerprofile", async () => {
         const res = await axios.get(`${baseURL}/api/farmerprofile`);
+        expect(res.status).to.be.eql(200);
         expect(res.data.farmerId).to.eql(farmerId);
       });
     });

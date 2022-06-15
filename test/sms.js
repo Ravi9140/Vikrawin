@@ -4,7 +4,7 @@ const baseURL = "http://localhost:5000";
 
 const { expect } = require("chai");
 
-xdescribe("SMS", () => {
+describe("SMS", () => {
   describe("POST", () => {
     it("/api/send", async () => {
       const body = {
@@ -12,7 +12,7 @@ xdescribe("SMS", () => {
         phone: "+918308164172",
       };
       const res = await axios.post(`${baseURL}/api/send`, body);
-      expect(res.status).to.be.eql(201);
+      expect(res.status).to.be.eql(200);
     });
   });
 });
