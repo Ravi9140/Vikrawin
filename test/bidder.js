@@ -4,15 +4,15 @@ const axios = require("axios");
 const baseURL = "http://localhost:5000";
 const setAuthToken = require("./utils/setAuthToken");
 
-const { expect, config } = require("chai");
+const { expect } = require("chai");
 
-xdescribe("BIDDER", () => {
+describe("BIDDER", () => {
   let token;
   let biddingId = null;
   let bidderId = null;
   describe("LOGIN", () => {
     describe("LOGIN SUCCESS", () => {
-      it("post", async () => {
+      it("POST /api/bidderauth", async () => {
         const body = {
           email: "grgaikwad09@gmail.com",
           password: "12345",
@@ -25,21 +25,26 @@ xdescribe("BIDDER", () => {
       });
     });
 
-    xdescribe("LOGIN FAILED", () => {
-      it("post", async () => {
+    describe("LOGIN FAILED", () => {
+      it("POST /api/bidderauth", async () => {
         const body = {
-          email: "jadhavganesh14091999@gmail.com",
+          email: "patelravi09272@gmail.com",
           password: "12345",
         };
-        const res = await axios.post(`${baseURL}/api/bidderauth`, body);
-        expect(res.data.status).to.be.eql(401);
+        try {
+          const res = await axios.post(`${baseURL}/api/bidderauth`, body);
+        } catch (error) {
+          expect(error.response.data.errors[0].msg).to.be.eql(
+            "Invalid Credentials"
+          );
+        }
       });
     });
   });
 
   xdescribe("RESET PASSWORD", () => {
     describe("Email Not Registered", () => {
-      it("post /api/bidder-reset/resetpassword", async () => {
+      it("POST /api/bidder-reset/resetpassword", async () => {
         const body = {
           email: "jadhavganesh14091999@gmail.com",
         };
@@ -52,7 +57,7 @@ xdescribe("BIDDER", () => {
     });
 
     describe("Password Reset Link Sent", () => {
-      it("post /api/bidder-reset/resetpassword", async () => {
+      it("POST /api/bidder-reset/resetpassword", async () => {
         const body = {
           email: "grgaikwad09@gmail.com",
         };
@@ -65,14 +70,14 @@ xdescribe("BIDDER", () => {
     });
   });
 
-  xdescribe("AUCTIONS", () => {
+  describe("AUCTIONS", () => {
     describe("View Available Auctions", () => {
       it("GET /api/availableauctions", async () => {
         const res = await axios.get(`${baseURL}/api/availableauctions`);
         if (res.data.length > 0) {
           biddingId = res.data[0].biddingeventId;
-          expect(res.data).to.be.an("array");
         }
+        expect(res.data).to.be.an("array");
       });
     });
 
@@ -90,26 +95,35 @@ xdescribe("BIDDER", () => {
   });
 
   xdescribe("MARKET PLACE", () => {
-    let id;
-    let basePrice;
+    let id = null;
+    let currentBid = null;
     describe("View Registered Auction", () => {
       it("GET /api/registeredbids", async () => {
         const res = await axios.get(`${baseURL}/api/registeredbids`);
-        id = res.data[0].biddingeventId;
-        basePrice = res.data[0].basePrice;
+        if (res.data.length > 0) {
+          res.data.every((auction) => {
+            if (!auction.isSold) {
+              id = auction.biddingeventId;
+              currentBid = auction.currentBid;
+              return false;
+            }
+          });
+        }
         expect(res.data).to.be.an("array");
       });
     });
 
     describe("Place Bid", () => {
       it("GET /api/placebid", async () => {
-        const body = {
-          bidAmt: basePrice + 100,
-          biddingId: id,
-        };
+        if (id != null) {
+          const body = {
+            bidAmt: currentBid + 100,
+            biddingId: id,
+          };
 
-        const res = await axios.patch(`${baseURL}/api/placebid`, body);
-        expect(res.data.msg).to.eql("Bid Placed");
+          const res = await axios.patch(`${baseURL}/api/placebid`, body);
+          expect(res.data.msg).to.eql("Bid Placed");
+        }
       });
     });
   });
@@ -123,7 +137,7 @@ xdescribe("BIDDER", () => {
     });
   });
 
-  describe("BIDDER PROFILE", () => {
+  xdescribe("BIDDER PROFILE", () => {
     describe("View Profile", () => {
       it("GET /api/bidderprofile", async () => {
         const res = await axios.get(`${baseURL}/api/bidderprofile`);
