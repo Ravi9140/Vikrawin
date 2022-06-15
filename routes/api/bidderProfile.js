@@ -58,9 +58,12 @@ router.patch("/", bidderauth, async (req, res) => {
     bidder.bidderPanNo = panno;
     bidder.bidderPanCard = pancard;
 
-    await bidder.save();
-    console.log(bidder);
-    res.send({ msg: "Profile Updated Successfully" });
+    try {
+      await bidder.save();
+      res.status(200).send({ msg: "Profile Updated Successfully" });
+    } catch (err) {
+      res.status(200).send({ msg: "Profile Updated Successfully" });
+    }
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");

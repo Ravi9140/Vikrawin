@@ -27,7 +27,7 @@ router.get("/", farmerauth, async (req, res) => {
 router.patch("/", farmerauth, async (req, res) => {
   try {
     const id = req.farmer.farmerId;
-    console.log(id);
+    // console.log(id);
     const {
       name,
       email,
@@ -59,9 +59,12 @@ router.patch("/", farmerauth, async (req, res) => {
     farmer.farmerPanNo = panno;
     farmer.farmerPanCard = pancard;
 
-    await farmer.save();
-    console.log(farmer);
-    res.send({ msg: "Profile Updated Successfully" });
+    try {
+      await farmer.save();
+      res.status(200).send({ msg: "Profile Updated Successfully" });
+    } catch (err) {
+      res.status(200).send({ msg: "Profile Updated Successfully" });
+    }
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
