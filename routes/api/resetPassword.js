@@ -54,7 +54,7 @@ router.post("/reset-password", async (req, res, next) => {
       if (sent != "0") {
         farmer.token = token;
         farmer.save();
-        res.send({
+        res.status(200).send({
           msg: "The reset password link has been sent to your email address.",
           type: "success",
         });

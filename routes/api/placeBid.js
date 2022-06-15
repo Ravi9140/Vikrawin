@@ -22,7 +22,7 @@ router.patch("/", bidderauth, async (req, res) => {
         type: QueryTypes.UPDATE,
       }
     );
-    res.json({ msg: "Bid Placed" });
+    res.status(200).json({ msg: "Bid Placed" });
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");

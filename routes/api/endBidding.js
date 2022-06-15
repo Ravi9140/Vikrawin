@@ -21,7 +21,7 @@ router.patch("/", farmerauth, async (req, res) => {
         type: QueryTypes.UPDATE,
       }
     );
-    res.json({ msg: "Bidding Stopped" });
+    res.status(200).json({ msg: "Bidding Stopped" });
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");
