@@ -11,6 +11,7 @@ import auction from "./auction";
 import marketplace from "./marketplace";
 import bidderhistory from "./bidderhistory";
 import resetPassword from "./resetPassword";
+import sendOtp from "./sendOtp";
 // import bidderhistory from "./bidderhistory";
 export default combineReducers({
   alert,
@@ -25,4 +26,5 @@ export default combineReducers({
   auction,
   marketplace,
   resetPassword,
+  sendOtp,
 });
