@@ -14,6 +14,9 @@ import logo from "../Images/logo-2.png";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MainDrawerComp from "./MainDrawerComp";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { clearotpstate } from "../actions/sendOtp";
 import "./../static/nav.css";
 const PAGES = [
   "Auctions",
@@ -24,11 +27,12 @@ const PAGES = [
   "UpdateAccount",
 ];
 
-const MainResponsiveAppBar = () => {
+const MainResponsiveAppBar = ({ clearotpstate }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    clearotpstate();
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -125,4 +129,9 @@ const MainResponsiveAppBar = () => {
     </React.Fragment>
   );
 };
-export default MainResponsiveAppBar;
+
+MainResponsiveAppBar.propTypes = {
+  clearotpstate: PropTypes.func.isRequired,
+};
+
+export default connect(null, { clearotpstate })(MainResponsiveAppBar);

@@ -49,3 +49,8 @@ export const RESET_PASSWORD_FAIL = "RESET_PASSWORD_FAIL";
 
 export const SMS_SEND = "SMS_END";
 export const EMAIL_SEND = "EMAIL_END";
+
+export const OTP_SEND = "OTP_SEND";
+export const OTP_VERIFY = "OTP_VERIFY";
+export const CHANGE_MOBILE = "CHANGE_MOBILE";
+export const CLEAR_OTP_STATE = "CLEAR_OTP_STATE";

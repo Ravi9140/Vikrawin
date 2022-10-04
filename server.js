@@ -46,6 +46,9 @@ app.use("/api/emailsend", require("./routes/api/emailNotification"));
 app.use("/api/reset", require("./routes/api/resetPassword"));
 app.use("/api/bidder-reset", require("./routes/api/bidderResetPassword"));
 
+// OTP verification
+app.use("/api/sendotp", require("./routes/api/sendOtp"));
+
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder

@@ -22,8 +22,18 @@ import PropTypes from "prop-types";
 import { registerfarmer } from "../actions/authfarmer";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { Navigate } from "react-router-dom";
+import { sendotp, verifyotp, changemobile } from "../actions/sendOtp";
 
-const FarmerSignup = ({ setAlert, registerfarmer }) => {
+const FarmerSignup = ({
+  setAlert,
+  registerfarmer,
+  verified,
+  valid_mob,
+  sendotp,
+  verifyotp,
+  changemobile,
+}) => {
+  const [otp, setOtp] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -156,15 +166,57 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
                 />
               </Grid>
               <Grid xs={12} sm={12} md={6} item>
-                <TextField
-                  style={tfieldStyle}
-                  label="Phone Number"
-                  name="contact"
-                  value={contact}
-                  onChange={(e) => onChange(e)}
-                  placeholder="Enter your phone number"
-                  fullWidth
-                />
+                {valid_mob ? (
+                  <React.Fragment>
+                    <TextField
+                      style={tfieldStyle}
+                      label="OTP"
+                      name="otp"
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value)}
+                      placeholder="Enter 6 digit OTP"
+                      fullWidth
+                      disabled={verified}
+                    ></TextField>
+                    <Button
+                      onClick={() => {
+                        verifyotp({ contact, otp });
+                        // setVerified(true);
+                      }}
+                      disabled={verified}
+                    >
+                      Verify OTP
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        changemobile();
+                      }}
+                    >
+                      Change Mobile No
+                    </Button>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <TextField
+                      style={tfieldStyle}
+                      label="Phone Number"
+                      name="contact"
+                      value={contact}
+                      onChange={(e) => onChange(e)}
+                      placeholder="Enter your phone number"
+                      fullWidth
+                    ></TextField>
+                    <Button
+                      onClick={() => {
+                        sendotp({ contact });
+                        console.log(contact);
+                        // setPhoneVerify(!phoneVerify);
+                      }}
+                    >
+                      Send OTP
+                    </Button>
+                  </React.Fragment>
+                )}
               </Grid>
             </Grid>
             <Grid container item xs={12} md={12} sm={12} spacing={1}>
@@ -283,6 +335,7 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
                       color: "black",
                     },
                   }}
+                  disabled={!verified}
                 >
                   Sign up
                 </Button>
@@ -295,9 +348,27 @@ const FarmerSignup = ({ setAlert, registerfarmer }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isAuthenticatedBidder: state.authfarmer.isAuthenticatedFarmer,
+  verified: state.sendOtp.verified,
+  valid_mob: state.sendOtp.valid_mob,
+});
+
 FarmerSignup.propTypes = {
   setAlert: PropTypes.func.isRequired,
   registerfarmer: PropTypes.func.isRequired,
+  isAuthenticatedFarmer: PropTypes.bool,
+  sendotp: PropTypes.func.isRequired,
+  changemobile: PropTypes.func.isRequired,
+  verifyotp: PropTypes.func,
+  verified: PropTypes.bool,
+  valid_mob: PropTypes.bool,
 };
 
-export default connect(null, { setAlert, registerfarmer })(FarmerSignup);
+export default connect(mapStateToProps, {
+  setAlert,
+  registerfarmer,
+  sendotp,
+  verifyotp,
+  changemobile,
+})(FarmerSignup);

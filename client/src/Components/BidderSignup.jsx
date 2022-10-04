@@ -17,8 +17,21 @@ import PropTypes from "prop-types";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 import { registerbidder } from "../actions/authbidder";
+import { sendotp, verifyotp, changemobile } from "../actions/sendOtp";
 
-const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
+const BidderSignup = ({
+  setAlert,
+  registerbidder,
+  isAuthenticatedBidder,
+  verified,
+  sendotp,
+  verifyotp,
+  valid_mob,
+  changemobile,
+}) => {
+  // const [phoneVerify, setPhoneVerify] = useState(valid_mob);
+  // const [verifieds, setVerified] = useState(verified);
+  const [otp, setOtp] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -161,15 +174,57 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
                 />
               </Grid>
               <Grid xs={12} sm={12} md={6} item>
-                <TextField
-                  style={tfieldStyle}
-                  label="Phone Number"
-                  name="contact"
-                  value={contact}
-                  onChange={(e) => onChange(e)}
-                  placeholder="Enter your phone number"
-                  fullWidth
-                />
+                {valid_mob ? (
+                  <React.Fragment>
+                    <TextField
+                      style={tfieldStyle}
+                      label="OTP"
+                      name="otp"
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value)}
+                      placeholder="Enter 6 digit OTP"
+                      fullWidth
+                      disabled={verified}
+                    ></TextField>
+                    <Button
+                      onClick={() => {
+                        verifyotp({ contact, otp });
+                        // setVerified(true);
+                      }}
+                      disabled={verified}
+                    >
+                      Verify OTP
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        changemobile();
+                      }}
+                    >
+                      Change Mobile No
+                    </Button>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <TextField
+                      style={tfieldStyle}
+                      label="Phone Number"
+                      name="contact"
+                      value={contact}
+                      onChange={(e) => onChange(e)}
+                      placeholder="Enter your phone number"
+                      fullWidth
+                    ></TextField>
+                    <Button
+                      onClick={() => {
+                        sendotp({ contact });
+                        console.log(contact);
+                        // setPhoneVerify(!phoneVerify);
+                      }}
+                    >
+                      Send OTP
+                    </Button>
+                  </React.Fragment>
+                )}
               </Grid>
             </Grid>
             <Grid container item xs={12} md={12} sm={12} spacing={1}>
@@ -290,6 +345,7 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
                       color: "black",
                     },
                   }}
+                  disabled={!verified}
                 >
                   Sign up
                 </Button>
@@ -304,14 +360,25 @@ const BidderSignup = ({ setAlert, registerbidder, isAuthenticatedBidder }) => {
 
 const mapStateToProps = (state) => ({
   isAuthenticatedBidder: state.authbidder.isAuthenticatedBidder,
+  verified: state.sendOtp.verified,
+  valid_mob: state.sendOtp.valid_mob,
 });
 
 BidderSignup.propTypes = {
   setAlert: PropTypes.func.isRequired,
   registerbidder: PropTypes.func.isRequired,
   isAuthenticatedBidder: PropTypes.bool,
+  sendotp: PropTypes.func.isRequired,
+  changemobile: PropTypes.func.isRequired,
+  verifyotp: PropTypes.func,
+  verified: PropTypes.bool,
+  valid_mob: PropTypes.bool,
 };
 
-export default connect(mapStateToProps, { setAlert, registerbidder })(
-  BidderSignup
-);
+export default connect(mapStateToProps, {
+  setAlert,
+  registerbidder,
+  sendotp,
+  verifyotp,
+  changemobile,
+})(BidderSignup);
