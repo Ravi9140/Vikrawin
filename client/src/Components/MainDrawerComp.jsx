@@ -10,6 +10,10 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { clearotpstate } from "../actions/sendOtp";
+
 const pages = [
   "Auctions",
   "Create Auctions",
@@ -27,7 +31,7 @@ const path = [
   "FarmerUpdateAccount",
 ];
 
-const MainDrawerComp = () => {
+const MainDrawerComp = ({ clearotpstate }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
@@ -73,7 +77,10 @@ const MainDrawerComp = () => {
       </Drawer>
       <IconButton
         sx={{ color: "white", marginLeft: "auto" }}
-        onClick={() => setOpenDrawer(!openDrawer)}
+        onClick={() => {
+          setOpenDrawer(!openDrawer);
+          clearotpstate();
+        }}
       >
         <MenuIcon color="white" />
       </IconButton>
@@ -81,4 +88,8 @@ const MainDrawerComp = () => {
   );
 };
 
-export default MainDrawerComp;
+MainDrawerComp.propTypes = {
+  clearotpstate: PropTypes.func.isRequired,
+};
+
+export default connect(null, { clearotpstate })(MainDrawerComp);
