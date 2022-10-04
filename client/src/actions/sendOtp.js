@@ -1,4 +1,4 @@
-import { CHANGE_MOBILE, OTP_SEND, OTP_VERIFY } from "./types";
+import { CHANGE_MOBILE, CLEAR_OTP_STATE, OTP_SEND, OTP_VERIFY } from "./types";
 import { setAlert } from "./alert";
 import axios from "axios";
 
@@ -61,5 +61,11 @@ export const verifyotp =
 export const changemobile = () => async (dispatch) => {
   dispatch({
     type: CHANGE_MOBILE,
+  });
+};
+
+export const clearotpstate = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_OTP_STATE,
   });
 };
