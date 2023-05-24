@@ -12,6 +12,7 @@ import {
   updatefarmerprofile,
 } from "../../actions/farmerprofile";
 import Spinner from "../../Components/layout/Spinner";
+import { backendurl } from "../../utils/constants";
 //import { cloneDeep } from "sequelize/types/utils";
 const Profile = ({ updatefarmerprofile }) => {
   const [name, setName] = useState("");
@@ -26,7 +27,7 @@ const Profile = ({ updatefarmerprofile }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("api/farmerprofile").then((res) => {
+    axios.get(`${backendurl}/api/farmerprofile`).then((res) => {
       setName(res.data.farmerName);
       setEmail(res.data.farmerEmail);
       setContact(res.data.farmerContact);
