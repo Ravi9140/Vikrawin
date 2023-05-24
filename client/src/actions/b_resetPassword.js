@@ -1,7 +1,9 @@
 import { FORGOT_PASSWORD_REQUEST } from "./types";
+import { backendurl } from "../utils/constants";
 import axios from "axios";
 import { setAlert } from "./alert";
 const queryString = require("query-string");
+
 
 export const forgot_b_password =
   ({ email }) =>
@@ -16,7 +18,7 @@ export const forgot_b_password =
     });
     try {
       const res = await axios.post(
-        "api/bidder-reset/resetpassword",
+        `${backendurl}api/bidder-reset/resetpassword`,
         body,
         config
       );
@@ -45,7 +47,7 @@ export const reset_b_password =
     });
     try {
       const res = await axios.post(
-        "api/bidder-reset/updatepassword",
+        `${backendurl}api/bidder-reset/updatepassword`,
         body,
         config
       );

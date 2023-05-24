@@ -1,12 +1,13 @@
 import { GET_AUCTIONS, REGISTER_AUCTION } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
+import { backendurl } from "../utils/constants";
 
 // Get Available Auctions
 
 export const getauctions = () => async (dispatch) => {
   try {
-    const res = await axios.get("api/availableauctions");
+    const res = await axios.get(`${backendurl}/api/availableauctions`);
     dispatch({
       type: GET_AUCTIONS,
       payload: res.data,
@@ -27,7 +28,7 @@ export const registerauction = (biddingeventId) => async (dispatch) => {
   const body = JSON.stringify({ biddingeventId });
   console.log(biddingeventId);
   try {
-    const res = await axios.post("api/registerauction", body, config);
+    const res = await axios.post(`${backendurl}api/registerauction`, body, config);
     dispatch({
       type: REGISTER_AUCTION,
     });

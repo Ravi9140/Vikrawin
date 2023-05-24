@@ -1,6 +1,7 @@
 import { CHANGE_MOBILE, CLEAR_OTP_STATE, OTP_SEND, OTP_VERIFY } from "./types";
 import { setAlert } from "./alert";
 import axios from "axios";
+import { backendurl } from "../utils/constants";
 
 export const sendotp =
   ({ contact }) =>
@@ -14,7 +15,7 @@ export const sendotp =
       contact,
     });
     try {
-      const res = await axios.post("api/sendotp", body, config);
+      const res = await axios.post(`${backendurl}/api/sendotp`, body, config);
       dispatch({
         type: OTP_SEND,
       });
@@ -44,7 +45,11 @@ export const verifyotp =
     });
     console.log(body);
     try {
-      const res = await axios.post("api/sendotp/verify-otp", body, config);
+      const res = await axios.post(
+        `${backendurl}/api/sendotp/verify-otp`,
+        body,
+        config
+      );
       if (res.data.status === "approved") {
         dispatch({
           type: OTP_VERIFY,

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { SMS_SEND } from "./types";
+import { backendurl } from "../utils/constants";
 
 export const sendsms =
   ({ phone, message }) =>
@@ -15,7 +16,7 @@ export const sendsms =
       message,
     });
     try {
-      const res = await axios.post("api/send", body, config);
+      const res = await axios.post(`${backendurl}/api/send`, body, config);
       dispatch({
         type: SMS_SEND,
       });

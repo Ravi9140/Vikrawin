@@ -1,6 +1,7 @@
 import { CREATE_AUCTION } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
+import { backendurl } from "../utils/constants";
 
 // Create Auction
 
@@ -18,7 +19,7 @@ export const createauction =
       basePrice,
     });
     try {
-      const res = await axios.post("api/createauction", body, config);
+      const res = await axios.post(`${backendurl}/api/createauction`, body, config);
       dispatch({
         type: CREATE_AUCTION,
       });

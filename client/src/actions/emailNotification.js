@@ -1,5 +1,6 @@
 import axios from "axios";
 import { EMAIL_SEND } from "./types";
+import { backendurl } from "../utils/constants";
 
 export const sendemail =
   ({ bidderId, msg }) =>
@@ -15,7 +16,7 @@ export const sendemail =
     });
     console.log(body);
     try {
-      const res = await axios.post("api/emailsend", body, config);
+      const res = await axios.post(`${backendurl}/api/emailsend`, body, config);
       dispatch({
         type: EMAIL_SEND,
       });

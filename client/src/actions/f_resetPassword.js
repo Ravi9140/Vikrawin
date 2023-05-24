@@ -1,6 +1,7 @@
 import { FORGOT_PASSWORD_REQUEST } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
+import { backendurl } from "../utils/constants";
 const queryString = require("query-string");
 
 // Create Auction
@@ -16,7 +17,7 @@ export const forgot_f_password =
       email,
     });
     try {
-      const res = await axios.post("api/reset/reset-password", body, config);
+      const res = await axios.post(`${backendurl}/api/reset/reset-password`, body, config);
       dispatch({
         type: FORGOT_PASSWORD_REQUEST,
       });
@@ -41,7 +42,7 @@ export const reset_f_password =
       token,
     });
     try {
-      const res = await axios.post("api/reset/update-password", body, config);
+      const res = await axios.post(`${backendurl}/api/reset/update-password`, body, config);
 
       dispatch({
         type: FORGOT_PASSWORD_REQUEST,
