@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
+import { backendurl } from "../utils/constants";
 
 // Load Bidder
 export const loadBidder = () => async (dispatch) => {
@@ -18,7 +19,7 @@ export const loadBidder = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get("/api/bidderauth");
+    const res = await axios.get(`${backendurl}/api/bidderauth`);
     dispatch({
       type: B_LOADED,
       payload: res.data,
@@ -66,7 +67,7 @@ export const registerbidder =
     });
 
     try {
-      const res = await axios.post("/api/bidder", body, config);
+      const res = await axios.post(`${backendurl}/api/bidder`, body, config);
       dispatch(setAlert(res.data.msg, "success"));
       dispatch({
         type: B_REGISTER_SUCCESS,
@@ -104,7 +105,7 @@ export const loginbidder =
     });
 
     try {
-      const res = await axios.post("/api/bidderauth", body, config);
+      const res = await axios.post(`${backendurl}/api/bidderauth`, body, config);
       dispatch(setAlert("Login Successfully", "success"));
       dispatch({
         type: B_LOGIN_SUCCESS,

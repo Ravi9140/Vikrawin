@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
+import { backendurl } from "../utils/constants";
 
 // Load Farmer
 export const loadFarmer = () => async (dispatch) => {
@@ -18,7 +19,7 @@ export const loadFarmer = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get("/api/farmerauth");
+    const res = await axios.get(`${backendurl}/api/farmerauth`);
     dispatch({
       type: F_LOADED,
       payload: res.data,
@@ -66,7 +67,7 @@ export const registerfarmer =
     });
 
     try {
-      const res = await axios.post("/api/farmer", body, config);
+      const res = await axios.post(`${backendurl}/api/farmer`, body, config);
       dispatch(setAlert(res.data.msg, "success"));
       dispatch({
         type: F_REGISTER_SUCCESS,
@@ -104,7 +105,7 @@ export const loginfarmer =
     });
 
     try {
-      const res = await axios.post("/api/farmerauth", body, config);
+      const res = await axios.post(`${backendurl}/api/farmerauth`, body, config);
       dispatch(setAlert("Login Succesfully", "success"));
       dispatch({
         type: F_LOGIN_SUCCESS,

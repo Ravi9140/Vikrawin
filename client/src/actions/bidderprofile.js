@@ -5,12 +5,13 @@ import {
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
+import { backendurl } from "../utils/constants";
 
 // GET Bidder Profile
 
 export const getbidderprofile = () => async (dispatch) => {
   try {
-    const res = await axios.get("api/bidderprofile");
+    const res = await axios.get(`${backendurl}/api/bidderprofile`);
     console.table(res.data);
     dispatch({
       type: GET_B_PROFILE,
@@ -45,7 +46,7 @@ export const updatebidderprofile =
     });
     console.log(body);
     try {
-      const res = await axios.patch("api/bidderprofile", body, config);
+      const res = await axios.patch(`${backendurl}/api/bidderprofile`, body, config);
       dispatch(setAlert(res.data.msg, "success"));
       dispatch({
         type: UPDATE_B_PROFILE,
