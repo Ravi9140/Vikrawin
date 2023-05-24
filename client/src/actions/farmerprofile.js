@@ -45,7 +45,7 @@ export const updatefarmerprofile =
     });
     console.log(body);
     try {
-      const res = await axios.patch(`${backendurl}api/farmerprofile`, body, config);
+      const res = await axios.patch(`${backendurl}/api/farmerprofile`, body, config);
       dispatch(setAlert(res.data.msg, "success"));
       dispatch({
         type: UPDATE_F_PROFILE,

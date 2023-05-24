@@ -28,7 +28,7 @@ export const registerauction = (biddingeventId) => async (dispatch) => {
   const body = JSON.stringify({ biddingeventId });
   console.log(biddingeventId);
   try {
-    const res = await axios.post(`${backendurl}api/registerauction`, body, config);
+    const res = await axios.post(`${backendurl}/api/registerauction`, body, config);
     dispatch({
       type: REGISTER_AUCTION,
     });

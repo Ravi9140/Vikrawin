@@ -18,7 +18,7 @@ export const forgot_b_password =
     });
     try {
       const res = await axios.post(
-        `${backendurl}api/bidder-reset/resetpassword`,
+        `${backendurl}/api/bidder-reset/resetpassword`,
         body,
         config
       );
@@ -47,7 +47,7 @@ export const reset_b_password =
     });
     try {
       const res = await axios.post(
-        `${backendurl}api/bidder-reset/updatepassword`,
+        `${backendurl}/api/bidder-reset/updatepassword`,
         body,
         config
       );
