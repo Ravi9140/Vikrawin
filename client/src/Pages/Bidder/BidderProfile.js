@@ -11,6 +11,7 @@ import {
   updatebidderprofile,
 } from "../../actions/bidderprofile";
 import Spinner from "../../Components/layout/Spinner";
+import { backendurl } from "../../utils/constants";
 //import { cloneDeep } from "sequelize/types/utils";
 const Profile = ({ updatebidderprofile }) => {
   const [name, setName] = useState("");
@@ -25,7 +26,7 @@ const Profile = ({ updatebidderprofile }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("api/bidderprofile").then((res) => {
+    axios.get(`${backendurl}/api/bidderprofile`).then((res) => {
       setLoading(false);
       setName(res.data.bidderName);
       setEmail(res.data.bidderEmail);
