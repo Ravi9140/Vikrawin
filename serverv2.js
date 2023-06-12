@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json({ extended: false }));
 app.use(
   cors({
-    origin: ["https://vikrawin.netlify.app/", "http://localhost:3000/"],
+    origin: ["https://vikrawin.netlify.app/", "http://localhost:3000"],
   })
 );
 
