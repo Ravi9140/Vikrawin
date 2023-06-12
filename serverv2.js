@@ -12,11 +12,24 @@ const app = express();
 // Init Middleware
 
 app.use(express.json({ extended: false }));
+
+//Cors Origin set
 app.use(
   cors({
     origin: ["https://vikrawin.netlify.app/", "http://localhost:3000"],
   })
 );
+
+// Allow cross origin requests
+app.use(function (request, response, next) {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 
 app.get("/", (req, res) => res.send("API Running"));
 
