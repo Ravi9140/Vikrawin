@@ -1,1 +1,1 @@
-export const backendurl = "https://vikrawin-api.onrender.com";
+export const backendurl = "https://vikrawin-backend.onrender.com/";
