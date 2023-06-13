@@ -26,7 +26,9 @@ const History = ({ getfarmerhistory, history, loading }) => {
     {
       field: "cropName",
       headerName: "Crop Name",
-      width: 170,
+      // width: 20%,
+      minWidth: 120,
+      flex: 1,
       align: "left",
       headerAlign: "left",
     },
@@ -34,21 +36,27 @@ const History = ({ getfarmerhistory, history, loading }) => {
     {
       field: "currentBidderName",
       headerName: "Buyer Name",
-      width: 200,
+      // width: 200,
+      minWidth: 150,
+      flex: 1,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "currentBidderContact",
       headerName: "Buyer Contact",
-      width: 170,
+      // width: 170,
+      minWidth: 120,
+      flex: 1,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "sellDate",
       headerName: "Sell Date",
-      width: 220,
+      // width: 220,
+      minWidth: 170,
+      flex: 1,
       type: "date",
       align: "left",
       headerAlign: "left",
@@ -57,7 +65,9 @@ const History = ({ getfarmerhistory, history, loading }) => {
     {
       field: "sellQuantity",
       headerName: "Quantity (kg)",
-      width: 150,
+      // width: 150,
+      minWidth: 120,
+      flex: 1,
       type: "number",
       align: "right",
       headerAlign: "right",
@@ -65,7 +75,9 @@ const History = ({ getfarmerhistory, history, loading }) => {
     {
       field: "basePrice",
       headerName: "Base Price (₹)",
-      width: 150,
+      // width: 150,
+      minWidth: 120,
+      flex: 1,
       type: "number",
       align: "right",
       headerAlign: "right",
@@ -81,7 +93,9 @@ const History = ({ getfarmerhistory, history, loading }) => {
     {
       field: "currentBid",
       headerName: "Sold For (₹)",
-      width: 150,
+      // width: 150,
+      minWidth: 120,
+      flex: 0.9,
       type: "number",
       align: "right",
       headerAlign: "right",
@@ -112,19 +126,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
   }
 
   return (
-    <div style={{ backgroundColor: "#f8f8ff" }}>
-      <FarmerResponsiveAppBar />
-      <h1
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          fontFamily:
-            "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
-        }}
-      >
-        <HistoryIcon fontSize="large" style={{ marginRight: "15px" }} />
-        Sell History
-      </h1>
+    <div>
       <Grid container sx={{ marginTop: "20px" }}>
         <Grid md={9} xs={6} item></Grid>
         <Grid md={3} xs={6} item>
@@ -137,11 +139,11 @@ const History = ({ getfarmerhistory, history, loading }) => {
           ></input>
         </Grid>
       </Grid>
-      <div style={{ height: "65vh", width: "100%" }}>
+      <div style={{ height: "65vh", width: "100%", marginTop: "35px" }}>
         <DataGrid
           sx={{
+            width: "98%",
             margin: "10px",
-            justifyContent: "center",
             fontWeight: "light",
             borderRadius: "5px",
             boxShadow: "15px 15px 15px gray",
@@ -153,7 +155,7 @@ const History = ({ getfarmerhistory, history, loading }) => {
             },
 
             "& .MuiDataGrid-columnHeaders": {
-              backgroundColor: "#2f4f4f",
+              backgroundColor: "#90d042",
               color: "white",
               fontSize: 16,
             },

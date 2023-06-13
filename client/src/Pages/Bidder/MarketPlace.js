@@ -74,7 +74,7 @@ const MarketPlace = ({
   }
   return (
     <div style={{ backgroundColor: "#f8f8ff" }}>
-      <BidderResponsiveAppBar />
+      {/* <BidderResponsiveAppBar /> */}
       <div
         style={{
           display: "flex",

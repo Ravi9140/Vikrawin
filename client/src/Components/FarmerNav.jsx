@@ -23,19 +23,24 @@ import { logoutfarmer } from "../actions/authfarmer";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
-// const PAGES = [
-//   "Auctions",
-//   "CreateAuctions",
-//   "History",
-//   "MyCrops",
-//   "Profile",
-//   "UpdateAccount",
-// ];
+import { useLocation } from "react-router-dom";
 
 const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
+  const location = useLocation();
+  let curpage = 0;
+
+  if (location.pathname === "/FarmerCreateAuctions") {
+    curpage = 1;
+  } else if (location.pathname === "/FarmerMyCrops") {
+    curpage = 0;
+  } else if (location.pathname === "/FarmerHistory") {
+    curpage = 2;
+  } else {
+    curpage = 3;
+  }
+
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(curpage);
   const theme = useTheme();
   // console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
@@ -53,7 +58,7 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
 
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "#222" }} position="sticky" className="body">
+      <AppBar sx={{ background: "white" }} position="sticky">
         <Toolbar>
           <Typography
             variant="h6"
@@ -63,7 +68,7 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
             style={{ height: "5rem", width: "9rem" }}
           >
             <img
-              style={{ backgroundColor: "#222", height: "75px" }}
+              style={{ backgroundColor: "white", height: "75px" }}
               src={logo}
               alt="Logo"
             />
@@ -75,11 +80,12 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
           ) : (
             <>
               <Tabs
-                TabIndicatorProps={{ style: { background: "white" } }}
+                TabIndicatorProps={{
+                  style: { background: "white", backgroundColor: "white" },
+                }}
                 sx={{
                   marginLeft: "auto",
-                  color: "white",
-                  fontSize: "20px",
+                  color: "black",
                 }}
                 indicatorColor="secondary"
                 textColor="white"
@@ -88,7 +94,15 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
               >
                 <Tab
                   className="tab"
-                  sx={{ fontWeight: "", fontSize: "17px" }}
+                  sx={{
+                    fontWeight: "",
+                    fontSize: "17px",
+                    "&:hover": { backgroundColor: "white", color: "#90d042" },
+                    "&.Mui-selected": {
+                      color: "#90d042",
+                      fontWeight: "bold",
+                    },
+                  }}
                   label="My Crops"
                   value={0}
                   to="/FarmerMyCrops"
@@ -96,7 +110,15 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
                 />
                 <Tab
                   className="tab"
-                  sx={{ fontWeight: "", fontSize: "17px" }}
+                  sx={{
+                    fontWeight: "",
+                    fontSize: "17px",
+                    "&:hover": { backgroundColor: "white", color: "#90d042" },
+                    "&.Mui-selected": {
+                      color: "#90d042",
+                      fontWeight: "bold",
+                    },
+                  }}
                   label="Create Auctions"
                   value={1}
                   to="/FarmerCreateAuctions"
@@ -104,7 +126,15 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
                 />
                 <Tab
                   className="tab"
-                  sx={{ fontWeight: "", fontSize: "17px" }}
+                  sx={{
+                    fontWeight: "",
+                    fontSize: "17px",
+                    "&:hover": { backgroundColor: "white", color: "#90d042" },
+                    "&.Mui-selected": {
+                      color: "#90d042",
+                      fontWeight: "bold",
+                    },
+                  }}
                   label="History"
                   value={2}
                   to="/FarmerHistory"
@@ -112,7 +142,15 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
                 />
                 <Tab
                   className="tab"
-                  sx={{ fontWeight: "", fontSize: "17px" }}
+                  sx={{
+                    fontWeight: "",
+                    fontSize: "17px",
+                    "&:hover": { backgroundColor: "white", color: "#90d042" },
+                    "&.Mui-selected": {
+                      color: "#90d042",
+                      fontWeight: "bold",
+                    },
+                  }}
                   label="Profile"
                   value={3}
                   to="/FarmerProfile"
@@ -120,13 +158,19 @@ const FarmerResponsiveAppBar = ({ farmer, logoutfarmer }) => {
                 />
               </Tabs>
               <Button
-                className="tab1"
+                // className="tab1"
                 sx={{
                   marginLeft: "auto",
-                  background: "#ea4f4c",
+                  background: "#90d042",
                   color: "white",
+                  paddingX: "25px",
                   borderRadius: "25px",
                   fontWeight: "bolder",
+                  "&:hover": {
+                    backgroundColor: "white",
+                    border: "1px solid #90d042",
+                    color: "#90d042",
+                  },
                 }}
                 onClick={handleClickOpen}
               >

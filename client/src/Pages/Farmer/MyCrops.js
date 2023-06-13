@@ -60,32 +60,9 @@ const MyCrops = ({
   }
   return (
     <>
-      <FarmerResponsiveAppBar />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        position="sticky"
-      >
-        <div style={{ width: "100vw" }}>
-          <h1
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              fontFamily:
-                "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
-            }}
-          >
-            <GrassIcon fontSize="large" style={{ marginRight: "15px" }} />
-            My Crops
-          </h1>
-        </div>
-      </div>
       <Grid container sx={{ marginTop: "20px" }}>
-        <Grid item md={9} xs={6}></Grid>
-        <Grid md={3} xs={6} item>
+        <Grid item md={9} xs={3} sm={6}></Grid>
+        <Grid md={3} sm={6} xs={9} item>
           <input
             type="search"
             placeholder="Search"
@@ -95,54 +72,92 @@ const MyCrops = ({
           ></input>
         </Grid>
       </Grid>
+
       <div style={{ padding: 30 }}>
         <Box sx={{ width: "100%" }}>
-          <Grid container spacing={4}>
+          <Grid container spacing={3}>
             {search(mycrops).map((elem) => (
-              <Grid item xs={12} sm={6} md={3} key={mycrops.indexOf(elem)}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                key={mycrops.indexOf(elem)}
+              >
                 <Card
                   style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+
                     alignContent: "center",
+                    border: "2px solid gray",
+                    boxShadow: "3px 2px 2px 2px rgba(0, 0, 0, 0.3)",
+                    "&:hover": {
+                      backgroundColor: "white",
+                    },
                   }}
                 >
                   <CardHeader
                     sx={{
                       textAlign: "center",
                       fontWeight: "bold",
-                      background: "rgba(200,247,197)",
+                      background: "#90d042",
+                      opacity: "80%",
                     }}
                     title={`${elem.cropName}`}
                   />
                   <CardActionArea>
-                    <CardContent style={{ height: "15rem" }}>
+                    <CardContent
+                      style={{ minHeight: "16rem", height: "16rem" }}
+                    >
                       <TableContainer style={{}}>
                         <Table
                           sx={{
                             align: "center",
-                            background: "gray",
-                            color: "white",
+                            border: "1px solid #397618",
                           }}
                         >
-                          <TableRow>
-                            <TableCell>Quantity: </TableCell>
-                            <TableCell>{elem.sellQuantity} kg</TableCell>
+                          <TableRow
+                            sx={{
+                              border: "1px solid #397618",
+                            }}
+                          >
+                            <TableCell
+                              sx={{ borderBottom: "none", fontSize: "19px" }}
+                            >
+                              Quantity:{" "}
+                            </TableCell>
+                            <TableCell
+                              sx={{ borderBottom: "none", fontSize: "19px" }}
+                            >
+                              {elem.sellQuantity} kg
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell>Base Price: </TableCell>
-                            <TableCell>₹{elem.basePrice}</TableCell>
+                            <TableCell
+                              sx={{ borderBottom: "none", fontSize: "19px" }}
+                            >
+                              Base Price:{" "}
+                            </TableCell>
+                            <TableCell
+                              sx={{ borderBottom: "none", fontSize: "19px" }}
+                            >
+                              ₹{elem.basePrice}
+                            </TableCell>
                           </TableRow>
                         </Table>
                       </TableContainer>
 
                       <TableContainer style={{}}>
                         <Table>
-                          <TableRow>
+                          <TableRow sx={{ borderBottom: "none" }}>
                             <TableCell
                               sx={{
                                 align: "center",
                                 fontWeight: "bold",
-                                color: "green",
-                                fontSize: "20px",
+                                color: "#397618",
+                                fontSize: "18px",
                               }}
                             >
                               Current Bid:
@@ -151,8 +166,8 @@ const MyCrops = ({
                               sx={{
                                 align: "center",
                                 fontWeight: "bold",
-                                color: "green",
-                                fontSize: "20px",
+                                color: "#397618",
+                                fontSize: "18px",
                               }}
                             >
                               Bidder Name:{" "}
@@ -165,6 +180,7 @@ const MyCrops = ({
                                 fontWeight: "bold",
                                 color: "black",
                                 fontSize: "15px",
+                                borderBottom: "none",
                               }}
                             >
                               ₹{elem.currentBid}{" "}
@@ -175,6 +191,8 @@ const MyCrops = ({
                                 fontWeight: "bold",
                                 color: "black",
                                 fontSize: "15px",
+                                borderBottom: "none",
+                                paddingRight: "0px",
                               }}
                             >
                               {elem.currentBidderName}
@@ -183,55 +201,69 @@ const MyCrops = ({
                         </Table>
                       </TableContainer>
                     </CardContent>
-                    <Button
-                      variant="contained"
-                      fullWidth
-                      sx={{
-                        alignContent: "center",
-                        background: "#3f823b",
-                        marginBottom: "5px",
-                        marginTopm: "0px",
-                      }}
-                      onClick={() => {
-                        endbidding(elem.biddingeventId);
-                        sendsms({
-                          phone: "+91" + elem.currentBidderContact,
-                          message:
-                            "\nYou won the bidding for crop " +
-                            elem.cropName +
-                            "\n\nDetails:\n\n" +
-                            "Farmer Name: " +
-                            elem.createrFarmerName +
-                            "\nQuantity: " +
-                            elem.sellQuantity +
-                            " Kg\nBought For: ₹" +
-                            elem.currentBid +
-                            "\nFarmer Address.: " +
-                            elem.createrFarmerAddress +
-                            "\nFarmer Contact No.: " +
-                            elem.createrFarmerContact,
-                        });
-                        sendemail({
-                          bidderId: elem.currentBidderId,
-                          msg:
-                            "<p>You won the bidding for crop " +
-                            elem.cropName +
-                            "</p><p>Details:" +
-                            "</p><p>Farmer Name: " +
-                            elem.createrFarmerName +
-                            "</p><p>Quantity: " +
-                            elem.sellQuantity +
-                            " Kg</p><p>Bought For: ₹" +
-                            elem.currentBid +
-                            "</p><p>Farmer Address.: " +
-                            elem.createrFarmerAddress +
-                            "</p><p>Farmer Contact No.: " +
-                            elem.createrFarmerContact,
-                        });
+                    <div
+                      style={{
+                        display: "flex",
+                        width: "99%",
                       }}
                     >
-                      END BIDDING
-                    </Button>
+                      <Button
+                        sx={{
+                          alignContent: "center",
+                          background: "#397618",
+                          marginX: "auto",
+                          color: "white",
+                          width: "50%",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          borderRadius: "30px",
+                          marginBottom: "15px",
+                          fontSize: { xs: "10px", sm: "15px" },
+                          "&:hover": {
+                            backgroundColor: "#6eb634",
+                          },
+                        }}
+                        onClick={() => {
+                          endbidding(elem.biddingeventId);
+                          sendsms({
+                            phone: "+91" + elem.currentBidderContact,
+                            message:
+                              "\nYou won the bidding for crop " +
+                              elem.cropName +
+                              "\n\nDetails:\n\n" +
+                              "Farmer Name: " +
+                              elem.createrFarmerName +
+                              "\nQuantity: " +
+                              elem.sellQuantity +
+                              " Kg\nBought For: ₹" +
+                              elem.currentBid +
+                              "\nFarmer Address.: " +
+                              elem.createrFarmerAddress +
+                              "\nFarmer Contact No.: " +
+                              elem.createrFarmerContact,
+                          });
+                          sendemail({
+                            bidderId: elem.currentBidderId,
+                            msg:
+                              "<p>You won the bidding for crop " +
+                              elem.cropName +
+                              "</p><p>Details:" +
+                              "</p><p>Farmer Name: " +
+                              elem.createrFarmerName +
+                              "</p><p>Quantity: " +
+                              elem.sellQuantity +
+                              " Kg</p><p>Bought For: ₹" +
+                              elem.currentBid +
+                              "</p><p>Farmer Address.: " +
+                              elem.createrFarmerAddress +
+                              "</p><p>Farmer Contact No.: " +
+                              elem.createrFarmerContact,
+                          });
+                        }}
+                      >
+                        END BIDDING
+                      </Button>
+                    </div>
                   </CardActionArea>
                 </Card>
               </Grid>

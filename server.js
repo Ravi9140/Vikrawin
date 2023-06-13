@@ -13,11 +13,11 @@ const app = express();
 app.use(express.json({ extended: false }));
 
 //Cors Origin set
-// app.use(
-//   cors({
-//     origin: ["https://vikrawin.netlify.app/", "http://localhost:3000"],
-//   })
-// );
+app.use(
+  cors({
+    origin: ["https://vikrawin.netlify.app/", "http://localhost:3000"],
+  })
+);
 
 // Allow cross origin requests
 // app.use(function (request, response, next) {

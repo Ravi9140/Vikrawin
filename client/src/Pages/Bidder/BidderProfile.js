@@ -101,7 +101,7 @@ const Profile = ({ updatebidderprofile }) => {
     return (
       <>
         <div style={myStyle}>
-          <BidderResponsiveAppBar />
+          {/* <BidderResponsiveAppBar /> */}
           <div style={{ width: "98vw" }}>
             <h1
               style={{

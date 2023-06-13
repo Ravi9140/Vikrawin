@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FarmerResponsiveAppBar from "../../Components/FarmerNav";
-import { Button, Card, CardContent, Grid, TextField } from "@mui/material";
+import { Button, Card, CardContent, Grid, TextField, Box } from "@mui/material";
 import "./../../static/button.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -14,6 +14,7 @@ import {
 import Spinner from "../../Components/layout/Spinner";
 import { backendurl } from "../../utils/constants";
 //import { cloneDeep } from "sequelize/types/utils";
+
 const Profile = ({ updatefarmerprofile }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,8 +37,8 @@ const Profile = ({ updatefarmerprofile }) => {
       setCity(res.data.farmerCity);
       setState(res.data.farmerState);
       setPanno(res.data.farmerPanNo);
-      setPanno("xxxxxx".concat(res.data.farmerPanNo.slice(-4, 10)));
-      setAadhaarno("xxxxxxxx".concat(res.data.farmerAdhaarNo.slice(-4, 12)));
+      setPanno("*****".concat(res.data.farmerPanNo.slice(-4, 10)));
+      setAadhaarno("********".concat(res.data.farmerAdhaarNo.slice(-4, 12)));
       //setAadhaarno(res.data.farmerAdhaarNo);
       setLoading(false);
     });
@@ -86,45 +87,31 @@ const Profile = ({ updatefarmerprofile }) => {
     });
   };
 
-  const myStyle = {
-    background: "#f8f8ff",
-    boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
-    backdropFilter: "blur(3px)",
-
-    border: "1px solid rgba(255, 255, 255, 0.18)",
-    //height: "100vh",
-
-    fontFamily: "sans-serif,'Jost'",
-  };
-
   if (loading) {
     return <Spinner />;
   } else
     return (
       <>
-        <div style={myStyle}>
-          <FarmerResponsiveAppBar />
-          <div style={{ width: "98vw" }}>
-            <h1
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                fontFamily:
-                  "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
-              }}
-            >
-              <AccountCircleIcon
-                fontSize="large"
-                style={{ marginRight: "15px" }}
-              />
-              My Profile
-            </h1>
-          </div>
-
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            marginTop: { xs: "50px", sm: "72px", md: "76px", lg: "80px" },
+          }}
+        >
           <Card
-            style={{
-              borderRadius: "%",
-              width: "72vw",
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "5%",
+              width: {
+                xs: "50vw",
+                sm: "72vw",
+                md: "78vw",
+                lg: "72vw",
+                xl: "50vw",
+              },
+              minWidth: "340px",
               margin: "0 auto",
               padding: "10px 0px",
               backgroundColor: "white",
@@ -135,14 +122,15 @@ const Profile = ({ updatefarmerprofile }) => {
             <CardContent>
               <form onSubmit={(e) => onSubmit(e)}>
                 <Grid container spacing={1}>
-                  <Grid xs={3} sm={2} md={1} item>
+                  <Grid xs={3} sm={3} md={2} item>
                     <h3>Name</h3>
                   </Grid>
 
-                  <Grid xs={9} sm={10} md={11} item>
+                  <Grid xs={9} sm={9} md={10} item>
                     <TextField
                       sx={{
-                        borderBottom: "solid #3f823b 3px",
+                        paddingTop: "10px",
+                        borderBottom: "solid #90d042 2px",
                         color: "yellow",
                         textColor: "orange",
                       }}
@@ -159,14 +147,16 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={3} sm={2} md={1} item>
+                  <Grid xs={3} sm={3} md={2} item>
                     <h3>Email</h3>
                   </Grid>
 
-                  <Grid xs={9} sm={10} md={5} item>
+                  <Grid xs={9} sm={9} md={4} item>
                     <TextField
                       sx={{
-                        borderBottom: "solid #3f823b 3px",
+                        width: { md: "95%" },
+                        paddingTop: "10px",
+                        borderBottom: "solid #90d042 2px",
                         color: "#a3c1ad",
                       }}
                       value={email}
@@ -182,14 +172,15 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={3} sm={2} md={1} item>
+                  <Grid xs={3} sm={3} md={2} item sx={{ paddingLeft: "10px" }}>
                     <h3>Mobile</h3>
                   </Grid>
 
-                  <Grid xs={9} sm={10} md={5} item>
+                  <Grid xs={9} sm={9} md={4} item>
                     <TextField
                       sx={{
-                        borderBottom: "solid #3f823b 3px",
+                        paddingTop: "10px",
+                        borderBottom: "solid #90d042 2px",
                         color: "#a3c1ad",
                       }}
                       value={contact}
@@ -204,14 +195,16 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={3} sm={2} md={1} item>
+                  <Grid xs={3} sm={3} md={2} item>
                     <h3>Address</h3>
                   </Grid>
 
-                  <Grid xs={9} sm={10} md={5} item>
+                  <Grid xs={9} sm={9} md={4} item>
                     <TextField
                       sx={{
-                        borderBottom: "solid #3f823b 3px",
+                        width: { md: "95%" },
+                        paddingTop: "10px",
+                        borderBottom: "solid #90d042 2px",
                         color: "#a3c1ad",
                       }}
                       value={address}
@@ -226,14 +219,15 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={3} sm={2} md={1} item>
+                  <Grid xs={3} sm={3} md={2} item>
                     <h3>PIN Code</h3>
                   </Grid>
 
-                  <Grid xs={9} sm={10} md={5} item>
+                  <Grid xs={9} sm={9} md={4} item>
                     <TextField
                       sx={{
-                        borderBottom: "solid #3f823b 3px",
+                        paddingTop: { xs: "25px", sm: "10px" },
+                        borderBottom: "solid #90d042 2px",
                         color: "#a3c1ad",
                       }}
                       value={pincode}
@@ -248,14 +242,16 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={3} sm={2} md={1} item>
+                  <Grid xs={3} sm={3} md={2} item>
                     <h3>City</h3>
                   </Grid>
 
-                  <Grid xs={9} sm={10} md={5} item>
+                  <Grid xs={9} sm={9} md={4} item>
                     <TextField
                       sx={{
-                        borderBottom: "solid #3f823b 3px",
+                        width: { md: "95%" },
+                        paddingTop: "10px",
+                        borderBottom: "solid #90d042 2px",
                         color: "#a3c1ad",
                       }}
                       value={city}
@@ -270,14 +266,15 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={3} sm={2} md={1} item>
+                  <Grid xs={3} sm={3} md={2} item>
                     <h3>State</h3>
                   </Grid>
 
-                  <Grid xs={9} sm={10} md={5} item>
+                  <Grid xs={9} sm={9} md={4} item>
                     <TextField
                       sx={{
-                        borderBottom: "solid #3f823b 3px",
+                        paddingTop: "10px",
+                        borderBottom: "solid #90d042 2px",
                         color: "#a3c1ad",
                       }}
                       value={state}
@@ -292,14 +289,16 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={3} sm={2} md={1} item>
+                  <Grid xs={3} sm={3} md={2} item>
                     <h3>PAN</h3>
                   </Grid>
 
-                  <Grid xs={9} sm={10} md={5} item>
+                  <Grid xs={9} sm={9} md={4} item>
                     <TextField
                       sx={{
-                        borderBottom: "solid #3f823b 3px",
+                        width: { md: "95%" },
+                        paddingTop: "10px",
+                        borderBottom: "solid #90d042 2px",
                         color: "#a3c1ad",
                       }}
                       value={panno}
@@ -314,14 +313,15 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={3} sm={2} md={1} item>
+                  <Grid xs={3} sm={3} md={2} item>
                     <h3>Aadhaar</h3>
                   </Grid>
 
-                  <Grid xs={9} sm={10} md={5} item>
+                  <Grid xs={9} sm={9} md={4} item>
                     <TextField
                       sx={{
-                        borderBottom: "solid #3f823b 3px",
+                        paddingTop: "10px",
+                        borderBottom: "solid #90d042 2px",
                         color: "#a3c1ad",
                       }}
                       value={adhaarno}
@@ -336,17 +336,23 @@ const Profile = ({ updatefarmerprofile }) => {
                     />
                   </Grid>
 
-                  <Grid xs={4} md={4} item></Grid>
+                  <Grid xs={2} sm={3} md={4} item></Grid>
 
-                  <Grid xs={4} item>
+                  <Grid xs={8} sm={6} md={4} item>
                     <Button
-                      className="btn-grad"
                       sx={{
+                        marginTop: "20px",
                         color: "white",
                         fontWeight: "bold",
                         alignSelf: "center",
                         borderRadius: "25px",
-                        background: "#3f823b",
+                        height: "50px",
+                        alignContent: "center",
+                        background: "#397618",
+
+                        "&:hover": {
+                          backgroundColor: "#6eb634",
+                        },
                       }}
                       type="submit"
                       variant="standard"
@@ -359,7 +365,7 @@ const Profile = ({ updatefarmerprofile }) => {
               </form>
             </CardContent>
           </Card>
-        </div>
+        </Box>
       </>
     );
 };

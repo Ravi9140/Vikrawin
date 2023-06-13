@@ -94,7 +94,7 @@ const FarmerDrawerComp = ({ logoutfarmer }) => {
           </ListItemButton>
 
           <ListItemButton
-            style={{ background: "black" }}
+            style={{ background: "#397618" }}
             component={Link}
             onClick={logoutfarmer}
             to="/"
@@ -106,10 +106,10 @@ const FarmerDrawerComp = ({ logoutfarmer }) => {
         </List>
       </Drawer>
       <IconButton
-        sx={{ color: "white", marginLeft: "auto" }}
+        sx={{ color: "#90d042", marginLeft: "auto" }}
         onClick={() => setOpenDrawer(!openDrawer)}
       >
-        <MenuIcon color="white" />
+        <MenuIcon color="#90d042" />
       </IconButton>
     </React.Fragment>
   );

@@ -67,40 +67,40 @@ const CreateAuctions = ({ createauction, loading }) => {
   };
 
   return (
-    <>
-      <div style={{ backgroundColor: "f8f8ff" }}>
-        <FarmerResponsiveAppBar />
-        {/* <img style={{}} src={background} /> */}
-        <div style={{ width: "98vw" }}>
-          <h1
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              fontFamily:
-                "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
-            }}
-          >
-            <GavelIcon fontSize="large" style={{ marginRight: "15px" }} />
-            Create Auction
-          </h1>
-        </div>
-
+    <div
+      style={{
+        display: "grid",
+        width: "100%",
+        height: "100vh",
+      }}
+    >
+      <div
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "f8f8ff",
+          display: "grid",
+          height: "80%",
+        }}
+      >
         <Card
           style={{
             borderRadius: "3%",
             maxWidth: "50vw",
-            margin: "0 auto",
-            padding: "10px 0px",
+            minWidth: "350px",
             background: "#f6f5f7",
-            // background: "f8f8ff",
-            // borderShadow: "5px 5px 5px 5px black",
-            //background: { gif },
             boxShadow: "0px 8px 32px 0px gray",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <CardContent>
             <form onSubmit={(e) => onSubmit(e)}>
-              <Grid container spacing={1}>
+              <Grid
+                container
+                spacing={1}
+                sx={{ maxWidth: "500px", minWidth: "320px" }}
+              >
                 <Grid xs={12} sm={12} md={12} item>
                   <h3 style={{ color: "black", fontFamily: "sans-serif" }}>
                     Crop Name:
@@ -191,18 +191,22 @@ const CreateAuctions = ({ createauction, loading }) => {
                     required
                   />
                 </Grid>
-                <Grid xs={12} md={4} sm={12} item></Grid>
-                <Grid xs={12} md={4} sm={12} item>
+                <Grid xs={2} md={3} sm={2} item></Grid>
+                <Grid xs={8} md={6} sm={8} item>
                   <Button
-                    className="btn-grad"
+                    // className="btn-grad"
                     sx={{
                       marginTop: "20px",
                       // width: "50%",
+                      height: "50px",
                       alignContent: "center",
                       alignSelf: "center",
-                      background: "#3f823b",
+                      background: "#397618",
                       marginBottom: "2px",
                       borderRadius: "25px",
+                      "&:hover": {
+                        backgroundColor: "#6eb634",
+                      },
                     }}
                     type="submit"
                     variant="contained"
@@ -217,7 +221,7 @@ const CreateAuctions = ({ createauction, loading }) => {
           </CardContent>
         </Card>
       </div>
-    </>
+    </div>
   );
 };
 

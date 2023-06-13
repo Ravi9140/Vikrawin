@@ -27,7 +27,7 @@ import { connect } from "react-redux";
 
 const BidderResponsiveAppBar = ({ logoutbidder }) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(0);
   const theme = useTheme();
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));

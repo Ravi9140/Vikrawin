@@ -9,13 +9,14 @@ import {
   Link,
   Checkbox,
 } from "@mui/material";
-
+import BidderResponsiveAppBar from "./BidderNav";
 import { Navigate, Link as LINK } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginbidder } from "../actions/authbidder";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import BidderLayout from "./BidderLayout";
 
 const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
   const [formData, setFormData] = useState({
@@ -34,24 +35,21 @@ const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
   };
   const paperStyle = {
     padding: 10,
-    // alignSelf: "center",
-    // height: "65vh",
-    // minWidth: "45vw",
-    // maxWidth: "35vw",
-    // marginLeft: "50%",
-    // marginRight: "50%",
-    // "@media (max-width: 100px)": {
-    //   display: "none",
-    // },
     margin: "20px  auto",
   };
+
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };
 
   // Redirect if Logged In
 
   if (isAuthenticatedBidder) {
-    return <Navigate to="/BidderUpcomingEvents" />;
+    return (
+      <>
+        <BidderLayout />
+        <Navigate to="/BidderUpcomingEvents" />
+      </>
+    );
   }
   return (
     <>

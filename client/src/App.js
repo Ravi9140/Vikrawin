@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Switch } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import { useEffect } from "react";
 
@@ -39,6 +39,9 @@ import ForgotPassword from "./Pages/Farmer/ForgotPassword";
 import ResetPassword from "./Pages/Farmer/ResetPassword";
 import BForgotPassword from "./Pages/Bidder/BForgotPassword";
 import BResetPassword from "./Pages/Bidder/BResetPassword";
+import PageLayout from "./Components/BidderLayout";
+import BidderLayout from "./Components/BidderLayout";
+import FarmerLayout from "./Components/FarmerLayout";
 
 function App() {
   // useEffect(() => {}, []);
@@ -50,9 +53,15 @@ function App() {
     store.dispatch(loadBidder());
     store.dispatch(loadFarmer());
   }, []);
+
+  console.log("Hi there. Here is the store");
+  console.log(store);
+
   return (
     <Provider store={store}>
       <Alert />
+
+      {/* Common Pages */}
       <Routes>
         <Route
           path="*"
@@ -75,42 +84,55 @@ function App() {
         <Route path="/BidderResetPassword" element={<BResetPassword />} />
 
         <Route path="/" element={<HomePage />} />
-        {/* FarmerPages */}
+        {/* </Routes> */}
 
-        <Route
-          path="/FarmerHistory"
-          element={<FarmerPrivateRoute component={History} />}
-        />
-        <Route
-          path="/FarmerMyCrops"
-          element={<FarmerPrivateRoute component={MyCrops} />}
-        />
-        <Route
-          path="/FarmerProfile"
-          element={<FarmerPrivateRoute component={Profile} />}
-        />
-        <Route
-          path="/FarmerCreateAuctions"
-          element={<FarmerPrivateRoute component={CreateAuctions} />}
-        />
+        {/* FarmerPages */}
+        {/* <FarmerLayout>
+        <Routes> */}
+        <Route element={<FarmerLayout />}>
+          <Route
+            path="/FarmerHistory"
+            element={<FarmerPrivateRoute component={History} />}
+          />
+          <Route
+            path="/FarmerMyCrops"
+            element={<FarmerPrivateRoute component={MyCrops} />}
+          />
+          <Route
+            path="/FarmerProfile"
+            element={<FarmerPrivateRoute component={Profile} />}
+          />
+          <Route
+            path="/FarmerCreateAuctions"
+            element={<FarmerPrivateRoute component={CreateAuctions} />}
+          />
+        </Route>
+        {/* </Routes>
+      </FarmerLayout> */}
 
         {/* BidderPages */}
-        <Route
-          path="/BidderUpcomingEvents"
-          element={<BidderPrivateRoute component={UpcomingEvents} />}
-        />
-        <Route
-          path="/BidderMarketPlace"
-          element={<BidderPrivateRoute component={MarketPlace} />}
-        />
-        <Route
-          path="/BidderHistory"
-          element={<BidderPrivateRoute component={BidderHistory} />}
-        />
-        <Route
-          path="/BidderProfile"
-          element={<BidderPrivateRoute component={BidderProfile} />}
-        />
+        {/* <BidderLayout>
+        <Routes> */}
+        <Route element={<BidderLayout />}>
+          <Route
+            path="/BidderUpcomingEvents"
+            element={<BidderPrivateRoute component={UpcomingEvents} />}
+          />
+          <Route
+            path="/BidderMarketPlace"
+            element={<BidderPrivateRoute component={MarketPlace} />}
+          />
+          <Route
+            path="/BidderHistory"
+            element={<BidderPrivateRoute component={BidderHistory} />}
+          />
+          <Route
+            path="/BidderProfile"
+            element={<BidderPrivateRoute component={BidderProfile} />}
+          />
+        </Route>
+        {/* </Routes>
+      </BidderLayout> */}
       </Routes>
     </Provider>
   );

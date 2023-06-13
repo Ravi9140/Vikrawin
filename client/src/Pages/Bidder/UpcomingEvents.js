@@ -154,7 +154,7 @@ const UpcomingEvents = ({
   return (
     <>
       <div style={{ backgroundColor: "#f8f8ff" }}>
-        <BidderResponsiveAppBar />
+        {/* <BidderResponsiveAppBar /> */}
 
         <h1
           style={{
