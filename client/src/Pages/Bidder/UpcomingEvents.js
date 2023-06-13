@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
-import BidderResponsiveAppBar from "../../Components/BidderNav";
-import {
-  Grid,
-  Table,
-  TableContainer,
-  TableRow,
-  TableCell,
-} from "@mui/material";
+
+import { Grid } from "@mui/material";
 
 import { Button } from "@mui/material";
 import "../../static/button2.css";
@@ -42,21 +36,24 @@ const UpcomingEvents = ({
     {
       field: "cropName",
       headerName: "Crop Name",
-      width: 120,
+      minWidth: 120,
+      flex: 1,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "createrFarmerName",
       headerName: "Farmer Name",
-      width: 180,
+      minWidth: 160,
+      flex: 1,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "createrFarmerAddress",
       headerName: "Farmer Address",
-      width: 250,
+      minWidth: 220,
+      flex: 1,
       align: "left",
       headerAlign: "left",
     },
@@ -64,14 +61,16 @@ const UpcomingEvents = ({
     {
       field: "currentBidderName",
       headerName: "Bidder Name",
-      width: 180,
+      minWidth: 150,
+      flex: 1,
       align: "left",
       headerAlign: "left",
     },
     {
       field: "currentBid",
       headerName: "Current Bid (₹)",
-      width: 130,
+      minWidth: 120,
+      flex: 1,
       type: "number",
       align: "right",
       headerAlign: "right",
@@ -87,7 +86,8 @@ const UpcomingEvents = ({
     {
       field: "sellQuantity",
       headerName: "Quantity (kg)",
-      width: 120,
+      minWidth: 120,
+      flex: 1,
       type: "number",
       align: "right",
       headerAlign: "right",
@@ -95,7 +95,8 @@ const UpcomingEvents = ({
     {
       field: "basePrice",
       headerName: "Base Price (₹)",
-      width: 130,
+      minWidth: 120,
+      flex: 1,
       type: "number",
       align: "right",
       headerAlign: "right",
@@ -111,19 +112,26 @@ const UpcomingEvents = ({
 
     {
       field: "Register",
-      width: 120,
+      align: "center",
+      headerAlign: "center",
+      minWidth: 140,
+      flex:1,
       renderCell: (cellValues) => {
         return (
           <Button
-            variant="contained"
-            color="primary"
             sx={{
-              marginLeft: "auto",
-              background: "green",
-              fontSize: "12px",
-              borderRadius: "25px",
+              alignContent: "center",
+              background: "#397618",
+              marginX: "auto",   
               color: "white",
-              //width: "70",
+              width: "100px",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "25px",
+              fontSize: { xs: "12px", sm: "12px" },
+              "&:hover": {
+                backgroundColor: "#6eb634",
+              },
             }}
             onClick={(event) => {
               registerauction(cellValues.row.biddingeventId);
@@ -153,65 +161,49 @@ const UpcomingEvents = ({
   }
   return (
     <>
-      <div style={{ backgroundColor: "#f8f8ff" }}>
-        {/* <BidderResponsiveAppBar /> */}
-
-        <h1
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            fontFamily:
-              "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
-          }}
-        >
-          <GavelIcon fontSize="large" style={{ marginRight: "10px" }} />
-          Available Auctions
-        </h1>
-
-        <Grid container sx={{ marginTop: "20px" }}>
-          <Grid item md={9} xs={6}></Grid>
-          <Grid md={3} xs={6} item>
-            <input
-              type="search"
-              placeholder="Search"
-              className="Serach"
-              style={{ height: "40px", width: "95%" }}
-              onChange={(e) => SetQuery(e.target.value)}
-            ></input>
-          </Grid>
+      <Grid container sx={{ marginTop: "20px" }}>
+        <Grid item md={9} xs={6}></Grid>
+        <Grid md={3} xs={6} item>
+          <input
+            type="search"
+            placeholder="Search"
+            className="Serach"
+            style={{ height: "40px", width: "95%" }}
+            onChange={(e) => SetQuery(e.target.value)}
+          ></input>
         </Grid>
-        <div style={{ height: "65vh", width: "100%" }}>
-          <DataGrid
-            sx={{
-              margin: "10px",
-              justifyContent: "center",
-              fontWeight: "light",
-              borderRadius: "5px",
-              boxShadow: "15px 15px 15px gray",
-              border: 2,
-              borderColor: "green",
+      </Grid>
+      <div style={{ height: "65vh", width: "100%", marginTop: "35px" }}>
+        <DataGrid
+          sx={{
+            margin: "10px",
+            justifyContent: "center",
+            fontWeight: "light",
+            borderRadius: "5px",
+            boxShadow: "15px 15px 15px gray",
+            border: 2,
+            borderColor: "green",
 
-              "& .MuiDataGrid-cell:hover": {
-                color: "green",
-              },
+            "& .MuiDataGrid-cell:hover": {
+              color: "green",
+            },
 
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: "#2f4f4f",
-                color: "white",
-                fontSize: 16,
-              },
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: "#90d042",
+              color: "white",
+              fontSize: 16,
+            },
 
-              fontFamily: "sans-serif,Times new roman,algerian",
-            }}
-            rowHeight={50}
-            rows={search(auctions)}
-            columns={columns}
-            getRowId={(auctions) => auctions.biddingeventId}
-            pageSize={noOfRows}
-            rowsPerPageOptions={[5, 10, 15, 20, 25]}
-            onPageSizeChange={(newPageSize) => SetRows(newPageSize)}
-          />
-        </div>
+            fontFamily: "sans-serif,Times new roman,algerian",
+          }}
+          rowHeight={50}
+          rows={search(auctions)}
+          columns={columns}
+          getRowId={(auctions) => auctions.biddingeventId}
+          pageSize={noOfRows}
+          rowsPerPageOptions={[5, 10, 15, 20, 25]}
+          onPageSizeChange={(newPageSize) => SetRows(newPageSize)}
+        />
       </div>
     </>
   );

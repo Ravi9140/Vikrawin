@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
-
 import { DataGrid } from "@mui/x-data-grid";
-
-import FarmerResponsiveAppBar from "../../Components/FarmerNav";
-
-import HistoryIcon from "@mui/icons-material/History";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -17,9 +12,6 @@ const History = ({ getfarmerhistory, history, loading }) => {
     getfarmerhistory();
   }, []);
 
-  // useEffect(() => {
-  //   getfarmerhistory();
-  // }, [noOfRows]);
 
   const columns = [
     // { field: 'bid', headerName: 'BID', width: 90  },

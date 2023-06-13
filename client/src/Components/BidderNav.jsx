@@ -22,12 +22,26 @@ import "./../static/nav.css";
 import { logoutbidder } from "../actions/authbidder";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 // const PAGES=["Auctions","CreateAuctions","History","MyCrops","Profile","UpdateAccount"];
 
 const BidderResponsiveAppBar = ({ logoutbidder }) => {
+  const location = useLocation();
+  let curpage = 0;
+
+  if (location.pathname === "/BidderMarketPlace") {
+    curpage = 1;
+  } else if (location.pathname === "/BidderUpcomingEvents") {
+    curpage = 0;
+  } else if (location.pathname === "/BidderHistory") {
+    curpage = 2;
+  } else {
+    curpage = 3;
+  }
+
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(curpage);
   const theme = useTheme();
   console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
@@ -44,7 +58,7 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
 
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "#222" }} position="sticky">
+      <AppBar sx={{ background: "white" }} position="sticky">
         <Toolbar>
           <Typography
             variant="h6"
@@ -55,7 +69,7 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
           >
             <img
               style={{
-                backgroundColor: "#222",
+                backgroundColor: "white",
                 height: "75px",
               }}
               src={logo}
@@ -69,35 +83,28 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
           ) : (
             <>
               <Tabs
-                TabIndicatorProps={{ style: { background: "white" } }}
+                TabIndicatorProps={{
+                  style: { background: "white", backgroundColor: "white" },
+                }}
                 sx={{
                   marginLeft: "auto",
-                  color: "white",
-
-                  fontSize: "22px",
-
-                  // textDecoration: "underline",
+                  color: "black",
                 }}
                 indicatorColor="secondary"
                 textColor="white"
                 value={value}
                 onChange={(e, value) => setValue(value)}
               >
-                {/* <Tab
-                  className="tab"
-                  sx={{
-                    // fontWeight: "bold",
-                    fontSize: "17px",
-                  }}
-                  label="Home"
-                  to="/BidderHome"
-                  component={Link}
-                /> */}
+      
                 <Tab
-                  className="tab"
                   sx={{
-                    // fontWeight: "bold",
+                    fontWeight: "",
                     fontSize: "17px",
+                    "&:hover": { backgroundColor: "white", color: "#90d042" },
+                    "&.Mui-selected": {
+                      color: "#90d042",
+                      fontWeight: "bold",
+                    },
                   }}
                   label="Auctions"
                   value={0}
@@ -107,8 +114,13 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
                 <Tab
                   className="tab"
                   sx={{
-                    // fontWeight: "bold",
+                    fontWeight: "",
                     fontSize: "17px",
+                    "&:hover": { backgroundColor: "white", color: "#90d042" },
+                    "&.Mui-selected": {
+                      color: "#90d042",
+                      fontWeight: "bold",
+                    },
                   }}
                   label="Market Place"
                   value={1}
@@ -118,8 +130,13 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
                 <Tab
                   className="tab"
                   sx={{
-                    // fontWeight: "bold",
+                    fontWeight: "",
                     fontSize: "17px",
+                    "&:hover": { backgroundColor: "white", color: "#90d042" },
+                    "&.Mui-selected": {
+                      color: "#90d042",
+                      fontWeight: "bold",
+                    },
                   }}
                   label="History"
                   value={2}
@@ -129,8 +146,13 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
                 <Tab
                   className="tab"
                   sx={{
-                    // fontWeight: "bold",
+                    fontWeight: "",
                     fontSize: "17px",
+                    "&:hover": { backgroundColor: "white", color: "#90d042" },
+                    "&.Mui-selected": {
+                      color: "#90d042",
+                      fontWeight: "bold",
+                    },
                   }}
                   label="Profile"
                   value={3}
@@ -140,13 +162,19 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
               </Tabs>
 
               <Button
-                className="tab1"
+                // className="tab1"
                 sx={{
-                  fontWeight: "bolder",
                   marginLeft: "auto",
-                  background: "#ea4f4c",
+                  background: "#90d042",
                   color: "white",
+                  paddingX: "25px",
                   borderRadius: "25px",
+                  fontWeight: "bolder",
+                  "&:hover": {
+                    backgroundColor: "white",
+                    border: "1px solid #90d042",
+                    color: "#90d042",
+                  },
                 }}
                 onClick={handleClickOpen}
                 // component={Link}

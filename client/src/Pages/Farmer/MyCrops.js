@@ -89,10 +89,10 @@ const MyCrops = ({
                   style={{
                     justifyContent: "center",
                     alignItems: "center",
-
+                    borderRadius: "15px",
                     alignContent: "center",
-                    border: "2px solid gray",
-                    boxShadow: "3px 2px 2px 2px rgba(0, 0, 0, 0.3)",
+                    // border: "1px solid gray",
+                    boxShadow: " 2px rgba(0, 0, 0, 0.2)",
                     "&:hover": {
                       backgroundColor: "white",
                     },
@@ -115,33 +115,33 @@ const MyCrops = ({
                         <Table
                           sx={{
                             align: "center",
-                            border: "1px solid #397618",
+                            border: "1px solid #90d042",
                           }}
                         >
                           <TableRow
                             sx={{
-                              border: "1px solid #397618",
+                              border: "1px solid #90d042",
                             }}
                           >
                             <TableCell
-                              sx={{ borderBottom: "none", fontSize: "19px" }}
+                              sx={{ borderBottom: "none", fontSize: "18px" }}
                             >
                               Quantity:{" "}
                             </TableCell>
                             <TableCell
-                              sx={{ borderBottom: "none", fontSize: "19px" }}
+                              sx={{ borderBottom: "none", fontSize: "18px" }}
                             >
                               {elem.sellQuantity} kg
                             </TableCell>
                           </TableRow>
                           <TableRow>
                             <TableCell
-                              sx={{ borderBottom: "none", fontSize: "19px" }}
+                              sx={{ borderBottom: "none", fontSize: "18px" }}
                             >
                               Base Price:{" "}
                             </TableCell>
                             <TableCell
-                              sx={{ borderBottom: "none", fontSize: "19px" }}
+                              sx={{ borderBottom: "none", fontSize: "18px" }}
                             >
                               ₹{elem.basePrice}
                             </TableCell>
@@ -212,13 +212,14 @@ const MyCrops = ({
                           alignContent: "center",
                           background: "#397618",
                           marginX: "auto",
+                          height: "38px",
                           color: "white",
                           width: "50%",
                           justifyContent: "center",
                           alignItems: "center",
                           borderRadius: "30px",
                           marginBottom: "15px",
-                          fontSize: { xs: "10px", sm: "15px" },
+                          fontSize: { xs: "12px", sm: "12px" },
                           "&:hover": {
                             backgroundColor: "#6eb634",
                           },
@@ -261,7 +262,7 @@ const MyCrops = ({
                           });
                         }}
                       >
-                        END BIDDING
+                        End Bidding
                       </Button>
                     </div>
                   </CardActionArea>

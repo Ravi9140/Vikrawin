@@ -105,7 +105,7 @@ const Profile = ({ updatefarmerprofile }) => {
               alignItems: "center",
               borderRadius: "5%",
               width: {
-                xs: "50vw",
+                xs: "90vw",
                 sm: "72vw",
                 md: "78vw",
                 lg: "72vw",
@@ -131,7 +131,6 @@ const Profile = ({ updatefarmerprofile }) => {
                       sx={{
                         paddingTop: "10px",
                         borderBottom: "solid #90d042 2px",
-                        color: "yellow",
                         textColor: "orange",
                       }}
                       value={name}

@@ -8,12 +8,10 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
-import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 import { Button, CardActionArea, CardHeader, Box } from "@mui/material";
-import BidderResponsiveAppBar from "../../Components/BidderNav";
 import PlaceBidDialog from "../../Components/PlaceBidDalog";
 
 import { marketplace, placebid } from "../../actions/marketplace";
@@ -50,7 +48,7 @@ const MarketPlace = ({
   const searchEndLive = (data) => {
     if (endLive === "live") {
       return data.filter((item) => !item.isSold);
-    } else if (endLive == "closed") {
+    } else if (endLive === "closed") {
       return data.filter((item) => item.isSold);
     } else {
       return data;
@@ -68,13 +66,11 @@ const MarketPlace = ({
 
   var today = new Date().toISOString().slice(0, 16);
 
-  console.log(userId);
   if (loading) {
     return <Spinner />;
   }
   return (
-    <div style={{ backgroundColor: "#f8f8ff" }}>
-      {/* <BidderResponsiveAppBar /> */}
+    <div>
       <div
         style={{
           display: "flex",
@@ -82,26 +78,11 @@ const MarketPlace = ({
           alignItems: "center",
         }}
         position="sticky"
-      >
-        <div style={{ width: "100vw" }}>
-          <h1
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              fontFamily:
-                "SuisseWorks,Georgia,Times,Times new roman,serif,'apple color emoji','segoe ui emoji','segoe ui symbol'",
-            }}
-          >
-            <AddBusinessIcon fontSize="large" style={{ marginRight: "10px" }} />
-            Market Place
-          </h1>
-        </div>
-      </div>
+      ></div>
       <Grid container sx={{ marginTop: "20px" }}>
         <Grid item md={3} xs={6}>
           <ToggleButtonGroup
             exclusive
-            color="primary"
             value={endLive}
             onChange={handleEndLive}
             // onChange={(e) => setEndLive(e.target.value)}
@@ -114,47 +95,52 @@ const MarketPlace = ({
           >
             <ToggleButton
               value="live"
-              // style={{
-              //   backgroundColor: "black",
-              //   color: "white",
-              //   borderColor: "white",
-              // }}
+              sx={{
+                fontSize: "17px",
+                "&:hover": { color: "#397618", fontWeight: "bold" },
+                "&.Mui-selected": {
+                  backgroundColor: "#397618",
+                  color: "white",
+                  fontWeight: "bold",
+                },
+              }}
             >
               Live
             </ToggleButton>
             <ToggleButton
               value="all"
               aria-label="centered"
-              // style={{
-              //   backgroundColor: "black",
-              //   color: "white",
-              //   borderColor: "white",
-              // }}
+              sx={{
+                fontSize: "17px",
+                "&:hover": { color: "#397618", fontWeight: "bold" },
+                "&.Mui-selected": {
+                  backgroundColor: "#397618",
+                  color: "white",
+                  fontWeight: "bold",
+                },
+              }}
             >
               All
             </ToggleButton>
             <ToggleButton
               value="closed"
               aria-label="right aligned"
-              // style={{
-              //   backgroundColor: "black",
-              //   color: "white",
-              //   borderColor: "white",
-              // }}
+              sx={{
+                fontSize: "17px",
+                "&:hover": { color: "#397618", fontWeight: "bold" },
+                "&.Mui-selected": {
+                  backgroundColor: "#397618",
+                  color: "white",
+                  fontWeight: "bold",
+                },
+              }}
             >
               Closed
             </ToggleButton>
           </ToggleButtonGroup>
-          {/* <input
-            type="search"
-            placeholder="Search"
-            className="Serach"
-            style={{ height: "40px", width: "85%", marginLeft: "10%" }}
-            onChange={(e) => setEndLive(e.target.value)}
-          ></input> */}
         </Grid>
-        <Grid item md={6} xs={0}></Grid>
-        <Grid md={3} xs={6} item>
+        <Grid item md={6} xs={2}></Grid>
+        <Grid md={3} xs={4} item>
           <input
             type="search"
             placeholder="Search"
@@ -166,26 +152,38 @@ const MarketPlace = ({
       </Grid>
       <div style={{ padding: 30 }}>
         <Box sx={{ width: "100%" }}>
-          <Grid container spacing={4}>
+          <Grid container spacing={3}>
             {search(searchEndLive(registeredevents)).map((elem) => (
               <Grid
                 item
                 xs={12}
                 sm={6}
-                md={3}
+                md={4}
+                lg={3}
                 key={registeredevents.indexOf(elem)}
               >
                 <Card
-                  style={{
+                  sx={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "15px",
                     alignContent: "center",
+                    maxWidth: { md: "350px" },
+                    // minWidth:"300px",
+                    // border: "1px solid gray",
+                    boxShadow: " 2px rgba(0, 0, 0, 0.2)",
+                    "&:hover": {
+                      backgroundColor: "white",
+                    },
                   }}
                 >
                   <CardHeader
                     sx={{
                       textAlign: "center",
                       fontWeight: "bold",
-                      background: "rgba(200,247,197)",
-                      height: "4rem",
+                      background: "#90d042",
+                      opacity: "70%",
+                      // height: "4rem",
                     }}
                     subheaderTypographyProps={{ fontSize: "14px" }}
                     titleTypographyProps={{ fontSize: "30px" }}
@@ -193,39 +191,82 @@ const MarketPlace = ({
                     subheader={elem.createrFarmerAddress}
                   />
                   <CardActionArea>
-                    <CardContent style={{ height: "18rem" }}>
-                      <TableContainer style={{ height: "10rem" }}>
+                    <CardContent
+                      style={{ minHeight: "22rem", height: "22rem" }}
+                    >
+                      <TableContainer style={{}}>
                         <Table
                           sx={{
                             align: "center",
-                            background: "gray",
-                            color: "white",
+                            border: "1px solid #90d042",
                           }}
                         >
-                          <TableRow>
-                            <TableCell>Farmer:</TableCell>
-                            <TableCell>{elem.createrFarmerName}</TableCell>
+                          <TableRow
+                            sx={{
+                              border: "1px solid #90d042",
+                            }}
+                          >
+                            <TableCell
+                              sx={{
+                                borderBottom: "none",
+                                fontSize: "16px",
+                              }}
+                            >
+                              Farmer:
+                            </TableCell>
+                            <TableCell
+                              sx={{
+                                borderBottom: "none",
+                                fontSize: "16px",
+                                paddingRight: "opx",
+                              }}
+                            >
+                              {elem.createrFarmerName}
+                            </TableCell>
+                          </TableRow>
+                          <TableRow
+                            sx={{
+                              border: "1px solid #90d042",
+                            }}
+                          >
+                            <TableCell
+                              sx={{ borderBottom: "none", fontSize: "16px" }}
+                            >
+                              Quantity:{" "}
+                            </TableCell>
+                            <TableCell
+                              sx={{ borderBottom: "none", fontSize: "16px" }}
+                            >
+                              {elem.sellQuantity} kg
+                            </TableCell>
                           </TableRow>
                           <TableRow>
-                            <TableCell>Quantity: </TableCell>
-                            <TableCell>{elem.sellQuantity} kg</TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>Base Price: </TableCell>
-                            <TableCell>₹{elem.basePrice}</TableCell>
+                            <TableCell
+                              sx={{
+                                borderBottom: "none",
+                                fontSize: "16px",
+                              }}
+                            >
+                              Base Price:{" "}
+                            </TableCell>
+                            <TableCell
+                              sx={{ borderBottom: "none", fontSize: "16px" }}
+                            >
+                              ₹{elem.basePrice}
+                            </TableCell>
                           </TableRow>
                         </Table>
                       </TableContainer>
 
                       <TableContainer style={{}}>
                         <Table>
-                          <TableRow>
+                          <TableRow sx={{ borderBottom: "none" }}>
                             <TableCell
                               sx={{
                                 align: "center",
                                 fontWeight: "bold",
-                                color: "green",
-                                fontSize: "16px",
+                                color: "#397618",
+                                fontSize: "18px",
                               }}
                             >
                               Current Bid:{""}
@@ -234,8 +275,8 @@ const MarketPlace = ({
                               sx={{
                                 align: "center",
                                 fontWeight: "bold",
-                                color: "green",
-                                fontSize: "16px",
+                                color: "#397618",
+                                fontSize: "18px",
                               }}
                             >
                               Bidder Name:{""}
@@ -248,6 +289,7 @@ const MarketPlace = ({
                                 fontWeight: "bold",
                                 color: "black",
                                 fontSize: "15px",
+                                borderBottom: "none",
                               }}
                             >
                               ₹{elem.currentBid}
@@ -258,116 +300,89 @@ const MarketPlace = ({
                                 fontWeight: "bold",
                                 color: "black",
                                 fontSize: "15px",
+                                borderBottom: "none",
+                                paddingRight: "0px",
                               }}
                             >
-                              {elem.currentBidderId == userId
+                              {elem.currentBidderId === userId
                                 ? elem.currentBidderName + " (You)"
                                 : elem.currentBidderName}
                             </TableCell>
                           </TableRow>
-                          {/* <TableRow>
-                            <TableCell
-                              sx={{
-                                align: "center",
-                                fontWeight: "bold",
-                                color: "green",
-                                fontSize: "16px",
-                              }}
-                            >
-                              Ends At:
-                            </TableCell>
-                            <TableCell
-                              sx={{
-                                align: "center",
-                                fontWeight: "bold",
-                                // color: "green",
-                                fontSize: "12px",
-                              }}
-                            >
-                              {today}
-                            </TableCell>
-                          </TableRow> */}
                         </Table>
                       </TableContainer>
                     </CardContent>
 
-                    {elem.isSold ? (
-                      <Button
-                        variant="contained"
-                        fullWidth
-                        sx={{
-                          alignContent: "center",
-                          background: "black",
-                          marginBottom: "5px",
-                          marginTopm: "0px",
-                        }}
-                        onClick={() => {
-                          setAlert("Bidding Ended!!", "error");
-                        }}
-                      >
-                        Bidding Ended
-                      </Button>
-                    ) : elem.currentBidderId == userId ? (
-                      <Button
-                        variant="contained"
-                        fullWidth
-                        sx={{
-                          alignContent: "center",
-                          background: "#3f823b",
-                          marginBottom: "5px",
-                          marginTopm: "0px",
-                        }}
-                        onClick={() => {
-                          setAlert(
-                            "Highest bid already belongs to You",
-                            "error"
-                          );
-                        }}
-                      >
-                        Place Bid
-                      </Button>
-                    ) : (
-                      <PlaceBidDialog
-                        biddingId={elem.biddingeventId}
-                        cur_bid={elem.currentBid}
-                        quantity={elem.sellQuantity}
-                        your_bid={
-                          elem.currentBid > 0 ? elem.currentBid : elem.basePrice
-                        }
-                        disabled
-                      />
-                    )}
-
-                    {/* {elem.currentBidderId == userId ? (
-                      <Button
-                        variant="contained"
-                        fullWidth
-                        sx={{
-                          alignContent: "center",
-                          background: "#3f823b",
-                          marginBottom: "5px",
-                          marginTopm: "0px",
-                        }}
-                        onClick={() => {
-                          setAlert(
-                            "Highest bid already belongs to You",
-                            "error"
-                          );
-                        }}
-                      >
-                        Place Bid
-                      </Button>
-                    ) : (
-                      <PlaceBidDialog
-                        biddingId={elem.biddingeventId}
-                        cur_bid={elem.currentBid}
-                        quantity={elem.sellQuantity}
-                        your_bid={
-                          elem.currentBid > 0 ? elem.currentBid : elem.basePrice
-                        }
-                        disabled
-                      />
-                    )} */}
+                    <div
+                      style={{
+                        display: "flex",
+                        width: "99%",
+                      }}
+                    >
+                      {elem.isSold ? (
+                        <Button
+                          sx={{
+                            backgroundColor: "white",
+                            border: "1px solid #90d042",
+                            color: "#90d042",
+                            alignContent: "center",
+                            background: "white",
+                            marginX: "auto",
+                            height: "38px",
+                            width: "50%",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: "30px",
+                            marginBottom: "15px",
+                            fontSize: { xs: "12px", sm: "12px" },
+                          }}
+                          onClick={() => {
+                            setAlert("Bidding Ended!!", "error");
+                          }}
+                        >
+                          Bidding Ended
+                        </Button>
+                      ) : elem.currentBidderId === userId ? (
+                        <Button
+                          sx={{
+                            alignContent: "center",
+                            background: "#397618",
+                            marginX: "auto",
+                            height: "38px",
+                            color: "white",
+                            width: "50%",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: "30px",
+                            marginBottom: "15px",
+                            fontSize: { xs: "12px", sm: "12px" },
+                            "&:hover": {
+                              backgroundColor: "#6eb634",
+                            },
+                          }}
+                          onClick={() => {
+                            setAlert(
+                              "Highest bid already belongs to You",
+                              "error"
+                            );
+                          }}
+                        >
+                          Place Bid
+                        </Button>
+                      ) : (
+                        <PlaceBidDialog
+                          biddingId={elem.biddingeventId}
+                          cur_bid={elem.currentBid}
+                          quantity={elem.sellQuantity}
+                          your_bid={
+                            elem.currentBid > 0
+                              ? elem.currentBid
+                              : elem.basePrice
+                          }
+                          disabled
+                        />
+                      )}
+                    </div>
                   </CardActionArea>
                 </Card>
               </Grid>

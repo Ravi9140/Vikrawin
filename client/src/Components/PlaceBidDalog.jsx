@@ -82,15 +82,23 @@ export const PlaceBidDialog = ({
     }
   };
   return (
-    <div>
+    <div style={{ display: "flex", width: "100%" }}>
       <Button
-        variant="contained"
-        fullWidth
         sx={{
           alignContent: "center",
-          background: "#3f823b",
-          marginBottom: "5px",
-          marginTopm: "0px",
+          background: "#397618",
+          marginX: "auto",
+          height: "38px",
+          color: "white",
+          width: "50%",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "30px",
+          marginBottom: "15px",
+          fontSize: { xs: "12px", sm: "12px" },
+          "&:hover": {
+            backgroundColor: "#6eb634",
+          },
         }}
         onClick={handleClickOpen}
       >
