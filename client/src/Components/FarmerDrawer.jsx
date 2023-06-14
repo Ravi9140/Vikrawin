@@ -41,7 +41,12 @@ const FarmerDrawerComp = ({ logoutfarmer }) => {
         onClose={() => setOpenDrawer(false)}
       >
         <List>
-          <ListItemButton onClick={() => setOpenDrawer(false)}>
+          <ListItemButton
+            sx={{
+              justifyContent: "center",
+            }}
+            onClick={() => setOpenDrawer(false)}
+          >
             <ListItemIcon>
               <ListItemText>
                 <Link
@@ -54,7 +59,12 @@ const FarmerDrawerComp = ({ logoutfarmer }) => {
             </ListItemIcon>
           </ListItemButton>
 
-          <ListItemButton onClick={() => setOpenDrawer(false)}>
+          <ListItemButton
+            sx={{
+              justifyContent: "center",
+            }}
+            onClick={() => setOpenDrawer(false)}
+          >
             <ListItemIcon>
               <ListItemText>
                 <Link
@@ -67,7 +77,12 @@ const FarmerDrawerComp = ({ logoutfarmer }) => {
             </ListItemIcon>
           </ListItemButton>
 
-          <ListItemButton onClick={() => setOpenDrawer(false)}>
+          <ListItemButton
+            sx={{
+              justifyContent: "center",
+            }}
+            onClick={() => setOpenDrawer(false)}
+          >
             <ListItemIcon>
               <ListItemText>
                 <Link
@@ -80,7 +95,12 @@ const FarmerDrawerComp = ({ logoutfarmer }) => {
             </ListItemIcon>
           </ListItemButton>
 
-          <ListItemButton onClick={() => setOpenDrawer(false)}>
+          <ListItemButton
+            sx={{
+              justifyContent: "center",
+            }}
+            onClick={() => setOpenDrawer(false)}
+          >
             <ListItemIcon>
               <ListItemText>
                 <Link
@@ -94,13 +114,22 @@ const FarmerDrawerComp = ({ logoutfarmer }) => {
           </ListItemButton>
 
           <ListItemButton
-            style={{ background: "#397618" }}
+            sx={{
+              background: "#397618",
+              borderRadius: "30px",
+              justifyContent: "center",
+
+              "&:hover": {
+                background: "white",
+                border: "1px solid #397618",
+              },
+            }}
             component={Link}
             onClick={logoutfarmer}
             to="/"
           >
             <ListItemIcon>
-              <ListItemText style={{ color: "white" }}>Logout</ListItemText>
+              <ListItemText style={{ color: "black" }}>Logout</ListItemText>
             </ListItemIcon>
           </ListItemButton>
         </List>

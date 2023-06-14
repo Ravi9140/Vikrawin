@@ -8,7 +8,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutbidder } from "../actions/authbidder";
@@ -33,6 +33,7 @@ const path = [
 
 const BidderDrawerComp = ({ logoutbidder }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const location = useLocation();
 
   return (
     <React.Fragment>
@@ -42,19 +43,13 @@ const BidderDrawerComp = ({ logoutbidder }) => {
         onClose={() => setOpenDrawer(false)}
       >
         <List>
-          {/*pages.map((page,path, index) => (
-            <ListItemButton onClick={()=> setOpenDrawer(false)} key={index}>
-              <ListItemIcon>
-                <ListItemText>
-                <Link style={{textDecoration:"none", color:"black" }} to={`/${path}`}>
-                      {page}
-                </Link>
-                </ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
-          ))*/}
-
-          <ListItemButton onClick={() => setOpenDrawer(false)}>
+          {location.pathname === "/BidderUpcomingEvents"}
+          <ListItemButton
+            sx={{
+              justifyContent: "center",
+            }}
+            onClick={() => setOpenDrawer(false)}
+          >
             <ListItemIcon>
               <ListItemText>
                 <Link
@@ -67,7 +62,12 @@ const BidderDrawerComp = ({ logoutbidder }) => {
             </ListItemIcon>
           </ListItemButton>
 
-          <ListItemButton onClick={() => setOpenDrawer(false)}>
+          <ListItemButton
+            sx={{
+              justifyContent: "center",
+            }}
+            onClick={() => setOpenDrawer(false)}
+          >
             <ListItemIcon>
               <ListItemText>
                 <Link
@@ -80,7 +80,12 @@ const BidderDrawerComp = ({ logoutbidder }) => {
             </ListItemIcon>
           </ListItemButton>
 
-          <ListItemButton onClick={() => setOpenDrawer(false)}>
+          <ListItemButton
+            sx={{
+              justifyContent: "center",
+            }}
+            onClick={() => setOpenDrawer(false)}
+          >
             <ListItemIcon>
               <ListItemText>
                 <Link
@@ -93,7 +98,12 @@ const BidderDrawerComp = ({ logoutbidder }) => {
             </ListItemIcon>
           </ListItemButton>
 
-          <ListItemButton onClick={() => setOpenDrawer(false)}>
+          <ListItemButton
+            sx={{
+              justifyContent: "center",
+            }}
+            onClick={() => setOpenDrawer(false)}
+          >
             <ListItemIcon>
               <ListItemText>
                 <Link
@@ -107,13 +117,28 @@ const BidderDrawerComp = ({ logoutbidder }) => {
           </ListItemButton>
 
           <ListItemButton
-            style={{ background: "#397618" }}
+            sx={{
+              background: "#397618",
+              borderRadius: "30px",
+              justifyContent: "center",
+
+              "&:hover": {
+                background: "white",
+                border: "1px solid #397618",
+              },
+            }}
             component={Link}
             onClick={logoutbidder}
             to="/"
           >
             <ListItemIcon>
-              <ListItemText style={{ color: "white" }}>Logout</ListItemText>
+              <ListItemText
+                style={{
+                  color: "black",
+                }}
+              >
+                Logout
+              </ListItemText>
             </ListItemIcon>
           </ListItemButton>
         </List>
