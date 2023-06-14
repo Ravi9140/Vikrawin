@@ -91,6 +91,11 @@ const MainResponsiveAppBar = ({ clearotpstate }) => {
                   borderRadius: "35px",
                   color: "black",
                   width: "70",
+                  "&:hover": {
+                    border: "1px solid #00ff7f",
+                    background: "white",
+                    color: "#00ff7f",
+                  },
                 }}
               >
                 LogIn

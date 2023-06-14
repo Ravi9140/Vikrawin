@@ -95,7 +95,6 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
                 value={value}
                 onChange={(e, value) => setValue(value)}
               >
-      
                 <Tab
                   sx={{
                     fontWeight: "",
@@ -197,10 +196,37 @@ const BidderResponsiveAppBar = ({ logoutbidder }) => {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button autoFocus onClick={handleClose}>
+                  <Button
+                    sx={{
+                      marginLeft: "auto",
+                      background: "#90d042",
+                      color: "white",
+                      borderRadius: "25px",
+                      fontWeight: "bolder",
+                      "&:hover": {
+                        backgroundColor: "white",
+                        border: "1px solid #90d042",
+                        color: "#90d042",
+                      },
+                    }}
+                    autoFocus
+                    onClick={handleClose}
+                  >
                     No
                   </Button>
                   <Button
+                    sx={{
+                      marginLeft: "10px",
+                      background: "#90d042",
+                      color: "white",
+                      borderRadius: "25px",
+                      fontWeight: "bolder",
+                      "&:hover": {
+                        backgroundColor: "white",
+                        border: "1px solid #90d042",
+                        color: "#90d042",
+                      },
+                    }}
                     onClick={logoutbidder}
                     component={Link}
                     to="/"
