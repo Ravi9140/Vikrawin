@@ -27,7 +27,7 @@ const sendEmail = (email1, token1) => {
     to: email,
     subject: "Reset Password Link - vikraWin",
     html:
-      '<p>You requested for reset password, kindly use this <a href="https://vikrawin.herokuapp.com/FarmerResetPassword?token=' +
+      '<p>You requested for reset password, kindly use this <a href="https://vikrawin-online-auction.netlify.app/FarmerResetPassword?token=' +
       token +
       '">link</a> to reset your password</p>',
   };
