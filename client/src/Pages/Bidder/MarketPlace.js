@@ -70,7 +70,7 @@ const MarketPlace = ({
     return <Spinner />;
   }
   return (
-    <div>
+    <div style={{backgroundColor:"#F5F5F5"}}>
       <div
         style={{
           display: "flex",
@@ -182,7 +182,7 @@ const MarketPlace = ({
                       textAlign: "center",
                       fontWeight: "bold",
                       background: "#90d042",
-                      opacity: "70%",
+                      opacity: "80%",
                       // height: "4rem",
                     }}
                     subheaderTypographyProps={{ fontSize: "14px" }}

@@ -82,175 +82,298 @@ export const PlaceBidDialog = ({
     }
   };
   return (
-    <div style={{ display: "flex", width: "100%" }}>
-      <Button
-        sx={{
-          alignContent: "center",
-          background: "#397618",
-          marginX: "auto",
-          height: "38px",
-          color: "white",
-          width: "50%",
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: "30px",
-          marginBottom: "15px",
-          fontSize: { xs: "12px", sm: "12px" },
-          "&:hover": {
-            backgroundColor: "#6eb634",
-          },
-        }}
-        onClick={handleClickOpen}
-      >
-        PLACE BID
-      </Button>
-
-      <BootstrapDialog
-        disableBackdropClick
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <BootstrapDialogTitle
-          id="customized-dialog-title"
-          onClose={handleClose}
-          onClick={() => {
-            updateCalc("");
-            handleClose();
+    <div style={{ width: "100%" }}>
+      <div style={{ display: "flex", width: "100%" }}>
+        <Button
+          sx={{
+            alignContent: "center",
+            background: "#397618",
+            marginX: "auto",
+            height: "38px",
+            color: "white",
+            width: "50%",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: "30px",
+            marginBottom: "15px",
+            fontSize: { xs: "12px", sm: "12px" },
+            "&:hover": {
+              backgroundColor: "#6eb634",
+            },
           }}
+          onClick={handleClickOpen}
         >
-          Increment The Bid Here
-        </BootstrapDialogTitle>
-        <DialogContent dividers disableBackdropClick>
-          <Grid container>
-            <Grid item sm={3} xs={3} md={3}>
-              <h3 style={{ marginLeft: "5px" }}>Current Bid:</h3>
-            </Grid>
-            <Grid item sm={9} xs={9} md={9}>
-              <TextField
-                id="outlined-basic"
-                placeHolder=" "
-                variant="outlined"
-                dividers
-                fullWidth="100%"
-                value={cur_bid}
-              />
-            </Grid>
-            <Grid item sm={3} xs={3} md={3}>
-              <h3 style={{ marginLeft: "5px" }}>Your Bid: </h3>
-            </Grid>
-            <Grid item sm={9} xs={9} md={3}>
-              {bidAmt ? (
-                <TextField
-                  id="outlined-basic"
-                  placeHolder=" "
-                  variant="outlined"
-                  dividers
-                  fullWidth="100%"
-                  value={bidAmt}
-                  //value={your_bid}
-                />
-              ) : (
-                <TextField
-                  id="outlined-basic"
-                  placeHolder=" "
-                  variant="outlined"
-                  dividers
-                  fullWidth="100%"
-                />
-              )}
-            </Grid>
-            <Grid item sm={3} xs={3} md={3}>
-              <h3 style={{ marginLeft: "5px" }}>Per/Kg Price: </h3>
-            </Grid>
-            <Grid item sm={9} xs={9} md={3}>
-              {bidAmt ? (
-                <TextField
-                  id="outlined-basic"
-                  placeHolder=" "
-                  variant="outlined"
-                  dividers
-                  fullWidth="100%"
-                  value={perKg}
-                  // value={your_bid}
-                />
-              ) : (
-                <TextField
-                  id="outlined-basic"
-                  placeHolder=" "
-                  variant="outlined"
-                  dividers
-                  fullWidth="100%"
-                />
-              )}
-            </Grid>
-          </Grid>
-
-          <Stack direction="row" spacing={2}>
-            <Button
-              sx={{ alignContent: "center", color: "green" }}
-              onClick={() => {
-                //your_bid=your_bid+100;
-                updateCalc(100);
-                handleClickOpen();
-              }}
-              style={{ marginLeft: "1rem", fontSize: "25px" }}
-            >
-              <b>+ ₹100</b>
-            </Button>
-
-            <Button
-              sx={{ alignContent: "center", color: "green" }}
-              onClick={() => {
-                updateCalc(500);
-                handleClickOpen();
-              }}
-              style={{ marginLeft: "1rem", fontSize: "25px" }}
-            >
-              <b>+ ₹500</b>
-            </Button>
-
-            <Button
-              sx={{ alignContent: "center", color: "green" }}
-              onClick={() => {
-                updateCalc(1000);
-                handleClickOpen();
-              }}
-              style={{ marginLeft: "1rem", fontSize: "25px" }}
-            >
-              <b>+ ₹1000</b>
-            </Button>
-
-            <Button
-              sx={{ alignContent: "center", color: "green" }}
-              onClick={() => {
-                updateCalc(2000);
-                handleClickOpen();
-              }}
-              style={{ marginLeft: "1rem", fontSize: "25px" }}
-            >
-              <b>+ ₹2000</b>
-            </Button>
-          </Stack>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            autoFocus
-            onClick={() => {
-              if (bidAmt == null || bidAmt <= cur_bid) {
-                setAlert("Bid should be more than current bid", "error");
-              } else {
-                placebid({ biddingId, bidAmt });
-                handleClose();
-                setCalc(cur_bid < 1 ? your_bid : null);
-                // updateCalc("");
-              }
+          PLACE BID
+        </Button>
+      </div>
+      <Grid container>
+        <Grid item xs={10} sm={8} md={6}>
+          <BootstrapDialog
+            sx={{
+              minWidth: "330px",
             }}
+            disableBackdropClick
+            onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+            open={open}
           >
-            PLACE BID
-          </Button>
-        </DialogActions>
-      </BootstrapDialog>
+            <BootstrapDialogTitle
+              id="customized-dialog-title"
+              onClose={handleClose}
+              sx={{
+                fontSize: { xs: "15px", sm: "18px", md: "22px" },
+                color: "#6eb634",
+              }}
+              onClick={() => {
+                updateCalc("");
+                handleClose();
+              }}
+            >
+              Increment The Bid Here
+            </BootstrapDialogTitle>
+            <DialogContent dividers disableBackdropClick>
+              <Grid container sx={{ paddingY: "10px" }}>
+                <Grid
+                  item
+                  sm={3}
+                  xs={3}
+                  md={3}
+                  sx={{
+                    fontSize: { xs: "15px", sm: "17px", md: "20px" },
+                    justifyContent: "center",
+                    marginTop: "15px",
+                  }}
+                >
+                  Current Bid:
+                </Grid>
+                <Grid item sm={9} xs={9} md={9}>
+                  <TextField
+                    id="outlined-basic"
+                    placeHolder=" "
+                    // variant="outlined"
+                    dividers
+                    fullWidth="100%"
+                    value={cur_bid}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  sm={3}
+                  xs={3}
+                  md={3}
+                  sx={{
+                    fontSize: { xs: "15px", sm: "17px", md: "20px" },
+                    justifyContent: "center",
+                    marginTop: "35px",
+                  }}
+                >
+                  Your Bid:
+                </Grid>
+                <Grid item sm={9} xs={9} md={9}>
+                  {bidAmt ? (
+                    <TextField
+                      sx={{ marginTop: "20px" }}
+                      id="outlined-basic"
+                      placeHolder=" "
+                      variant="outlined"
+                      dividers
+                      fullWidth="100%"
+                      value={bidAmt}
+                      //value={your_bid}
+                    />
+                  ) : (
+                    <TextField
+                      sx={{ marginTop: "20px" }}
+                      id="outlined-basic"
+                      placeHolder=" "
+                      variant="outlined"
+                      dividers
+                      fullWidth="100%"
+                    />
+                  )}
+                </Grid>
+                <Grid
+                  item
+                  sm={3}
+                  xs={3}
+                  md={3}
+                  sx={{
+                    fontSize: { xs: "15px", sm: "17px", md: "20px" },
+                    justifyContent: "center",
+                    marginTop: "35px",
+                  }}
+                >
+                  Per/Kg Price:
+                </Grid>
+                <Grid item sm={9} xs={9} md={9}>
+                  {bidAmt ? (
+                    <TextField
+                      sx={{ marginTop: "20px" }}
+                      id="outlined-basic"
+                      placeHolder=" "
+                      variant="outlined"
+                      dividers
+                      fullWidth="100%"
+                      value={perKg}
+                      // value={your_bid}
+                    />
+                  ) : (
+                    <TextField
+                      sx={{ marginTop: "20px" }}
+                      id="outlined-basic"
+                      placeHolder=" "
+                      variant="outlined"
+                      dividers
+                      fullWidth="100%"
+                    />
+                  )}
+                </Grid>
+              </Grid>
+
+              <div
+                style={{
+                  marginTop: "20px",
+                  display: "flex",
+                  width: "99%",
+                  minWidth: "260px",
+                }}
+              >
+                <div
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Stack direction="row">
+                    <Button
+                      sx={{
+                        marginLeft: { xs: "5px", sm: "15px", md: "30px" },
+                        fontStyle: "bold",
+                        // border: "1px solid black",
+                        borderRadius: "25px",
+                        alignContent: "center",
+                        color: "black",
+                        fontSize: { xs: "12px", sm: "15px", md: "20px" },
+                        "&:hover": {
+                          border: "1px solid #397618",
+                          color: "#397618",
+                        },
+                      }}
+                      onClick={() => {
+                        //your_bid=your_bid+100;
+                        updateCalc(100);
+                        handleClickOpen();
+                      }}
+                    >
+                      <b>+ ₹100</b>
+                    </Button>
+
+                    <Button
+                      sx={{
+                        marginLeft: { xs: "5px", sm: "15px", md: "30px" },
+                        fontStyle: "bold",
+                        // border: "1px solid black",
+                        borderRadius: "25px",
+                        alignContent: "center",
+                        color: "black",
+                        fontSize: { xs: "12px", sm: "15px", md: "20px" },
+                        "&:hover": {
+                          border: "1px solid #397618",
+                          color: "#397618",
+                        },
+                      }}
+                      onClick={() => {
+                        updateCalc(500);
+                        handleClickOpen();
+                      }}
+                    >
+                      <b>+ ₹500</b>
+                    </Button>
+
+                    <Button
+                      sx={{
+                        marginLeft: { xs: "5px", sm: "15px", md: "30px" },
+                        fontStyle: "bold",
+                        // border: "1px solid black",
+                        borderRadius: "25px",
+                        alignContent: "center",
+                        color: "black",
+                        fontSize: { xs: "12px", sm: "15px", md: "20px" },
+                        "&:hover": {
+                          border: "1px solid #397618",
+                          color: "#397618",
+                        },
+                      }}
+                      onClick={() => {
+                        updateCalc(1000);
+                        handleClickOpen();
+                      }}
+                    >
+                      <b>+ ₹1000</b>
+                    </Button>
+
+                    <Button
+                      sx={{
+                        marginLeft: { xs: "5px", sm: "15px", md: "30px" },
+                        fontStyle: "bold",
+                        // border: "1px solid black",
+                        borderRadius: "25px",
+                        alignContent: "center",
+                        color: "black",
+                        fontSize: { xs: "12px", sm: "15px", md: "20px" },
+                        "&:hover": {
+                          border: "1px solid #397618",
+                          color: "#397618",
+                        },
+                      }}
+                      onClick={() => {
+                        updateCalc(2000);
+                        handleClickOpen();
+                      }}
+                    >
+                      <b>+ ₹2000</b>
+                    </Button>
+                  </Stack>
+                </div>
+              </div>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                sx={{
+                  alignContent: "center",
+                  background: "#397618",
+                  marginX: "auto",
+                  height: "38px",
+                  color: "white",
+                  width: "150px",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: "30px",
+                  fontSize: { xs: "13px", sm: "15px", md: "18px" },
+                  "&:hover": {
+                    backgroundColor: "#6eb634",
+                  },
+                }}
+                autoFocus
+                onClick={() => {
+                  if (bidAmt == null || bidAmt <= cur_bid) {
+                    setAlert("Bid should be more than current bid", "error");
+                  } else {
+                    placebid({ biddingId, bidAmt });
+                    handleClose();
+                    setCalc(cur_bid < 1 ? your_bid : null);
+                    // updateCalc("");
+                  }
+                }}
+              >
+                Place Bid
+              </Button>
+            </DialogActions>
+          </BootstrapDialog>
+        </Grid>
+      </Grid>
     </div>
   );
 };

@@ -113,6 +113,7 @@ const Profile = ({ updatefarmerprofile }) => {
               },
               minWidth: "340px",
               margin: "0 auto",
+              marginBottom: "50px",
               padding: "10px 0px",
               backgroundColor: "white",
               // backgroundImage: `linear-gradient( #82bc23 )`,
