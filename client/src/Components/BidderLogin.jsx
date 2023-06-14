@@ -6,16 +6,12 @@ import {
   TextField,
   Button,
   Typography,
-  Link,
-  Checkbox,
 } from "@mui/material";
-import BidderResponsiveAppBar from "./BidderNav";
 import { Navigate, Link as LINK } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginbidder } from "../actions/authbidder";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import BidderLayout from "./BidderLayout";
 
 const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
@@ -36,10 +32,11 @@ const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
   const paperStyle = {
     padding: 10,
     margin: "20px  auto",
+    borderRadius: "25px",
+    
   };
 
   const avatarStyle = { backgroundColor: "#1bbd7e" };
-  const btnstyle = { margin: "8px 0" };
 
   // Redirect if Logged In
 
@@ -63,7 +60,7 @@ const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item xs={9} sm={7} md={3} sx={{}}>
+        <Grid item xs={10} sm={6} md={4} lg={3} >
           <Paper elevation={10} style={paperStyle}>
             <Grid
               item
@@ -117,7 +114,8 @@ const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
                       color: "white",
                       "&:hover": {
                         backgroundColor: "white",
-                        color: "black",
+                        color: "#1bbd7e",
+                        border: "1px solid #1bbd7e ",
                       },
                     }}
                     // fullWidth
@@ -125,8 +123,17 @@ const BidderLogin = ({ loginbidder, isAuthenticatedBidder }) => {
                     Sign in
                   </Button>
                 </Grid>
-                <Typography align="center" marginTop="20px">
-                  <LINK to="/BidderForgotPassword">Forgot password?</LINK>
+                <Typography align="center" marginTop="30px">
+                  <LINK
+                    to="/BidderForgotPassword"
+                    style={{
+                      textDecoration: "none",
+                      color: "#1bbd7e",
+                      fontStyle: "bold",
+                    }}
+                  >
+                    Forgot password?
+                  </LINK>
                 </Typography>
               </form>
             </Grid>

@@ -6,15 +6,12 @@ import {
   TextField,
   Button,
   Typography,
-  Link,
-  Checkbox,
 } from "@mui/material";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Navigate, Link as LINK } from "react-router-dom";
 import { loginfarmer } from "../actions/authfarmer";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import FormControlLabel from "@mui/material/FormControlLabel";
 
 const FarmerLogin = ({ loginfarmer, isAuthenticatedFarmer }) => {
   const [formData, setFormData] = useState({
@@ -34,12 +31,10 @@ const FarmerLogin = ({ loginfarmer, isAuthenticatedFarmer }) => {
   };
   const paperStyle = {
     padding: 10,
-    // height: "65vh",
-    // width: "40vw",
-    // margin: "20px auto",
+    margin: "20px  auto",
+    borderRadius: "25px",
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
-  const btnstyle = { margin: "8px 0" };
 
   // Redirect if logged In
   if (isAuthenticatedFarmer) {
@@ -57,7 +52,7 @@ const FarmerLogin = ({ loginfarmer, isAuthenticatedFarmer }) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item xs={9} sm={7} md={3} sx={{}}>
+        <Grid item xs={10} sm={6} md={4} lg={3}>
           <Paper elevation={10} style={paperStyle}>
             <Grid align="center">
               <Avatar style={avatarStyle}>
@@ -104,7 +99,8 @@ const FarmerLogin = ({ loginfarmer, isAuthenticatedFarmer }) => {
                     color: "white",
                     "&:hover": {
                       backgroundColor: "white",
-                      color: "black",
+                      color: "#1bbd7e",
+                      border: "1px solid #1bbd7e ",
                     },
                   }}
                   // fullWidth
@@ -112,13 +108,18 @@ const FarmerLogin = ({ loginfarmer, isAuthenticatedFarmer }) => {
                   Sign in
                 </Button>
               </Grid>
-              <Typography align="center" marginTop="20px">
-                <LINK to="/FarmerForgotPassword">Forgot password?</LINK>
+              <Typography align="center" marginTop="30px">
+                <LINK
+                  to="/FarmerForgotPassword"
+                  style={{
+                    textDecoration: "none",
+                    color: "#1bbd7e",
+                    fontStyle: "bold",
+                  }}
+                >
+                  Forgot password?
+                </LINK>
               </Typography>
-              {/* <Typography>
-              {" "}
-              Don't have an account ?<Link href="#">Sign Up</Link>
-            </Typography> */}
             </form>
           </Paper>
         </Grid>

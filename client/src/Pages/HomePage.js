@@ -27,7 +27,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div class="container" style={{ backgroundColor: "orange" }}>
+      <div class="container">
         <img src={farmerImg} className="video" />
 
         <MainResponsiveAppBar />
@@ -39,24 +39,23 @@ const HomePage = () => {
           // alignItems="center"
         >
           <Grid item md={4}>
-            <CardActionArea style={{ fontSize: "20px", color: "black" }}>
+            <CardActionArea>
               <CardContent
                 style={{
                   height: "15rem",
-                  fontStyle: "italic",
+                  marginTop: "75px",
                   fontFamily: "cursive",
+                  color: "black",
                   "&hover": {
-                    backgroundColor: "transparent",
+                    backgroundColor: "none",
                   },
                 }}
               >
                 <CardContent
                   align="center"
                   sx={{
-                    fontSize: "50px",
+                    fontSize: "40px",
                     fontWeight: "bold",
-                    fontStyle: "italic",
-                    fontFamily: "cursive",
                   }}
                 >
                   VIKRAWIN
@@ -64,32 +63,12 @@ const HomePage = () => {
                 <CardContent
                   align="center"
                   sx={{
+                    fontSize: "25px",
                     fontWeight: "bold",
-                    fontStyle: "italic",
                     fontFamily: "cursive",
                   }}
                 >
                   "When everyone is selling online,why not farmers!"
-                </CardContent>
-                <CardContent
-                  align="center"
-                  sx={{
-                    marginTop: "90px",
-                    fontSize: "20px",
-                    fontWeight: "bold",
-                    fontStyle: "italic",
-                    fontFamily: "cursive",
-                  }}
-                >
-                  VISION
-                </CardContent>
-                <CardContent
-                  sx={{
-                    marginLeft: "30px",
-                  }}
-                >
-                  To promote connectivity between farmers and dealers for crop
-                  sales, resulting in increased sales and businesses.
                 </CardContent>
               </CardContent>
             </CardActionArea>
